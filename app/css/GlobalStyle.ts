@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     ${reset};
     
     body {
+        font-family: "Manrope", Helvetica, Arial, sans-serif;
         background-color: ${p => p.theme.gray50};
         color: ${p => p.theme.gray900};
     }

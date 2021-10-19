@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSlider } from "../../lib/slider";
 import { SliderCard } from "../molecule/SliderCard";
 import { aspectRatio, Content } from "../../css/content";
+import { HeadlineM } from "../../css/typography";
 
 const SliderWrapper = styled.div`
     overflow: hidden;
@@ -25,11 +26,16 @@ const CardInner = styled.div`
     height: 100%;
 `;
 
+const SliderTitle = styled(HeadlineM)`
+    margin-bottom: 1rem;
+`;
+
 interface BlockBasicSliderProps {
+    title?: string;
     movies: Api.Movie[];
 }
 
-export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ movies }) => {
+export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, movies }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     useSlider(containerRef, {
@@ -39,6 +45,7 @@ export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ movies }) =>
     return (
         <SliderWrapper>
             <Content>
+                {title && <SliderTitle>{title}</SliderTitle>}
                 <SliderContainer ref={containerRef} className="keen-slider">
                     {movies.map(movie => (
                         <CardWrapper key={movie.id} className="keen-slider__slide">
