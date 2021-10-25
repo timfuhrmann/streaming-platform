@@ -1,19 +1,21 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 import { useSlider } from "../../lib/slider";
 import { SliderCard } from "../molecule/SliderCard";
 import { aspectRatio, Content } from "../../css/content";
-import { HeadlineM } from "../../css/typography";
+import { HeadlineS } from "../../css/typography";
 
-const SliderWrapper = styled.div`
+const SliderWrapper = styled.div<{ $hidden: boolean }>`
     overflow: hidden;
+    visibility: ${p => p.$hidden && "hidden"};
 `;
 
 const SliderContainer = styled.div`
     overflow: visible;
 `;
 
-const CardWrapper = styled.button`
+const CardWrapper = styled.a`
     position: relative;
     ${aspectRatio(1.5)};
 `;
@@ -26,8 +28,8 @@ const CardInner = styled.div`
     height: 100%;
 `;
 
-const SliderTitle = styled(HeadlineM)`
-    margin-bottom: 1rem;
+const SliderTitle = styled(HeadlineS)`
+    margin-bottom: 0.8rem;
 `;
 
 interface BlockBasicSliderProps {
@@ -38,21 +40,23 @@ interface BlockBasicSliderProps {
 export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, movies }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    useSlider(containerRef, {
+    const { mounted } = useSlider(containerRef, {
         slidesPerView: 6,
     });
 
     return (
-        <SliderWrapper>
+        <SliderWrapper $hidden={!mounted}>
             <Content>
                 {title && <SliderTitle>{title}</SliderTitle>}
                 <SliderContainer ref={containerRef} className="keen-slider">
                     {movies.map(movie => (
-                        <CardWrapper key={movie.id} className="keen-slider__slide">
-                            <CardInner>
-                                <SliderCard {...movie} />
-                            </CardInner>
-                        </CardWrapper>
+                        <Link key={movie.id} href={"/watch/" + movie.id} passHref>
+                            <CardWrapper className="keen-slider__slide">
+                                <CardInner>
+                                    <SliderCard {...movie} />
+                                </CardInner>
+                            </CardWrapper>
+                        </Link>
                     ))}
                 </SliderContainer>
             </Content>

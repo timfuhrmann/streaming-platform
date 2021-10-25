@@ -17,3 +17,9 @@ export const HeadlineM = styled.div`
     font-weight: 600;
     letter-spacing: -0.1rem;
 `;
+
+export const HeadlineS = styled.div`
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.05rem;
+`;

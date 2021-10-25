@@ -4,13 +4,19 @@ import { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../app/css/theme";
 import { GlobalStyle } from "../app/css/GlobalStyle";
+import { Provider as ReduxProvider } from "react-redux";
+import { useRedux } from "../app/lib/redux";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+    const reduxStore = useRedux(pageProps);
+
     return (
-        <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <Component {...pageProps} />
-        </ThemeProvider>
+        <ReduxProvider store={reduxStore}>
+            <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <Component {...pageProps} />
+            </ThemeProvider>
+        </ReduxProvider>
     );
 };
 

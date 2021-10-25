@@ -40,6 +40,16 @@ declare module Api {
         vote_average: number;
     }
 
+    interface Genre {
+        id: number;
+        name: string;
+        media_type: string;
+    }
+
+    interface GenreList {
+        genres: Genre[];
+    }
+
     interface ProductionCompany {
         name: string;
         id: number;
