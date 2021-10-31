@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../index";
-import { getMoviesByGenre } from "../../api";
+import { getMoviesByGenre } from "../../api/tmdb";
 
 interface GenreState {
     genreResults: Record<number, Api.Movie[]>;

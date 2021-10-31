@@ -3,6 +3,7 @@ export const theme = {
     black: "#080808",
     white: "#EFEFEF",
     primary: "#E50914",
+    alert: "#E6B209",
 
     gray50: "#080808",
     gray75: "#1A1A1A",

@@ -1,4 +1,4 @@
-import { tmdbConfig } from "./api/config";
+import { tmdbConfig } from "./api/tmdb/config";
 
 /**
  * Generate direct url to image.

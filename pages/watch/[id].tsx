@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
-import { getMovieById } from "../../app/lib/api";
+import { getMovieById } from "../../app/lib/api/tmdb";
 import { PlayerProvider } from "../../app/lib/player/context/PlayerProvider";
 import { PlayerControls } from "../../app/layout/player/molecule/PlayerControls";
 import { useRouter } from "next/router";

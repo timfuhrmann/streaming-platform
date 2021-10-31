@@ -1,8 +1,8 @@
 import React from "react";
 import { GetStaticProps } from "next";
-import { getGenres, getMovieById, getMoviesByGenres, getTrending } from "../app/lib/api";
+import { getGenres, getMovieById, getMoviesByGenres, getTrending } from "../app/lib/api/tmdb";
 import { BlockBasicSlider } from "../app/layout/organism/BlockBasicSlider";
-import { FEATURED_MOVIE } from "../app/lib/api/config";
+import { FEATURED_MOVIE } from "../app/lib/api/tmdb/config";
 import { Opener } from "../app/layout/molecule/Opener";
 import { NegativeBlock, Block } from "../app/css/content";
 import { BlockGenreSlider } from "../app/layout/template/BlockGenreSlider";
