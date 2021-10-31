@@ -1,5 +1,9 @@
 export const theme = {
     //region Color
+    black: "#080808",
+    white: "#EFEFEF",
+    primary: "#E50914",
+
     gray50: "#080808",
     gray75: "#1A1A1A",
     gray100: "#1E1E1E",
