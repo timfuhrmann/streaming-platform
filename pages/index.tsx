@@ -8,6 +8,7 @@ import { NegativeBlock, Block } from "../app/css/content";
 import { BlockGenreSlider } from "../app/layout/template/BlockGenreSlider";
 import { useInfiniteScroll } from "../app/lib/infinite-scroll";
 import { REDUX_INITIAL_STATE } from "../app/lib/redux";
+import { BlockTrendingSlider } from "../app/layout/organism/BlockTrendingSlider";
 
 const INFINITE_SCROLL_LIMIT = 4;
 
@@ -29,7 +30,7 @@ const Home: React.FC<HomeProps> = ({ featured, trending, genres }) => {
             )}
             {trending && (
                 <NegativeBlock>
-                    <BlockBasicSlider title="Trending" movies={trending} />
+                    <BlockTrendingSlider title="Trending" movies={trending} />
                 </NegativeBlock>
             )}
             {genres.slice(0, page * INFINITE_SCROLL_LIMIT).map(genre => (
