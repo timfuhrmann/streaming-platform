@@ -9,4 +9,8 @@ export const GlobalStyle = createGlobalStyle`
         background-color: ${p => p.theme.gray50};
         color: ${p => p.theme.gray900};
     }
+    
+    .no-scroll {
+      overflow: hidden;
+    }
 `;

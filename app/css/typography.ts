@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HeadlineXL = styled.div`
     font-size: 7.5rem;
@@ -22,4 +22,11 @@ export const HeadlineS = styled.div`
     font-size: 2rem;
     font-weight: 600;
     letter-spacing: -0.05rem;
+`;
+
+export const ButtonText = css`
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05rem;
+    line-height: 1;
 `;

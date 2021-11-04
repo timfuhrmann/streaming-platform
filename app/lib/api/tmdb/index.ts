@@ -19,6 +19,11 @@ export const getMoviesByGenre = async (genreId: number): Promise<Api.Movie[]> =>
     return results;
 };
 
+export const getRecommendations = async (id: number): Promise<Api.Movie[]> => {
+    const { results } = await db<Api.Page<Api.Movie>>(`/movie/${id}/similar`);
+    return results;
+};
+
 export const getMoviesByGenres = async (
     genreIds: number[]
 ): Promise<Record<number, Api.Movie[]>> => {

@@ -50,7 +50,7 @@ export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, movie
                 {title && <SliderTitle>{title}</SliderTitle>}
                 <SliderContainer ref={containerRef} className="keen-slider">
                     {movies.map(movie => (
-                        <Link key={movie.id} href={"/watch/" + movie.id} passHref>
+                        <Link key={movie.id} href={{ query: { id: movie.id } }} shallow passHref>
                             <CardWrapper className="keen-slider__slide">
                                 <CardInner>
                                     <SliderCard {...movie} />

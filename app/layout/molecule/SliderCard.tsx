@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import { _posterUrl } from "../../lib/poster";
+import { usePreload } from "../../lib/preload";
 
 const CardWrapper = styled.div`
     position: relative;
@@ -11,11 +12,13 @@ const CardWrapper = styled.div`
     background-color: ${p => p.theme.gray100};
 `;
 
-export const SliderCard: React.FC<Api.Movie> = ({ title, poster_path }) => {
+export const SliderCard: React.FC<Api.Movie> = ({ id, title, poster_path }) => {
+    const preload = usePreload(id);
+
     if (!poster_path) return null;
 
     return (
-        <CardWrapper>
+        <CardWrapper onMouseEnter={preload.onMouseEnter} onMouseLeave={preload.onMouseLeave}>
             <Image src={_posterUrl(poster_path)} alt={title} layout="fill" objectFit="cover" />
         </CardWrapper>
     );

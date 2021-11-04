@@ -37,8 +37,6 @@ const genreSlice = createSlice({
                 return;
             }
 
-            console.log("have fetched");
-
             state.genreResults = { ...state.genreResults, [meta.arg.id]: payload };
         });
     },

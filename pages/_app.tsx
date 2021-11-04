@@ -6,6 +6,7 @@ import { theme } from "../app/css/theme";
 import { GlobalStyle } from "../app/css/GlobalStyle";
 import { Provider as ReduxProvider } from "react-redux";
 import { useRedux } from "../app/lib/redux";
+import { MoviePopUp } from "../app/layout/template/MoviePopUp";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     const reduxStore = useRedux(pageProps);
@@ -15,6 +16,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
             <ThemeProvider theme={theme}>
                 <GlobalStyle />
                 <Component {...pageProps} />
+                <MoviePopUp />
             </ThemeProvider>
         </ReduxProvider>
     );

@@ -9,7 +9,7 @@ export const NegativeBlock = styled.div`
 `;
 
 export const Content = styled.div<{ breakMobile?: boolean; breakDesktop?: boolean }>`
-    margin: 0 2rem;
+    margin: 0 3rem;
 
     @media ${p => p.theme.bp.l} {
         max-width: 150rem;
@@ -40,4 +40,11 @@ export const fillParent = () => `
     left: 0;
     height: 100%;
     width: 100%;
+`;
+
+export const centerAbsolute = () => `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;

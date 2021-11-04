@@ -53,7 +53,7 @@ const Watch: React.FC<WatchProps> = ({ movie }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    const id = params?.id;
+    const id = params?.identifier;
 
     if (!id || typeof id !== "string") {
         return {

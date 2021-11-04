@@ -9,9 +9,9 @@ const middleware: Middleware[] = [thunk];
 
 let store: Store;
 
-// if (process.env.NODE_ENV !== "production") {
-//     middleware.push(createLogger());
-// }
+if (process.env.NODE_ENV !== "production") {
+    middleware.push(createLogger());
+}
 
 const loadStore = (initialState?: RootState) => {
     return createStore(reducer, initialState, applyMiddleware(...middleware));
