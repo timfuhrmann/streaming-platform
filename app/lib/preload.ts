@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
-import { preloadMovie } from "./redux/reducer/movies";
+import { preloadShows } from "./redux/reducer/shows";
 
 interface PrefetchData {
     onClick: () => void;
@@ -28,7 +28,7 @@ export const usePreload = (id: number): PrefetchData => {
 
     const onMouseEnter = () => {
         timeoutRef.current = setTimeout(() => {
-            dispatch(preloadMovie({ id }));
+            dispatch(preloadShows({ id }));
         }, 400);
     };
 

@@ -41,15 +41,15 @@ const CardFrame = styled.div`
 
 interface TrendingCardProps {
     index: number;
-    movie: Api.Movie;
+    show: Api.TV;
 }
 
-export const TrendingCard: React.FC<TrendingCardProps> = ({ index, movie }) => {
+export const TrendingCard: React.FC<TrendingCardProps> = ({ index, show }) => {
     return (
         <TrendingWrapper>
             <TrendingIndex dangerouslySetInnerHTML={{ __html: numbers[index + 1] }} />
             <CardFrame>
-                <SliderCard {...movie} />
+                <SliderCard {...show} />
             </CardFrame>
         </TrendingWrapper>
     );

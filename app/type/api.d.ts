@@ -8,36 +8,29 @@ declare module Api {
         results: T[];
     }
 
-    interface Movie {
+    interface TV {
         id: number;
-        title: string;
-        original_title: string;
+        name: string;
+        original_name: string;
         genre_ids: number[];
         poster_path: string | null;
         backdrop_path: string | null;
-        adult: boolean;
         overview: string;
-        release_date: string;
+        first_air_date: string;
+        origin_country: string[];
         original_language: string;
-        popularity: number;
-        video: boolean;
         vote_count: number;
         vote_average: number;
+        popularity: number;
         success?: boolean;
     }
 
-    interface MovieDetails extends Movie {
-        budget: number;
+    interface TVDetails extends TV {
         homepage: string | null;
-        imdb_id: string | null;
         production_companies: ProductionCompany[];
-        revenue: number;
-        runtime: number | null;
-        spoken_languages: Language[];
         status: string;
         tagline: string | null;
-        vote_count: number;
-        vote_average: number;
+        seasons: Season[];
     }
 
     interface Genre {
@@ -57,8 +50,13 @@ declare module Api {
         origin_country: string;
     }
 
-    interface Language {
-        iso_639_1: string;
+    interface Season {
+        air_date: string;
+        episode_count: number;
+        id: number;
         name: string;
+        overview: string;
+        poster_path: string | null;
+        season_number: number;
     }
 }

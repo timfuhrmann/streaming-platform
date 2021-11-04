@@ -8,13 +8,13 @@ export const BlockGenreSlider: React.FC<Api.Genre> = ({ id, name }) => {
     const dispatch = useDispatch();
     const { genreResults } = useSelector((state: RootState) => state.genre);
 
-    const movies = genreResults[id];
+    const shows = genreResults[id];
 
     useEffect(() => {
         dispatch(fetchGenre({ id }));
     }, []);
 
-    if (!movies) return null;
+    if (!shows) return null;
 
-    return <BlockBasicSlider title={name} movies={movies} />;
+    return <BlockBasicSlider title={name} shows={shows} />;
 };

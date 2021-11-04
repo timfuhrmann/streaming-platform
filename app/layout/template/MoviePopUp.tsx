@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../lib/redux";
-import { preloadMovie } from "../../lib/redux/reducer/movies";
+import { preloadShow } from "../../lib/redux/reducer/shows";
 import { fillParent, square } from "../../css/content";
 import { deleteParamFromQuery } from "../../lib/util";
 import { PopUpOpener } from "../molecule/PopUpOpener";
@@ -84,13 +84,13 @@ export const MoviePopUp: React.FC = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { id } = router.query;
-    const { entities, fetchRequests } = useSelector((state: RootState) => state.movies);
-    const [movie, setMovie] = useState<Api.MovieDetails | null>(null);
-    const [recommendations, setRecommendations] = useState<Api.Movie[] | null>(null);
+    const { entities, fetchRequests } = useSelector((state: RootState) => state.shows);
+    const [entry, setEntry] = useState<Api.TVDetails | null>(null);
+    const [recommendations, setRecommendations] = useState<Api.TV[] | null>(null);
 
     useEffect(() => {
         if (!id || typeof id !== "string") {
-            setMovie(null);
+            setEntry(null);
             return;
         }
 
@@ -100,9 +100,9 @@ export const MoviePopUp: React.FC = () => {
 
         if (entity) {
             document.documentElement.classList.add("no-scroll");
-            setMovie(entity);
+            setEntry(entity);
         } else if (!fetchRequests.includes(numId)) {
-            dispatch(preloadMovie({ id: numId }));
+            dispatch(preloadShow({ id: numId }));
         }
 
         return () => document.documentElement.classList.remove("no-scroll");
@@ -126,19 +126,19 @@ export const MoviePopUp: React.FC = () => {
         });
     };
 
-    if (!movie) return null;
+    if (!entry) return null;
 
     return (
         <PopUpWrapper>
-            <PopUpFrame key={movie.id}>
+            <PopUpFrame key={entry.id}>
                 <PopUpStage>
-                    <PopUpOpener {...movie} />
+                    <PopUpOpener {...entry} />
                     <PopUpBody>
                         {recommendations && (
                             <PopUpRow>
                                 <BlockTeaser
                                     headline="You could also like"
-                                    movies={recommendations}
+                                    shows={recommendations}
                                 />
                             </PopUpRow>
                         )}

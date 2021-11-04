@@ -61,9 +61,9 @@ const OpenerControls = styled.div`
     margin-top: 1rem;
 `;
 
-export const PopUpOpener: React.FC<Api.MovieDetails> = ({
+export const PopUpOpener: React.FC<Api.TVDetails> = ({
     id,
-    title,
+    name,
     overview,
     vote_average,
     backdrop_path,
@@ -73,7 +73,7 @@ export const PopUpOpener: React.FC<Api.MovieDetails> = ({
             <OpenerFrame>
                 <OpenerInner>
                     <OpenerHead>
-                        <HeadlineL>{title}</HeadlineL>
+                        <HeadlineL>{name}</HeadlineL>
                         <OpenerControls>
                             <Button action={`/watch/${id}`}>Play</Button>
                             <Rating vote={vote_average} />
@@ -83,7 +83,7 @@ export const PopUpOpener: React.FC<Api.MovieDetails> = ({
                     {backdrop_path && (
                         <Image
                             src={_posterUrl(backdrop_path, "original")}
-                            alt={title}
+                            alt={name}
                             layout="fill"
                             objectFit="cover"
                             objectPosition="50% 15%"

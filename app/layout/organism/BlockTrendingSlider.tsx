@@ -25,10 +25,10 @@ const TrendingTitle = styled(HeadlineS)`
 
 interface BlockBasicSliderProps {
     title?: string;
-    movies: Api.Movie[];
+    shows: Api.TV[];
 }
 
-export const BlockTrendingSlider: React.FC<BlockBasicSliderProps> = ({ title, movies }) => {
+export const BlockTrendingSlider: React.FC<BlockBasicSliderProps> = ({ title, shows }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     const { mounted } = useSlider(containerRef, {
@@ -49,10 +49,10 @@ export const BlockTrendingSlider: React.FC<BlockBasicSliderProps> = ({ title, mo
             <Content>
                 {title && <TrendingTitle>{title}</TrendingTitle>}
                 <TrendingContainer ref={containerRef} className="keen-slider">
-                    {movies.slice(0, 9).map((movie, index) => (
-                        <Link key={movie.id} href={{ query: { id: movie.id } }} shallow passHref>
+                    {shows.slice(0, 9).map((show, index) => (
+                        <Link key={show.id} href={{ query: { id: show.id } }} shallow passHref>
                             <TrendingSlide className="keen-slider__slide">
-                                <TrendingCard index={index} movie={movie} />
+                                <TrendingCard index={index} show={show} />
                             </TrendingSlide>
                         </Link>
                     ))}

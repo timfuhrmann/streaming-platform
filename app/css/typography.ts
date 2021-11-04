@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const HeadlineXL = styled.div`
     font-size: 7.5rem;
     font-weight: 800;
-    letter-spacing: -0.4rem;
+    letter-spacing: -0.15rem;
 `;
 
 export const HeadlineL = styled.div`

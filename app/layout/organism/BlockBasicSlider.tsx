@@ -34,10 +34,10 @@ const SliderTitle = styled(HeadlineS)`
 
 interface BlockBasicSliderProps {
     title?: string;
-    movies: Api.Movie[];
+    shows: Api.TV[];
 }
 
-export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, movies }) => {
+export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, shows }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     const { mounted } = useSlider(containerRef, {
@@ -49,11 +49,11 @@ export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, movie
             <Content>
                 {title && <SliderTitle>{title}</SliderTitle>}
                 <SliderContainer ref={containerRef} className="keen-slider">
-                    {movies.map(movie => (
-                        <Link key={movie.id} href={{ query: { id: movie.id } }} shallow passHref>
+                    {shows.map(show => (
+                        <Link key={show.id} href={{ query: { id: show.id } }} shallow passHref>
                             <CardWrapper className="keen-slider__slide">
                                 <CardInner>
-                                    <SliderCard {...movie} />
+                                    <SliderCard {...show} />
                                 </CardInner>
                             </CardWrapper>
                         </Link>

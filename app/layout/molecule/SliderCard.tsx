@@ -12,7 +12,7 @@ const CardWrapper = styled.div`
     background-color: ${p => p.theme.gray100};
 `;
 
-export const SliderCard: React.FC<Api.Movie> = ({ id, title, poster_path }) => {
+export const SliderCard: React.FC<Api.TV> = ({ id, title, poster_path }) => {
     const preload = usePreload(id);
 
     if (!poster_path) return null;

@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../index";
-import { getMoviesByGenre } from "../../api/tmdb";
+import { getShowsByGenre } from "../../api/tmdb";
 
 interface GenreState {
-    genreResults: Record<number, Api.Movie[]>;
+    genreResults: Record<number, Api.TV[]>;
 }
 
 interface ThunkParams {
@@ -14,7 +14,7 @@ const initialState: GenreState = {
     genreResults: {},
 };
 
-export const fetchGenre = createAsyncThunk<Api.Movie[] | null, ThunkParams>(
+export const fetchGenre = createAsyncThunk<Api.TV[] | null, ThunkParams>(
     "genre/fetchGenre",
     async ({ id }, thunkAPI) => {
         const { genre } = thunkAPI.getState() as RootState;
@@ -23,7 +23,7 @@ export const fetchGenre = createAsyncThunk<Api.Movie[] | null, ThunkParams>(
             return null;
         }
 
-        return await getMoviesByGenre(id);
+        return await getShowsByGenre(id);
     }
 );
 

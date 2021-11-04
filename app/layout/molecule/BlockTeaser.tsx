@@ -36,19 +36,19 @@ const TeaserCardInner = styled.div`
 
 interface BlockTeaserProps {
     headline?: string;
-    movies: Api.Movie[];
+    shows: Api.TV[];
 }
 
-export const BlockTeaser: React.FC<BlockTeaserProps> = ({ headline, movies }) => {
+export const BlockTeaser: React.FC<BlockTeaserProps> = ({ headline, shows }) => {
     return (
         <TeaserWrapper>
             {headline && <TeaserHeadline>{headline}</TeaserHeadline>}
             <TeaserList>
-                {movies.slice(0, 8).map(movie => (
-                    <Link key={movie.id} href={{ query: { id: movie.id } }} shallow passHref>
-                        <TeaserCard key={movie.id}>
+                {shows.slice(0, 8).map(show => (
+                    <Link key={show.id} href={{ query: { id: show.id } }} shallow passHref>
+                        <TeaserCard key={show.id}>
                             <TeaserCardInner>
-                                <SliderCard {...movie} />
+                                <SliderCard {...show} />
                             </TeaserCardInner>
                         </TeaserCard>
                     </Link>

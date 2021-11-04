@@ -1,7 +1,6 @@
 import React from "react";
 import { GetStaticProps } from "next";
-import { getGenres, getMovieById, getMoviesByGenres, getTrending } from "../app/lib/api/tmdb";
-import { BlockBasicSlider } from "../app/layout/organism/BlockBasicSlider";
+import { getGenres, getShowById, getShowsByGenres, getTrending } from "../app/lib/api/tmdb";
 import { FEATURED_MOVIE } from "../app/lib/api/tmdb/config";
 import { Opener } from "../app/layout/molecule/Opener";
 import { NegativeBlock, Block } from "../app/css/content";
@@ -13,8 +12,8 @@ import { BlockTrendingSlider } from "../app/layout/organism/BlockTrendingSlider"
 const INFINITE_SCROLL_LIMIT = 4;
 
 interface HomeProps {
-    featured: Api.MovieDetails;
-    trending: Api.Movie[];
+    featured: Api.TVDetails;
+    trending: Api.TV[];
     genres: Api.Genre[];
 }
 
@@ -26,11 +25,11 @@ const Home: React.FC<HomeProps> = ({ featured, trending, genres }) => {
     return (
         <div>
             {featured && featured.backdrop_path && (
-                <Opener title={featured.title} image={featured.backdrop_path} />
+                <Opener name={featured.name} image={featured.backdrop_path} />
             )}
             {trending && (
                 <NegativeBlock>
-                    <BlockTrendingSlider title="Trending" movies={trending} />
+                    <BlockTrendingSlider title="Trending" shows={trending} />
                 </NegativeBlock>
             )}
             {genres.slice(0, page * INFINITE_SCROLL_LIMIT).map(genre => (
@@ -43,10 +42,10 @@ const Home: React.FC<HomeProps> = ({ featured, trending, genres }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-    const featured = await getMovieById(FEATURED_MOVIE);
+    const featured = await getShowById(FEATURED_MOVIE);
     const trending = await getTrending();
     const genres = await getGenres();
-    const genreResults = await getMoviesByGenres(
+    const genreResults = await getShowsByGenres(
         genres.slice(0, INFINITE_SCROLL_LIMIT).map(genre => genre.id)
     );
 

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
-import { getMovieById } from "../../app/lib/api/tmdb";
+import { getShowById } from "../../app/lib/api/tmdb";
 import { PlayerProvider } from "../../app/lib/player/context/PlayerProvider";
 import { PlayerControls } from "../../app/layout/player/molecule/PlayerControls";
 import { useRouter } from "next/router";
@@ -31,10 +31,10 @@ const IconBack = styled(IconArrowLeft)`
 `;
 
 interface WatchProps {
-    movie: Api.MovieDetails;
+    show: Api.TVDetails;
 }
 
-const Watch: React.FC<WatchProps> = ({ movie }) => {
+const Watch: React.FC<WatchProps> = ({ show }) => {
     const router = useRouter();
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -61,9 +61,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         };
     }
 
-    const movie = await getMovieById(parseInt(id));
+    const show = await getShowById(parseInt(id));
 
-    if (!movie) {
+    if (!show) {
         return {
             notFound: true,
         };
@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
     return {
         props: {
-            movie,
+            show,
         },
     };
 };

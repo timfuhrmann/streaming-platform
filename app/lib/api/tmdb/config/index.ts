@@ -1,4 +1,4 @@
-export const FEATURED_MOVIE = 438631;
+export const FEATURED_MOVIE = 60625;
 
 export const tmdbConfig = {
     host: process.env.NEXT_PUBLIC_THE_MOVIE_DB_V3_BASE_URL,

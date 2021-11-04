@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../index";
-import { getMovieById } from "../../api/tmdb";
+import { getShowById } from "../../api/tmdb";
 
-interface MovieState {
-    entities: Record<number, Api.MovieDetails>;
+interface ShowsState {
+    entities: Record<number, Api.TVDetails>;
     fetchRequests: number[];
 }
 
@@ -11,28 +11,28 @@ interface ThunkParams {
     id: number;
 }
 
-const initialState: MovieState = {
+const initialState: ShowsState = {
     entities: {},
     fetchRequests: [],
 };
 
-export const preloadMovie = createAsyncThunk<Api.MovieDetails | null, ThunkParams>(
-    "movies/preloadMovie",
+export const preloadShow = createAsyncThunk<Api.TVDetails | null, ThunkParams>(
+    "shows/preloadShow",
     async ({ id }, thunkAPI) => {
-        const { movies } = thunkAPI.getState() as RootState;
+        const { shows } = thunkAPI.getState() as RootState;
 
-        if (!!movies.entities[id]) {
+        if (!!shows.entities[id]) {
             return null;
         }
 
         thunkAPI.dispatch(registerFetchRequest(id));
 
-        return await getMovieById(id);
+        return await getShowById(id);
     }
 );
 
-const moviesSlice = createSlice({
-    name: "movies",
+const showsSlice = createSlice({
+    name: "shows",
     initialState,
     reducers: {
         registerFetchRequest(state, action: PayloadAction<number>) {
@@ -40,7 +40,7 @@ const moviesSlice = createSlice({
         },
     },
     extraReducers: builder => {
-        builder.addCase(preloadMovie.fulfilled, (state, { payload }) => {
+        builder.addCase(preloadShow.fulfilled, (state, { payload }) => {
             if (!payload) {
                 return;
             }
@@ -50,5 +50,5 @@ const moviesSlice = createSlice({
     },
 });
 
-export const { registerFetchRequest } = moviesSlice.actions;
-export default moviesSlice.reducer;
+export const { registerFetchRequest } = showsSlice.actions;
+export default showsSlice.reducer;

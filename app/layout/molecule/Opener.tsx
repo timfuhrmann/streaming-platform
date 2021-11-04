@@ -36,20 +36,20 @@ const OpenerContent = styled(Content)``;
 const OpenerTitle = styled(HeadlineXL)``;
 
 interface OpenerProps {
-    title: string;
+    name: string;
     image: string;
 }
 
-export const Opener: React.FC<OpenerProps> = ({ title, image }) => {
+export const Opener: React.FC<OpenerProps> = ({ name, image }) => {
     return (
         <OpenerWrapper>
             <OpenerContent>
-                <OpenerTitle as="h1">{title}</OpenerTitle>
+                <OpenerTitle as="h1">{name}</OpenerTitle>
             </OpenerContent>
             <OpenerBackground>
                 <Image
                     src={_posterUrl(image, "original")}
-                    alt={title}
+                    alt={name}
                     layout="fill"
                     objectFit="cover"
                     objectPosition="50% 15%"
