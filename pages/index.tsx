@@ -1,15 +1,21 @@
 import React from "react";
+import styled from "styled-components";
+import useInfiniteScroll from "react-infinite-scroll-hook";
 import { GetStaticProps } from "next";
 import { getGenres, getShowById, getShowsByGenres, getTrending } from "../app/lib/api/tmdb";
-import { FEATURED_MOVIE } from "../app/lib/api/tmdb/config";
+import { FEATURED_SHOW } from "../app/lib/api/tmdb/config";
 import { Opener } from "../app/layout/molecule/Opener";
 import { NegativeBlock, Block } from "../app/css/content";
-import { BlockGenreSlider } from "../app/layout/template/BlockGenreSlider";
-import { useInfiniteScroll } from "../app/lib/infinite-scroll";
-import { REDUX_INITIAL_STATE } from "../app/lib/redux";
+import { REDUX_INITIAL_STATE, useAppSelector } from "../app/lib/redux";
 import { BlockTrendingSlider } from "../app/layout/organism/BlockTrendingSlider";
+import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "../app/lib/redux/reducer/genre";
+import { BlockBasicSlider } from "../app/layout/organism/BlockBasicSlider";
+import { useDispatch } from "react-redux";
+import { BasicSliderSkeleton } from "../app/layout/atom/BasicSliderSkeleton";
 
-const INFINITE_SCROLL_LIMIT = 4;
+const PageWrapper = styled.div`
+    padding-bottom: 12rem;
+`;
 
 interface HomeProps {
     featured: Api.TVDetails;
@@ -17,13 +23,22 @@ interface HomeProps {
     genres: Api.Genre[];
 }
 
-const Home: React.FC<HomeProps> = ({ featured, trending, genres }) => {
-    const { page } = useInfiniteScroll();
+const Home: React.FC<HomeProps> = ({ featured, trending }) => {
+    const dispatch = useDispatch();
+    const { genreResults, loading, hasNextPage } = useAppSelector(state => state.genre);
 
-    // clever infinite scroll by mounting every and then loading when in viewport
+    const onLoadMore = () => {
+        dispatch(fetchGenrePage());
+    };
+
+    const [sentryRef] = useInfiniteScroll({
+        loading,
+        hasNextPage,
+        onLoadMore,
+    });
 
     return (
-        <div>
+        <PageWrapper>
             {featured && featured.backdrop_path && (
                 <Opener name={featured.name} image={featured.backdrop_path} />
             )}
@@ -32,25 +47,35 @@ const Home: React.FC<HomeProps> = ({ featured, trending, genres }) => {
                     <BlockTrendingSlider title="Trending" shows={trending} />
                 </NegativeBlock>
             )}
-            {genres.slice(0, page * INFINITE_SCROLL_LIMIT).map(genre => (
-                <Block key={genre.id}>
-                    <BlockGenreSlider {...genre} />
+            {Object.keys(genreResults).map(showKey => (
+                <Block key={showKey}>
+                    <BlockBasicSlider title={showKey} shows={genreResults[showKey]} />
                 </Block>
             ))}
-        </div>
+            {(loading || hasNextPage) && (
+                <Block ref={sentryRef}>
+                    <BasicSliderSkeleton />
+                </Block>
+            )}
+        </PageWrapper>
     );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-    const featured = await getShowById(FEATURED_MOVIE);
+    const featured = await getShowById(FEATURED_SHOW);
     const trending = await getTrending();
     const genres = await getGenres();
-    const genreResults = await getShowsByGenres(
-        genres.slice(0, INFINITE_SCROLL_LIMIT).map(genre => genre.id)
-    );
+    const genreResults = await getShowsByGenres(genres.slice(0, INFINITE_SCROLL_SKIP));
 
     return {
-        props: { featured, trending, genres, [REDUX_INITIAL_STATE]: { genre: { genreResults } } },
+        props: {
+            featured,
+            trending,
+            genres,
+            [REDUX_INITIAL_STATE]: {
+                genre: { genres, genreResults, page: 0, loading: false, hasNextPage: true },
+            },
+        },
         revalidate: 60 * 60 * 24, // 24 hours
     };
 };

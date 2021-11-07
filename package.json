@@ -16,6 +16,7 @@
     "next": "^12.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-infinite-scroll-hook": "^4.0.1",
     "react-redux": "^7.2.5",
     "redux-logger": "^3.0.6",
     "sharp": "^0.29.2",

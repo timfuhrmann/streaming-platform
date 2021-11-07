@@ -42,6 +42,7 @@ export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, shows
 
     const { mounted } = useSlider(containerRef, {
         slidesPerView: 2,
+        spacing: 15,
         breakpoints: {
             "(min-width: 768px)": {
                 slidesPerView: 4,

@@ -3,6 +3,7 @@ import reducer from "./reducer";
 import { createLogger } from "redux-logger";
 import { createStore, applyMiddleware, Middleware, Store } from "@reduxjs/toolkit";
 import { useMemo } from "react";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const REDUX_INITIAL_STATE = "__REDUX_STATE__";
 const middleware: Middleware[] = [thunk];
@@ -13,12 +14,16 @@ if (process.env.NODE_ENV !== "production") {
     middleware.push(createLogger());
 }
 
-const loadStore = (initialState?: RootState) => {
-    return createStore(reducer, initialState, applyMiddleware(...middleware));
+const makeStore = (preloadedState?: AppState) => {
+    return createStore(reducer, preloadedState, applyMiddleware(...middleware));
 };
 
-const initializeStore = (initialState?: RootState) => {
-    const _store = store ?? loadStore(initialState);
+const initializeStore = (preloadedState?: AppState) => {
+    let _store = store ?? makeStore(preloadedState);
+
+    if (preloadedState && store) {
+        _store = makeStore({ ...store.getState(), ...preloadedState });
+    }
 
     if (typeof window === "undefined") {
         return _store;
@@ -36,4 +41,5 @@ export const useRedux = (pageProps: any) => {
     return useMemo(() => initializeStore(state), [state]);
 };
 
-export type RootState = ReturnType<typeof store.getState>;
+export type AppState = ReturnType<typeof reducer>;
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;

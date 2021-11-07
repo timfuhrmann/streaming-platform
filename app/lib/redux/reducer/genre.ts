@@ -1,29 +1,38 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../index";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AppState } from "../index";
 import { getShowsByGenre } from "../../api/tmdb";
+import { recordArrayToRecord } from "../../util";
+
+export const INFINITE_SCROLL_SKIP = 4;
 
 interface GenreState {
-    genreResults: Record<number, Api.TV[]>;
-}
-
-interface ThunkParams {
-    id: number;
+    genres: Api.Genre[];
+    genreResults: Record<string, Api.TV[]>;
+    page: number;
+    loading: boolean;
+    hasNextPage: boolean;
 }
 
 const initialState: GenreState = {
+    genres: [],
     genreResults: {},
+    page: 0,
+    loading: false,
+    hasNextPage: true,
 };
 
-export const fetchGenre = createAsyncThunk<Api.TV[] | null, ThunkParams>(
-    "genre/fetchGenre",
-    async ({ id }, thunkAPI) => {
-        const { genre } = thunkAPI.getState() as RootState;
+export const fetchGenrePage = createAsyncThunk<Record<string, Api.TV[]>[] | null>(
+    "genre/fetchGenrePage",
+    async (params, thunkAPI) => {
+        const { genre } = thunkAPI.getState() as AppState;
+        const { genres, page } = genre;
 
-        if (!!genre.genreResults[id]) {
-            return null;
-        }
+        const genrePage = genres.slice(
+            INFINITE_SCROLL_SKIP * page,
+            INFINITE_SCROLL_SKIP * (page + 1)
+        );
 
-        return await getShowsByGenre(id);
+        return Promise.all(genrePage.map(item => getShowsByGenre(item)));
     }
 );
 
@@ -32,12 +41,19 @@ const genreSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: builder => {
-        builder.addCase(fetchGenre.fulfilled, (state, { meta, payload }) => {
+        builder.addCase(fetchGenrePage.pending, state => {
+            state.loading = true;
+            state.page += 1;
+        });
+
+        builder.addCase(fetchGenrePage.fulfilled, (state, { payload }) => {
             if (!payload) {
                 return;
             }
 
-            state.genreResults = { ...state.genreResults, [meta.arg.id]: payload };
+            state.genreResults = { ...state.genreResults, ...recordArrayToRecord(payload) };
+            state.hasNextPage = state.genres.length > Object.keys(state.genreResults).length;
+            state.loading = false;
         });
     },
 });

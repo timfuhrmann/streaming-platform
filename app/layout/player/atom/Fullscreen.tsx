@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { usePlayer } from "../../../lib/player/context/PlayerContext";
-import { RootState } from "../../../lib/redux";
-import { useSelector } from "react-redux";
+import { AppState, useAppSelector } from "../../../lib/redux";
 import { IconMaximize } from "../../../icon/IconMaximize";
 import { square } from "../../../css/content";
 import { IconMinimize } from "../../../icon/IconMinimize";
@@ -22,7 +21,7 @@ const Minimize = styled(IconMinimize)`
 `;
 
 export const Fullscreen: React.FC = () => {
-    const { fullscreen } = useSelector((state: RootState) => state.player);
+    const { fullscreen } = useAppSelector(state => state.player);
     const { toggleFullscreen } = usePlayer();
 
     return (

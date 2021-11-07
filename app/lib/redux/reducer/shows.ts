@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../index";
+import { AppState } from "../index";
 import { getShowById } from "../../api/tmdb";
 
 interface ShowsState {
@@ -19,7 +19,7 @@ const initialState: ShowsState = {
 export const preloadShow = createAsyncThunk<Api.TVDetails | null, ThunkParams>(
     "shows/preloadShow",
     async ({ id }, thunkAPI) => {
-        const { shows } = thunkAPI.getState() as RootState;
+        const { shows } = thunkAPI.getState() as AppState;
 
         if (!!shows.entities[id]) {
             return null;

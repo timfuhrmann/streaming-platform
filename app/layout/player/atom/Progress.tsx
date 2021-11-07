@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../lib/redux";
 import { usePlayer } from "../../../lib/player/context/PlayerContext";
 import { Drag } from "../../../lib/drag";
+import { useAppSelector } from "../../../lib/redux";
 
 const ProgressWrapper = styled.div`
     position: relative;
@@ -83,7 +82,7 @@ const ProgressTimeStamp = styled.div`
 export const Progress: React.FC = () => {
     const progressRef = useRef<HTMLDivElement | null>(null);
     const [indicator, setIndicator] = useState<number | null>(null);
-    const { progress, buffer } = useSelector((state: RootState) => state.player);
+    const { progress, buffer } = useAppSelector(state => state.player);
     const { currentTimeStamp, missingTimeStamp, timeStampFromAbs, jumpToAbs } = usePlayer();
     const [dragging, setDragging] = useState<boolean>(false);
 

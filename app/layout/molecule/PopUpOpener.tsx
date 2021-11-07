@@ -58,7 +58,7 @@ const OpenerText = styled.div`
 const OpenerControls = styled.div`
     display: flex;
     gap: 1.5rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 `;
 
 export const PopUpOpener: React.FC<Api.TVDetails> = ({
