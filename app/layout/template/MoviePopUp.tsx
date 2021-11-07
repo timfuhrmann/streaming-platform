@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../lib/redux";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "../../lib/redux";
 import { preloadShow } from "../../lib/redux/reducer/shows";
 import { fillParent, square } from "../../css/content";
 import { deleteParamFromQuery } from "../../lib/util";
@@ -10,6 +10,7 @@ import { PopUpOpener } from "../molecule/PopUpOpener";
 import { BlockTeaser } from "../molecule/BlockTeaser";
 import { getRecommendations } from "../../lib/api/tmdb";
 import { IconX } from "../../icon/IconX";
+import { BlockSeasons } from "../organism/BlockSeasons";
 
 const PopUpWrapper = styled.div`
     ${fillParent};
@@ -32,9 +33,13 @@ const PopUpStage = styled.div`
     flex: 1;
     width: 100%;
     max-width: 90rem;
-    margin: 5rem auto 0;
+    margin: 0 auto;
     padding-bottom: 5rem;
     background-color: ${p => p.theme.gray100};
+
+    @media ${p => p.theme.bp.l} {
+        margin: 5rem auto 0;
+    }
 `;
 
 const PopUpBody = styled.div`
@@ -42,7 +47,7 @@ const PopUpBody = styled.div`
 `;
 
 const PopUpRow = styled.div`
-    margin-top: 4rem;
+    margin-top: 6rem;
 
     &:first-child {
         margin: 0;
@@ -84,7 +89,7 @@ export const MoviePopUp: React.FC = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { id } = router.query;
-    const { entities, fetchRequests } = useSelector((state: RootState) => state.shows);
+    const { entities, fetchRequests } = useAppSelector(state => state.shows);
     const [entry, setEntry] = useState<Api.TVDetails | null>(null);
     const [recommendations, setRecommendations] = useState<Api.TV[] | null>(null);
 
@@ -134,6 +139,9 @@ export const MoviePopUp: React.FC = () => {
                 <PopUpStage>
                     <PopUpOpener {...entry} />
                     <PopUpBody>
+                        <PopUpRow>
+                            <BlockSeasons seasons={entry.seasons} show={entry} />
+                        </PopUpRow>
                         {recommendations && (
                             <PopUpRow>
                                 <BlockTeaser

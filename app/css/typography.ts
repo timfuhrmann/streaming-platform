@@ -24,6 +24,12 @@ export const HeadlineS = styled.div`
     letter-spacing: -0.05rem;
 `;
 
+export const HeadlineXS = styled.div`
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: -0.05rem;
+`;
+
 export const ButtonText = css`
     font-size: 1.5rem;
     font-weight: 800;

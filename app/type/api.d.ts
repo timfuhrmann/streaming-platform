@@ -59,4 +59,30 @@ declare module Api {
         poster_path: string | null;
         season_number: number;
     }
+
+    interface Season {
+        air_date: string;
+        episode_count: number;
+        id: number;
+        name: string;
+        overview: string;
+        poster_path: string | null;
+        season_number: number;
+    }
+
+    interface SeasonDetails extends Season {
+        episodes: Episode[];
+    }
+
+    interface Episode {
+        id: number;
+        name: string;
+        overview: string;
+        episode_number: number;
+        season_number: number;
+        air_date: string;
+        still_path: string;
+        vote_count: number;
+        vote_average: number;
+    }
 }
