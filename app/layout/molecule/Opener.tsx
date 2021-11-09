@@ -54,7 +54,9 @@ export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path }) => 
                 <OpenerTitle as="h1">{name}</OpenerTitle>
                 <OpenerControls>
                     <Button>Play</Button>
-                    <Button action={preload.onClick}>More info</Button>
+                    <Button action={preload.onClick} isSecondary>
+                        More info
+                    </Button>
                 </OpenerControls>
             </OpenerContent>
             <OpenerBackground>

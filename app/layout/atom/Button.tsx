@@ -3,40 +3,60 @@ import styled from "styled-components";
 import Link from "next/link";
 import { ButtonText } from "@css/typography";
 import { transition } from "@css/transition";
+import { fillParent } from "@css/content";
 
-const ButtonWrapper = styled.button`
+const ButtonWrapper = styled.button<{ $isSecondary?: boolean }>`
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     ${ButtonText};
-    padding: 1rem 3rem;
+    padding: 1.5rem 3rem;
     min-width: 15rem;
-    background-color: ${p => p.theme.gray900};
-    color: ${p => p.theme.gray50};
-    ${transition("background-color", "0.15s")}
+    color: ${p => (p.$isSecondary ? p.theme.gray900 : p.theme.gray50)};
+    border-radius: 0.4rem;
+    overflow: hidden;
+    transform: translateZ(0);
+
+    &::after {
+        content: "";
+        ${fillParent};
+        z-index: -1;
+        background-color: ${p => (p.$isSecondary ? p.theme.gray600 : p.theme.gray900)};
+        opacity: ${p => (p.$isSecondary ? 0.75 : 1)};
+        ${transition("opacity", "0.15s")}
+    }
 
     @media (hover: hover) {
         &:hover {
-            background-color: ${p => p.theme.gray800};
+            &::after {
+                opacity: ${p => (p.$isSecondary ? 0.5 : 0.75)};
+            }
         }
     }
 
     &:active {
-        background-color: ${p => p.theme.gray800};
+        &::after {
+            opacity: ${p => (p.$isSecondary ? 0.5 : 0.75)};
+        }
     }
 `;
 
 interface ButtonProps {
     action?: string | (() => void);
+    isSecondary?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({ action, children }) => {
+export const Button: React.FC<ButtonProps> = ({ action, isSecondary, children }) => {
     return typeof action === "string" ? (
         <Link href={action} passHref>
-            <ButtonWrapper as="a">{children}</ButtonWrapper>
+            <ButtonWrapper as="a" $isSecondary={isSecondary}>
+                {children}
+            </ButtonWrapper>
         </Link>
     ) : (
-        <ButtonWrapper type="button" onClick={action}>
+        <ButtonWrapper type="button" onClick={action} $isSecondary={isSecondary}>
             {children}
         </ButtonWrapper>
     );

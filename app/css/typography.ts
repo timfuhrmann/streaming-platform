@@ -31,7 +31,7 @@ export const HeadlineXS = css`
 `;
 
 export const ButtonText = css`
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 600;
     letter-spacing: -0.05rem;
     line-height: 1;
