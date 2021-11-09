@@ -57,7 +57,7 @@ const Code: React.FC = () => {
             case 500:
                 return router.replace("/profile");
             default:
-                return router.replace("/");
+                return (location.href = "/");
         }
     };
 
