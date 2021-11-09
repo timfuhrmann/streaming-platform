@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { SliderCard } from "./SliderCard";
+import { Card } from "./Card";
 import { aspectRatio } from "@css/content";
 import { numbers } from "@lib/numbers";
 
@@ -49,7 +49,7 @@ export const TrendingCard: React.FC<TrendingCardProps> = ({ index, show }) => {
         <TrendingWrapper>
             <TrendingIndex dangerouslySetInnerHTML={{ __html: numbers[index + 1] }} />
             <CardFrame>
-                <SliderCard {...show} />
+                <Card {...show} />
             </CardFrame>
         </TrendingWrapper>
     );

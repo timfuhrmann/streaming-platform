@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useSlider } from "@lib/slider";
-import { SliderCard } from "../molecule/SliderCard";
+import { Card } from "../molecule/Card";
 import { aspectRatio, Content } from "@css/content";
 import { HeadlineS } from "@css/typography";
 
@@ -63,7 +63,7 @@ export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, shows
                         <Link key={show.id} href={{ query: { id: show.id } }} shallow passHref>
                             <CardWrapper className="keen-slider__slide">
                                 <CardInner>
-                                    <SliderCard {...show} />
+                                    <Card {...show} />
                                 </CardInner>
                             </CardWrapper>
                         </Link>

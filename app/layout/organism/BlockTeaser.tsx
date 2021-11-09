@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { SliderCard } from "../molecule/SliderCard";
+import { Card } from "../molecule/Card";
 import { aspectRatio, fillParent } from "@css/content";
 import { HeadlineS } from "@css/typography";
 
@@ -54,7 +54,7 @@ export const BlockTeaser: React.FC<BlockTeaserProps> = ({ headline, shows }) => 
                     <Link key={show.id} href={{ query: { id: show.id } }} shallow passHref>
                         <TeaserCard key={show.id}>
                             <TeaserCardInner>
-                                <SliderCard {...show} />
+                                <Card {...show} />
                             </TeaserCardInner>
                         </TeaserCard>
                     </Link>

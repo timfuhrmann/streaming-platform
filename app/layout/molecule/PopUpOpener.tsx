@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { _posterUrl } from "@lib/poster";
+import { _posterUrl } from "@lib/image";
 import { aspectRatio, fillParent } from "@css/content";
 import { HeadlineL } from "@css/typography";
 import { Button } from "../atom/Button";
@@ -105,6 +105,7 @@ export const PopUpOpener: React.FC<Api.TVDetails> = ({
                             layout="fill"
                             objectFit="cover"
                             objectPosition="50% 15%"
+                            unoptimized
                         />
                     )}
                 </OpenerInner>

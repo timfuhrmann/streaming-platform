@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import { _posterUrl } from "@lib/poster";
+import { _posterUrl } from "@lib/image";
 import { Content } from "@css/content";
 import { HeadlineXL } from "@css/typography";
 import { Button } from "../atom/Button";
@@ -86,6 +86,7 @@ export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overv
                         layout="fill"
                         objectFit="cover"
                         objectPosition="50% 15%"
+                        unoptimized
                     />
                 )}
             </OpenerBackground>

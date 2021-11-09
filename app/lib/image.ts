@@ -1,7 +1,7 @@
 import { tmdbConfig } from "./api/tmdb/config";
 
 /**
- * Generate direct url to image.
+ * Get direct url to image.
  * @param {string} imagePath The image uri returned from the public api.
  * @param {Api.ImageSize} size The image size which should be returned by the url.
  */

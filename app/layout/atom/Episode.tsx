@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { _posterUrl } from "@lib/poster";
+import { _posterUrl } from "@lib/image";
 import { HeadlineL, HeadlineS } from "@css/typography";
 import { IconPlay } from "@icon/IconPlay";
 import { square } from "@css/content";
@@ -97,6 +97,7 @@ export const Episode: React.FC<Api.Episode> = ({ name, overview, episode_number,
                         alt={name}
                         layout="fill"
                         objectFit="cover"
+                        unoptimized
                     />
                 )}
             </EpisodeImage>

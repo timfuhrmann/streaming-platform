@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { _posterUrl } from "@lib/poster";
+import { _posterUrl } from "@lib/image";
 import { usePreload } from "@lib/preload";
 
 const CardWrapper = styled.div`
@@ -12,14 +12,20 @@ const CardWrapper = styled.div`
     background-color: ${p => p.theme.gray200};
 `;
 
-export const SliderCard: React.FC<Api.TV> = ({ id, name, poster_path }) => {
+export const Card: React.FC<Api.TV> = ({ id, name, poster_path }) => {
     const preload = usePreload(id);
 
     if (!poster_path) return null;
 
     return (
         <CardWrapper onMouseEnter={preload.onMouseEnter} onMouseLeave={preload.onMouseLeave}>
-            <Image src={_posterUrl(poster_path)} alt={name} layout="fill" objectFit="cover" />
+            <Image
+                src={_posterUrl(poster_path)}
+                alt={name}
+                layout="fill"
+                objectFit="cover"
+                unoptimized
+            />
         </CardWrapper>
     );
 };
