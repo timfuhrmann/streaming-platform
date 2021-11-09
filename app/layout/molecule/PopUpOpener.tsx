@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import { _posterUrl } from "@lib/poster";
@@ -6,6 +6,7 @@ import { aspectRatio, fillParent } from "@css/content";
 import { HeadlineL } from "@css/typography";
 import { Button } from "../atom/Button";
 import { Rating } from "../atom/Rating";
+import { genresToString } from "@lib/genre";
 
 const OpenerWrapper = styled.div`
     position: relative;
@@ -19,6 +20,7 @@ const OpenerInner = styled.div`
 
 const OpenerHeadline = styled.h2`
     ${HeadlineL};
+    line-height: 1;
 `;
 
 const OpenerFrame = styled.div`
@@ -35,6 +37,11 @@ const OpenerHead = styled.div`
     @media ${p => p.theme.bp.l} {
         padding: 4rem;
     }
+`;
+
+const OpenerGenres = styled.div`
+    color: ${p => p.theme.gray800};
+    margin-top: 0.75rem;
 `;
 
 const OpenerOverlay = styled.div`
@@ -61,6 +68,7 @@ const OpenerText = styled.div`
 
 const OpenerControls = styled.div`
     display: flex;
+    align-items: center;
     gap: 1.5rem;
     margin-top: 1.5rem;
 `;
@@ -71,13 +79,19 @@ export const PopUpOpener: React.FC<Api.TVDetails> = ({
     overview,
     vote_average,
     backdrop_path,
+    genres,
 }) => {
+    const featuredGenres = useMemo(() => {
+        return genresToString(genres);
+    }, [genres]);
+
     return (
         <OpenerWrapper>
             <OpenerFrame>
                 <OpenerInner>
                     <OpenerHead>
                         <OpenerHeadline>{name}</OpenerHeadline>
+                        <OpenerGenres>{featuredGenres}</OpenerGenres>
                         <OpenerControls>
                             <Button action={`/watch/${id}`}>Play</Button>
                             <Rating vote={vote_average} />

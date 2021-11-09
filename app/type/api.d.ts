@@ -12,7 +12,7 @@ declare module Api {
         id: number;
         name: string;
         original_name: string;
-        genre_ids: number[];
+        genres: Genre[];
         poster_path: string | null;
         backdrop_path: string | null;
         overview: string;
@@ -36,7 +36,6 @@ declare module Api {
     interface Genre {
         id: number;
         name: string;
-        media_type: string;
     }
 
     interface GenreList {
