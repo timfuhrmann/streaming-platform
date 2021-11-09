@@ -7,12 +7,26 @@ import { useRouter } from "next/router";
 import { IconX } from "@icon/IconX";
 import { transition } from "@css/transition";
 import { validateProfileCode } from "@lib/api/profile";
+import { GetStaticProps } from "next";
+import { profiles } from "@lib/mock/profile";
+import { HeadlineS } from "@css/typography";
 
 const CodeWrapper = styled.div`
     ${fillParent};
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+`;
+
+const CodeHelpWrapper = styled.div`
+    min-height: 2.5rem;
+    margin-top: 4rem;
+`;
+
+const CodeHelp = styled.div`
+    ${HeadlineS};
+    color: ${p => p.theme.gray400};
 `;
 
 const CloseButton = styled.a`
@@ -78,8 +92,21 @@ const Code: React.FC = () => {
                 </CloseButton>
             </Link>
             <BlockCode error={error} onChange={setCode} />
+            <CodeHelpWrapper>
+                {uid && typeof uid === "string" && profiles[uid] && (
+                    <CodeHelp>Psst, it&apos;s {profiles[uid].password}.</CodeHelp>
+                )}
+            </CodeHelpWrapper>
         </CodeWrapper>
     );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+    return {
+        props: {
+            hideNavigation: true,
+        },
+    };
 };
 
 export default Code;

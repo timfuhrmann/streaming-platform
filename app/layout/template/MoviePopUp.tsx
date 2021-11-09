@@ -14,6 +14,7 @@ import { BlockSeasons } from "../organism/BlockSeasons";
 
 const PopUpWrapper = styled.div`
     ${fillParent};
+    z-index: 3;
     position: fixed;
     display: flex;
     flex-direction: column;

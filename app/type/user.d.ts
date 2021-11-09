@@ -2,7 +2,7 @@ declare module User {
     interface Profile {
         uid: string;
         name: string;
-        avatar: string;
-        locked?: boolean;
+        avatar?: string;
+        password?: string;
     }
 }

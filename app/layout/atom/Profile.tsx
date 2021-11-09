@@ -1,16 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-import { square } from "@css/content";
+import Image from "next/image";
+import { fillParent, square } from "@css/content";
 import { HeadlineS } from "@css/typography";
 import { transition } from "@css/transition";
 import { IconLock } from "@icon/IconLock";
 
 const ProfileAvatar = styled.div`
+    position: relative;
     ${square("calc(10rem + 5vw)")};
     border-radius: 1rem;
     background-color: ${p => p.theme.gray200};
-    border: 0.3rem solid transparent;
-    ${transition("border-color", "0.1s")};
+    overflow: hidden;
+    transform: translateZ(0);
+
+    &::after {
+        content: "";
+        ${fillParent};
+        border: 0.3rem solid ${p => p.theme.gray900};
+        border-radius: 1rem;
+        opacity: 0;
+        ${transition("opacity", "0.1s")};
+    }
 
     @media ${p => p.theme.bp.l} {
         ${square("20rem")};
@@ -32,7 +43,9 @@ const ProfileWrapper = styled.div`
     @media (hover: hover) {
         &:hover {
             ${ProfileAvatar} {
-                border-color: ${p => p.theme.gray900};
+                &::after {
+                    opacity: 1;
+                }
             }
 
             ${ProfileName} {
@@ -43,7 +56,9 @@ const ProfileWrapper = styled.div`
 
     &:active {
         ${ProfileAvatar} {
-            border-color: ${p => p.theme.gray900};
+            &::after {
+                opacity: 1;
+            }
         }
 
         ${ProfileName} {
@@ -58,12 +73,14 @@ const ProfileLock = styled(IconLock)`
     color: ${p => p.theme.gray600};
 `;
 
-export const Profile: React.FC<User.Profile> = ({ name, avatar, locked }) => {
+export const Profile: React.FC<User.Profile> = ({ name, avatar, password }) => {
     return (
         <ProfileWrapper>
-            <ProfileAvatar />
+            <ProfileAvatar>
+                {avatar && <Image src={avatar} alt={name} layout="fill" objectFit="cover" />}
+            </ProfileAvatar>
             <ProfileName>{name}</ProfileName>
-            {locked && <ProfileLock />}
+            {password && <ProfileLock />}
         </ProfileWrapper>
     );
 };

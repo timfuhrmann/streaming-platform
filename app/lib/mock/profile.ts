@@ -1,30 +1,29 @@
-export const PROFILE_CODE = "1234";
-
-export const profiles: User.Profile[] = [
-    {
+export const profiles: Record<string, User.Profile> = {
+    "1": {
         uid: "1",
-        name: "Tim",
-        avatar: "",
-        locked: true,
+        name: "Lisa",
+        avatar: "/img/profile/1.png",
+        password: "1234",
     },
-    {
+    "2": {
         uid: "2",
-        name: "Tim 2",
-        avatar: "",
+        name: "Lucas",
+        avatar: "/img/profile/2.png",
+        password: "4567",
     },
-    {
+    "3": {
         uid: "3",
-        name: "Tim 3",
-        avatar: "",
+        name: "Hwang",
+        avatar: "/img/profile/3.png",
     },
-    {
+    "4": {
         uid: "4",
-        name: "Tim 4",
-        avatar: "",
+        name: "Lupin",
+        avatar: "/img/profile/4.png",
     },
-    {
+    "5": {
         uid: "5",
-        name: "Tim 5",
-        avatar: "",
+        name: "Gerald",
+        avatar: "/img/profile/5.png",
     },
-];
+};

@@ -72,6 +72,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     return {
         props: {
             show,
+            hideNavigation: true,
         },
     };
 };

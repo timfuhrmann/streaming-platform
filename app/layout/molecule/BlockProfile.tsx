@@ -22,7 +22,7 @@ const ProfileList = styled.div`
 const ProfileButton = styled.a``;
 
 interface BlockProfileProps {
-    profiles: User.Profile[];
+    profiles: Record<string, User.Profile>;
 }
 
 export const BlockProfile: React.FC<BlockProfileProps> = ({ profiles }) => {
@@ -30,11 +30,9 @@ export const BlockProfile: React.FC<BlockProfileProps> = ({ profiles }) => {
         <ProfilesWrapper>
             <ProfilesHeadline>Who&apos;s watching?</ProfilesHeadline>
             <ProfileList>
-                {profiles.map(profile => (
-                    <ProfileButton
-                        key={profile.uid}
-                        href={`/api/profile/switch?uid=${profile.uid}`}>
-                        <Profile {...profile} />
+                {Object.keys(profiles).map(uid => (
+                    <ProfileButton key={uid} href={`/api/profile/switch?uid=${uid}`}>
+                        <Profile {...profiles[uid]} />
                     </ProfileButton>
                 ))}
             </ProfileList>

@@ -60,7 +60,7 @@ export const BlockCode: React.FC<BlockCodeProps> = ({ error, onChange }) => {
                 delete prevState[index];
                 return prevState;
             });
-        } else if (!REGEX_DIGITS.test(key)) {
+        } else if (!REGEX_DIGITS.test(key) || index === 4) {
             return;
         } else {
             setCode(prevState => {

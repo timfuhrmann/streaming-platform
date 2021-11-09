@@ -18,6 +18,10 @@ export const theme = {
     gray900: "#EFEFEF",
     //endregion
 
+    //region Gradients
+    backgroundGradient180: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%)",
+    //endregion
+
     //region Breakpoints
     bp: {
         m: "screen and (min-width: 768px)",
