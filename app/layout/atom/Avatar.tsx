@@ -5,7 +5,7 @@ import { square } from "@css/content";
 
 const AvatarWrapper = styled.div`
     position: relative;
-    ${square("4rem")};
+    ${square("5rem")};
     border-radius: 1rem;
     overflow: hidden;
     transform: translateZ(0);

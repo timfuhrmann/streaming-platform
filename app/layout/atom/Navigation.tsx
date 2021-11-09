@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Content } from "@css/content";
 import { useProfile } from "@lib/profile/ProfileProvider";
 import { Avatar } from "./Avatar";
+import { HeadlineM, HeadlineS } from "@css/typography";
 
 const NavigationWrapper = styled.div`
     position: fixed;
@@ -16,8 +17,17 @@ const NavigationWrapper = styled.div`
 
 const NavigationInner = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 2rem 0;
+`;
+
+const Logo = styled.a`
+    ${HeadlineM};
+`;
+
+const LogoMark = styled.span`
+    color: ${p => p.theme.primary};
 `;
 
 export const Navigation: React.FC = () => {
@@ -27,7 +37,11 @@ export const Navigation: React.FC = () => {
         <NavigationWrapper>
             <Content>
                 <NavigationInner>
-                    <div>Streamio</div>
+                    <Link href="/" passHref>
+                        <Logo>
+                            Stream<LogoMark>.</LogoMark>
+                        </Logo>
+                    </Link>
                     {profile && (
                         <Link href="/profile" passHref>
                             <a>
