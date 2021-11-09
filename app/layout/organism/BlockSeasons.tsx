@@ -27,9 +27,14 @@ const BlockName = styled.h3`
     display: flex;
 `;
 
-const BlockInfo = styled.span`
+const BlockInfo = styled.div`
+    display: none;
     color: ${p => p.theme.gray600};
     margin-left: 1.5rem;
+
+    @media ${p => p.theme.bp.m} {
+        display: block;
+    }
 `;
 
 interface BlockSeasonsProps {

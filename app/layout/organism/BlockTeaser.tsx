@@ -25,10 +25,15 @@ const TeaserList = styled.div`
 `;
 
 const TeaserCard = styled.a`
-    flex: 1 1 calc(25% - 1rem);
-    max-width: calc(25% - 1rem);
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
     margin: 0.5rem;
     ${aspectRatio(1.5)};
+
+    @media ${p => p.theme.bp.m} {
+        flex: 1 1 calc(25% - 1rem);
+        max-width: calc(25% - 1rem);
+    }
 `;
 
 const TeaserCardInner = styled.div`

@@ -9,7 +9,12 @@ import { transition } from "@css/transition";
 import { truncateString } from "@lib/util";
 
 const EpisodeNumber = styled.div`
+    display: none;
     ${HeadlineL};
+
+    @media ${p => p.theme.bp.m} {
+        display: block;
+    }
 `;
 
 const EpisodeImage = styled.div`
@@ -39,8 +44,13 @@ const EpisodeName = styled.h4`
 `;
 
 const EpisodePlay = styled.div`
+    display: none;
     color: ${p => p.theme.gray600};
     ${transition("color", "0.15s")};
+
+    @media ${p => p.theme.bp.m} {
+        display: block;
+    }
 `;
 
 const PlayIcon = styled(IconPlay)`
