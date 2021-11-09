@@ -1,30 +1,30 @@
-import styled, { css } from "styled-components";
+import { css } from "styled-components";
 
-export const HeadlineXL = styled.div`
-    font-size: 7.5rem;
+export const HeadlineXL = css`
+    font-size: 7rem;
     font-weight: 800;
-    letter-spacing: -0.15rem;
+    letter-spacing: -0.3rem;
 `;
 
-export const HeadlineL = styled.div`
+export const HeadlineL = css`
     font-size: 4rem;
     font-weight: 600;
     letter-spacing: -0.15rem;
 `;
 
-export const HeadlineM = styled.div`
+export const HeadlineM = css`
     font-size: 3rem;
     font-weight: 600;
     letter-spacing: -0.1rem;
 `;
 
-export const HeadlineS = styled.div`
+export const HeadlineS = css`
     font-size: 2rem;
     font-weight: 600;
     letter-spacing: -0.05rem;
 `;
 
-export const HeadlineXS = styled.div`
+export const HeadlineXS = css`
     font-size: 1.7rem;
     font-weight: 600;
     letter-spacing: -0.05rem;
@@ -32,7 +32,7 @@ export const HeadlineXS = styled.div`
 
 export const ButtonText = css`
     font-size: 1.5rem;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: -0.05rem;
     line-height: 1;
 `;

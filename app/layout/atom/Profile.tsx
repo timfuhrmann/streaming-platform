@@ -17,7 +17,8 @@ const ProfileAvatar = styled.div`
     }
 `;
 
-const ProfileName = styled(HeadlineS)`
+const ProfileName = styled.h3`
+    ${HeadlineS};
     margin-top: 1rem;
     color: ${p => p.theme.gray600};
     ${transition("color", "0.1s")};

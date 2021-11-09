@@ -28,7 +28,8 @@ const CardInner = styled.div`
     height: 100%;
 `;
 
-const SliderTitle = styled(HeadlineS)`
+const SliderTitle = styled.h3`
+    ${HeadlineS};
     margin-bottom: 0.8rem;
 `;
 

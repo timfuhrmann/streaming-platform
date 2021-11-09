@@ -11,6 +11,7 @@ const SelectWrapper = styled.div`
 const SelectFrame = styled.select<{ $isSecondary?: boolean }>`
     appearance: none;
     font: inherit;
+    ${HeadlineXS};
     background: none;
     color: ${p => p.theme.white};
     height: 5rem;
@@ -42,15 +43,13 @@ interface SelectProps {
 export const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
     return (
         <SelectWrapper>
-            <HeadlineXS>
-                <SelectFrame value={value} onChange={e => onChange(e.target.value)}>
-                    {Object.keys(options).map(optionKey => (
-                        <option key={optionKey} value={optionKey}>
-                            {options[optionKey]}
-                        </option>
-                    ))}
-                </SelectFrame>
-            </HeadlineXS>
+            <SelectFrame value={value} onChange={e => onChange(e.target.value)}>
+                {Object.keys(options).map(optionKey => (
+                    <option key={optionKey} value={optionKey}>
+                        {options[optionKey]}
+                    </option>
+                ))}
+            </SelectFrame>
             <SelectChevron />
         </SelectWrapper>
     );

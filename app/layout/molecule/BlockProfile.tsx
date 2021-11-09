@@ -6,7 +6,8 @@ import { Content } from "@css/content";
 
 const ProfilesWrapper = styled(Content)``;
 
-const ProfilesHeadline = styled(HeadlineL)`
+const ProfilesHeadline = styled.h1`
+    ${HeadlineL};
     text-align: center;
 `;
 

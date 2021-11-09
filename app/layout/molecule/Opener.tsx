@@ -41,7 +41,9 @@ const OpenerControls = styled.div`
 
 const OpenerContent = styled(Content)``;
 
-const OpenerTitle = styled(HeadlineXL)``;
+const OpenerTitle = styled.h1`
+    ${HeadlineXL};
+`;
 
 export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path }) => {
     const preload = usePreload(id);

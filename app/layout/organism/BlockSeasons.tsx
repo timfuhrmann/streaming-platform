@@ -22,7 +22,8 @@ const BlockHead = styled.div`
     }
 `;
 
-const BlockName = styled(HeadlineM)`
+const BlockName = styled.h3`
+    ${HeadlineM};
     display: flex;
 `;
 

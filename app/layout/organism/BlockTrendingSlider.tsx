@@ -19,7 +19,8 @@ const TrendingSlide = styled.a`
     will-change: transform;
 `;
 
-const TrendingTitle = styled(HeadlineS)`
+const TrendingTitle = styled.h3`
+    ${HeadlineS};
     margin-bottom: 0.8rem;
 `;
 

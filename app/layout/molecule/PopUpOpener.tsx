@@ -17,6 +17,10 @@ const OpenerInner = styled.div`
     align-items: flex-end;
 `;
 
+const OpenerHeadline = styled.h2`
+    ${HeadlineL};
+`;
+
 const OpenerFrame = styled.div`
     min-height: 30rem;
     ${aspectRatio(0.55)};
@@ -73,7 +77,7 @@ export const PopUpOpener: React.FC<Api.TVDetails> = ({
             <OpenerFrame>
                 <OpenerInner>
                     <OpenerHead>
-                        <HeadlineL>{name}</HeadlineL>
+                        <OpenerHeadline>{name}</OpenerHeadline>
                         <OpenerControls>
                             <Button action={`/watch/${id}`}>Play</Button>
                             <Rating vote={vote_average} />

@@ -7,12 +7,14 @@ import { Content } from "@css/content";
 
 const CodeWrapper = styled(Content)``;
 
-const CodeOverline = styled(HeadlineM)`
+const CodeOverline = styled.h1`
+    ${HeadlineM};
     text-align: center;
     color: ${p => p.theme.gray600};
 `;
 
-const CodeHeadline = styled(HeadlineL)<{ $error: boolean }>`
+const CodeHeadline = styled.div<{ $error: boolean }>`
+    ${HeadlineL};
     text-align: center;
     margin-top: 1rem;
     color: ${p => p.$error && p.theme.alert};

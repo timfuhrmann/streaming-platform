@@ -4,7 +4,8 @@ import { HeadlineL } from "@css/typography";
 import { IconPlay } from "@icon/IconPlay";
 import { square } from "@css/content";
 
-const EpisodeNumber = styled(HeadlineL)`
+const EpisodeNumber = styled.div`
+    ${HeadlineL};
     opacity: 0;
     background-color: ${p => p.theme.gray300};
 `;

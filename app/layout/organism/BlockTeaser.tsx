@@ -13,7 +13,8 @@ const TeaserWrapper = styled.div`
     }
 `;
 
-const TeaserHeadline = styled(HeadlineS)`
+const TeaserHeadline = styled.h3`
+    ${HeadlineS};
     margin-bottom: 1.5rem;
 `;
 

@@ -8,7 +8,9 @@ import { square } from "@css/content";
 import { transition } from "@css/transition";
 import { truncateString } from "@lib/util";
 
-const EpisodeNumber = styled(HeadlineL)``;
+const EpisodeNumber = styled.div`
+    ${HeadlineL};
+`;
 
 const EpisodeImage = styled.div`
     position: relative;
@@ -30,6 +32,10 @@ const EpisodeOverview = styled.div`
     @media ${p => p.theme.bp.l} {
         display: block;
     }
+`;
+
+const EpisodeName = styled.h4`
+    ${HeadlineS};
 `;
 
 const EpisodePlay = styled.div`
@@ -85,7 +91,7 @@ export const Episode: React.FC<Api.Episode> = ({ name, overview, episode_number,
                 )}
             </EpisodeImage>
             <EpisodeContent>
-                <HeadlineS>{name}</HeadlineS>
+                <EpisodeName>{name}</EpisodeName>
                 <EpisodeOverview>{truncateString(overview, 145)}</EpisodeOverview>
             </EpisodeContent>
             <EpisodePlay>
