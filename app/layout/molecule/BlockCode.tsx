@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { HeadlineL, HeadlineM } from "../../css/typography";
+import { HeadlineL, HeadlineM } from "@css/typography";
 import { CodeInput } from "../atom/CodeInput";
-import { KEY_CODES, REGEX_DIGITS } from "../../lib/digit";
-import { Content } from "../../css/content";
+import { KEY_CODES, REGEX_DIGITS } from "@lib/digit";
+import { Content } from "@css/content";
 
 const CodeWrapper = styled(Content)``;
 

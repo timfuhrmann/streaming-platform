@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { HeadlineL } from "../../css/typography";
+import { HeadlineL } from "@css/typography";
 import { Profile } from "../atom/Profile";
-import { Content } from "../../css/content";
+import { Content } from "@css/content";
 
 const ProfilesWrapper = styled(Content)``;
 

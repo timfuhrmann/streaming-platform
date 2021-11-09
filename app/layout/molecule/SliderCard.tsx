@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { _posterUrl } from "../../lib/poster";
-import { usePreload } from "../../lib/preload";
+import { _posterUrl } from "@lib/poster";
+import { usePreload } from "@lib/preload";
 
 const CardWrapper = styled.div`
     position: relative;

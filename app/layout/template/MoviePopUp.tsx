@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../lib/redux";
-import { preloadShow } from "../../lib/redux/reducer/shows";
-import { fillParent, square } from "../../css/content";
-import { deleteParamFromQuery } from "../../lib/util";
+import { useAppSelector } from "@lib/redux";
+import { preloadShow } from "@lib/redux/reducer/shows";
+import { fillParent, square } from "@css/content";
+import { deleteParamFromQuery } from "@lib/util";
 import { PopUpOpener } from "../molecule/PopUpOpener";
-import { BlockTeaser } from "../molecule/BlockTeaser";
-import { getRecommendations } from "../../lib/api/tmdb";
-import { IconX } from "../../icon/IconX";
+import { BlockTeaser } from "../organism/BlockTeaser";
+import { getRecommendations } from "@lib/api/tmdb";
+import { IconX } from "@icon/IconX";
 import { BlockSeasons } from "../organism/BlockSeasons";
 
 const PopUpWrapper = styled.div`

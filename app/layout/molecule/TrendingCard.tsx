@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { SliderCard } from "./SliderCard";
-import { aspectRatio } from "../../css/content";
-import { numbers } from "../../lib/numbers";
+import { aspectRatio } from "@css/content";
+import { numbers } from "@lib/numbers";
 
 const TrendingWrapper = styled.div`
     position: relative;

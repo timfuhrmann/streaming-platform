@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { aspectRatio, Content, fillParent } from "../../css/content";
+import { aspectRatio, Content, fillParent } from "@css/content";
 
 const SkeletonWrapper = styled(Content)``;
 

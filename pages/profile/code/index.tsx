@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { BlockCode } from "../../../app/layout/molecule/BlockCode";
-import { fillParent, square } from "../../../app/css/content";
+import { fillParent, square } from "@css/content";
 import { useRouter } from "next/router";
-import { IconX } from "../../../app/icon/IconX";
-import { transition } from "../../../app/css/transition";
-import { validateProfileCode } from "../../../app/lib/api/profile";
+import { IconX } from "@icon/IconX";
+import { transition } from "@css/transition";
+import { validateProfileCode } from "@lib/api/profile";
 
 const CodeWrapper = styled.div`
     ${fillParent};

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { IconPlay } from "../../../icon/IconPlay";
-import { IconPause } from "../../../icon/IconPause";
-import { usePlayer } from "../../../lib/player/context/PlayerContext";
-import { controlsTransition } from "../../../css/transition";
-import { square } from "../../../css/content";
-import { useAppSelector } from "../../../lib/redux";
+import { IconPlay } from "@icon/IconPlay";
+import { IconPause } from "@icon/IconPause";
+import { usePlayer } from "@lib/player/context/PlayerContext";
+import { controlsTransition } from "@css/transition";
+import { square } from "@css/content";
+import { useAppSelector } from "@lib/redux";
 
 const PlayButton = styled.button`
     display: flex;

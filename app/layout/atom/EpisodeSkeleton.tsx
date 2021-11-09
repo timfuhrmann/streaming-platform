@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { HeadlineL } from "../../css/typography";
-import { IconPlay } from "../../icon/IconPlay";
-import { square } from "../../css/content";
+import { HeadlineL } from "@css/typography";
+import { IconPlay } from "@icon/IconPlay";
+import { square } from "@css/content";
 
 const EpisodeNumber = styled(HeadlineL)`
     opacity: 0;

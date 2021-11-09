@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { square } from "../../css/content";
-import { useFocus } from "../../lib/digit";
-import { transition } from "../../css/transition";
+import { square } from "@css/content";
+import { useFocus } from "@lib/digit";
+import { transition } from "@css/transition";
 
 const InputField = styled.input<{ $active: boolean }>`
     text-align: center;

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { HeadlineXS } from "../../css/typography";
-import { IconChevron } from "../../icon/IconChevron";
-import { square } from "../../css/content";
+import { HeadlineXS } from "@css/typography";
+import { IconChevron } from "@icon/IconChevron";
+import { square } from "@css/content";
 
 const SelectWrapper = styled.div`
     position: relative;

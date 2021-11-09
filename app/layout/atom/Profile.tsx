@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { square } from "../../css/content";
-import { HeadlineS } from "../../css/typography";
-import { transition } from "../../css/transition";
-import { IconLock } from "../../icon/IconLock";
+import { square } from "@css/content";
+import { HeadlineS } from "@css/typography";
+import { transition } from "@css/transition";
+import { IconLock } from "@icon/IconLock";
 
 const ProfileAvatar = styled.div`
     ${square("calc(10rem + 5vw)")};

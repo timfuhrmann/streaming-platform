@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { fetchEpisodes } from "../../lib/redux/reducer/seasons";
+import { fetchEpisodes } from "@lib/redux/reducer/seasons";
 import { Episodes } from "../molecule/Episodes";
-import { useAppSelector } from "../../lib/redux";
+import { useAppSelector } from "@lib/redux";
 import { Select } from "../atom/Select";
-import { HeadlineM } from "../../css/typography";
+import { HeadlineM } from "@css/typography";
 import { EpisodesSkeleton } from "../molecule/EpisodesSkeleton";
 
 const BlockWrapper = styled.div``;

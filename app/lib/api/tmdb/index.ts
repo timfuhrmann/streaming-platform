@@ -1,6 +1,6 @@
 import { db } from "./config";
-import { _hasAired } from "../../episode";
-import { recordArrayToRecord } from "../../util";
+import { _hasAired } from "@lib/episode";
+import { recordArrayToRecord } from "@lib/util";
 
 export const getTrending = async (): Promise<Api.TV[]> => {
     const { results } = await db<Api.Page<Api.TV>>("/trending/tv/week");

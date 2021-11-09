@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { BlockProfile } from "../../app/layout/molecule/BlockProfile";
-import { fillParent } from "../../app/css/content";
-import { profiles } from "../../app/lib/mock/profile";
+import { fillParent } from "@css/content";
+import { profiles } from "@lib/mock/profile";
 
 const ProfilesWrapper = styled.div`
     ${fillParent};

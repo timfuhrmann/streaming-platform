@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
-import { getShowById } from "../../app/lib/api/tmdb";
-import { PlayerProvider } from "../../app/lib/player/context/PlayerProvider";
+import { getShowById } from "@lib/api/tmdb";
+import { PlayerProvider } from "@lib/player/context/PlayerProvider";
 import { PlayerControls } from "../../app/layout/player/molecule/PlayerControls";
 import { useRouter } from "next/router";
-import { IconArrowLeft } from "../../app/icon/IconArrowLeft";
-import { square } from "../../app/css/content";
-import { controlsTransition } from "../../app/css/transition";
+import { IconArrowLeft } from "@icon/IconArrowLeft";
+import { square } from "@css/content";
+import { controlsTransition } from "@css/transition";
 
 const PlayerWrapper = styled.div``;
 

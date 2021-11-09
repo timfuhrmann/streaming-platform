@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { useSlider } from "../../lib/slider";
+import { useSlider } from "@lib/slider";
 import { SliderCard } from "../molecule/SliderCard";
-import { aspectRatio, Content } from "../../css/content";
-import { HeadlineS } from "../../css/typography";
+import { aspectRatio, Content } from "@css/content";
+import { HeadlineS } from "@css/typography";
 
 const SliderWrapper = styled.div<{ $hidden: boolean }>`
     overflow: hidden;

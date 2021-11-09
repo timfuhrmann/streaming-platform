@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { SliderCard } from "./SliderCard";
-import { aspectRatio, fillParent } from "../../css/content";
-import { HeadlineS } from "../../css/typography";
+import { SliderCard } from "../molecule/SliderCard";
+import { aspectRatio, fillParent } from "@css/content";
+import { HeadlineS } from "@css/typography";
 
 const TeaserWrapper = styled.div`
     padding: 0 2rem;

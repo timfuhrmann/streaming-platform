@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { ButtonText } from "../../css/typography";
-import { transition } from "../../css/transition";
+import { ButtonText } from "@css/typography";
+import { transition } from "@css/transition";
 
 const ButtonWrapper = styled.button`
     display: flex;

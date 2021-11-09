@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { _posterUrl } from "../../lib/poster";
-import { HeadlineL, HeadlineS } from "../../css/typography";
-import { IconPlay } from "../../icon/IconPlay";
-import { square } from "../../css/content";
-import { transition } from "../../css/transition";
-import { truncateString } from "../../lib/util";
+import { _posterUrl } from "@lib/poster";
+import { HeadlineL, HeadlineS } from "@css/typography";
+import { IconPlay } from "@icon/IconPlay";
+import { square } from "@css/content";
+import { transition } from "@css/transition";
+import { truncateString } from "@lib/util";
 
 const EpisodeNumber = styled(HeadlineL)``;
 
@@ -70,12 +70,7 @@ const EpisodeWrapper = styled.div`
     }
 `;
 
-export const Episode: React.FC<Api.Episode> = ({
-    name,
-    overview,
-    episode_number,
-    still_path,
-}) => {
+export const Episode: React.FC<Api.Episode> = ({ name, overview, episode_number, still_path }) => {
     return (
         <EpisodeWrapper>
             <EpisodeNumber>{episode_number}</EpisodeNumber>

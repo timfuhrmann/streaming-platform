@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { _posterUrl } from "../../lib/poster";
-import { aspectRatio, fillParent } from "../../css/content";
-import { HeadlineL } from "../../css/typography";
+import { _posterUrl } from "@lib/poster";
+import { aspectRatio, fillParent } from "@css/content";
+import { HeadlineL } from "@css/typography";
 import { Button } from "../atom/Button";
 import { Rating } from "../atom/Rating";
 

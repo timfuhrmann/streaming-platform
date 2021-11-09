@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { usePlayer } from "../../../lib/player/context/PlayerContext";
-import { Drag } from "../../../lib/drag";
-import { useAppSelector } from "../../../lib/redux";
+import { usePlayer } from "@lib/player/context/PlayerContext";
+import { Drag } from "@lib/drag";
+import { useAppSelector } from "@lib/redux";
 
 const ProgressWrapper = styled.div`
     position: relative;

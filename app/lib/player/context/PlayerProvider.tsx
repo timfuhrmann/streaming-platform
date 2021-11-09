@@ -9,7 +9,7 @@ import {
     setPlaying,
     setProgress,
     setWaiting,
-} from "../../redux/reducer/player";
+} from "@lib/redux/reducer/player";
 import { handleFullscreen } from "../fullscreen";
 import { convertToTimeCode, DEFAULT_TIMESTAMP } from "../index";
 

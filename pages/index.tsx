@@ -3,12 +3,12 @@ import styled from "styled-components";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { GetStaticProps } from "next";
 import { getGenres, getShowById, getShowsByGenres, getTrending } from "../app/lib/api/tmdb";
-import { FEATURED_SHOW } from "../app/lib/api/tmdb/config";
+import { FEATURED_SHOW } from "@lib/api/tmdb/config";
 import { Opener } from "../app/layout/molecule/Opener";
-import { NegativeBlock, Block } from "../app/css/content";
+import { NegativeBlock, Block } from "@css/content";
 import { REDUX_INITIAL_STATE, useAppSelector } from "../app/lib/redux";
 import { BlockTrendingSlider } from "../app/layout/organism/BlockTrendingSlider";
-import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "../app/lib/redux/reducer/genre";
+import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
 import { BlockBasicSlider } from "../app/layout/organism/BlockBasicSlider";
 import { useDispatch } from "react-redux";
 import { BasicSliderSkeleton } from "../app/layout/atom/BasicSliderSkeleton";
@@ -39,9 +39,7 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
 
     return (
         <PageWrapper>
-            {featured && featured.backdrop_path && (
-                <Opener name={featured.name} image={featured.backdrop_path} />
-            )}
+            {featured && <Opener {...featured} />}
             {trending && (
                 <NegativeBlock>
                     <BlockTrendingSlider title="Trending" shows={trending} />

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { usePlayer } from "../../../lib/player/context/PlayerContext";
-import { AppState, useAppSelector } from "../../../lib/redux";
-import { IconMaximize } from "../../../icon/IconMaximize";
-import { square } from "../../../css/content";
-import { IconMinimize } from "../../../icon/IconMinimize";
-import { controlsTransition } from "../../../css/transition";
+import { usePlayer } from "@lib/player/context/PlayerContext";
+import { useAppSelector } from "@lib/redux";
+import { IconMaximize } from "@icon/IconMaximize";
+import { square } from "@css/content";
+import { IconMinimize } from "@icon/IconMinimize";
+import { controlsTransition } from "@css/transition";
 
 const FullscreenButton = styled.button`
     display: flex;

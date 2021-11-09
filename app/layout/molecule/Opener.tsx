@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import { _posterUrl } from "../../lib/poster";
-import { Content } from "../../css/content";
-import { HeadlineXL } from "../../css/typography";
+import { _posterUrl } from "@lib/poster";
+import { Content } from "@css/content";
+import { HeadlineXL } from "@css/typography";
+import { Button } from "../atom/Button";
+import { usePreload } from "@lib/preload";
 
 const OpenerWrapper = styled.div`
     position: relative;
@@ -31,29 +33,38 @@ const AccentOverlay = styled.div`
     background: linear-gradient(0deg, ${p => p.theme.gray50} 0%, transparent 100%);
 `;
 
+const OpenerControls = styled.div`
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+`;
+
 const OpenerContent = styled(Content)``;
 
 const OpenerTitle = styled(HeadlineXL)``;
 
-interface OpenerProps {
-    name: string;
-    image: string;
-}
+export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path }) => {
+    const preload = usePreload(id);
 
-export const Opener: React.FC<OpenerProps> = ({ name, image }) => {
     return (
-        <OpenerWrapper>
+        <OpenerWrapper onMouseEnter={preload.onMouseEnter} onMouseLeave={preload.onMouseLeave}>
             <OpenerContent>
                 <OpenerTitle as="h1">{name}</OpenerTitle>
+                <OpenerControls>
+                    <Button>Play</Button>
+                    <Button action={preload.onClick}>More info</Button>
+                </OpenerControls>
             </OpenerContent>
             <OpenerBackground>
-                <Image
-                    src={_posterUrl(image, "original")}
-                    alt={name}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="50% 15%"
-                />
+                {backdrop_path && (
+                    <Image
+                        src={_posterUrl(backdrop_path, "original")}
+                        alt={name}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="50% 15%"
+                    />
+                )}
             </OpenerBackground>
             <AccentOverlay />
         </OpenerWrapper>

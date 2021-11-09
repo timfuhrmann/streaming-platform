@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { useSlider } from "../../lib/slider";
-import { Content } from "../../css/content";
-import { HeadlineS } from "../../css/typography";
+import { useSlider } from "@lib/slider";
+import { Content } from "@css/content";
+import { HeadlineS } from "@css/typography";
 import { TrendingCard } from "../molecule/TrendingCard";
 
 const TrendingWrapper = styled.div<{ $hidden: boolean }>`
