@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { BlockCode } from "../../../app/layout/molecule/BlockCode";
-import { fillParent, square } from "@css/content";
+import { fillParent } from "@css/content";
 import { useRouter } from "next/router";
-import { IconX } from "@icon/IconX";
-import { transition } from "@css/transition";
 import { validateProfileCode } from "@lib/api/profile";
 import { GetStaticProps } from "next";
 import { profiles } from "@lib/mock/profile";
 import { HeadlineS } from "@css/typography";
+import { Close, CloseButton } from "../index";
 
 const CodeWrapper = styled.div`
     ${fillParent};
@@ -27,28 +26,6 @@ const CodeHelpWrapper = styled.div`
 const CodeHelp = styled.div`
     ${HeadlineS};
     color: ${p => p.theme.gray400};
-`;
-
-const CloseButton = styled.a`
-    position: absolute;
-    top: 2.4rem;
-    right: 2.4rem;
-    color: ${p => p.theme.gray600};
-    ${transition("color", "0.2s")};
-
-    @media (hover: hover) {
-        &:hover {
-            color: ${p => p.theme.gray900};
-        }
-    }
-
-    &:active {
-        color: ${p => p.theme.gray900};
-    }
-`;
-
-const Close = styled(IconX)`
-    ${square("6rem")};
 `;
 
 const Code: React.FC = () => {
@@ -86,7 +63,7 @@ const Code: React.FC = () => {
 
     return (
         <CodeWrapper>
-            <Link href="/profile" passHref>
+            <Link href="/" passHref>
                 <CloseButton>
                     <Close />
                 </CloseButton>

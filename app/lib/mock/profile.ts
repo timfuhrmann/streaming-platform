@@ -9,7 +9,7 @@ export const profiles: Record<string, User.Profile> = {
         uid: "2",
         name: "Lucas",
         avatar: "/img/profile/2.png",
-        password: "4567",
+        password: "0000",
     },
     "3": {
         uid: "3",
