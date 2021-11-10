@@ -26,6 +26,6 @@ export default async function handler(
         });
     }
 
-    res.setHeader("Set-Cookie", createCookie(COOKIE_PROFILE, uid));
+    res.setHeader("Set-Cookie", createCookie(COOKIE_PROFILE, uid, { maxAge: 60 * 60 * 24 })); // 24 hours
     res.status(200).json({ date: Date.now(), message: "Success.", status: 200 });
 }
