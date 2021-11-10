@@ -19,7 +19,9 @@ export const theme = {
     //endregion
 
     //region Gradients
-    backgroundGradient180: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%)",
+    backgroundGradient_180_50: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%)",
+    backgroundGradient_90_75: "linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.75) 100%)",
+    backgroundGradient_270_75: "linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, 0.75) 100%)",
     //endregion
 
     //region Breakpoints
@@ -28,6 +30,7 @@ export const theme = {
         l: "screen and (min-width: 1024px)",
         xl: "screen and (min-width: 1340px)",
         xxl: "screen and (min-width: 2000px)",
+        maxL: "screen and (max-width: 1024px)",
     },
     //endregion
 };

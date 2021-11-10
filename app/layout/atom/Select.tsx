@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { HeadlineXS } from "@css/typography";
-import { IconChevron } from "@icon/IconChevron";
+import { IconChevronDown } from "@icon/IconChevronDown";
 import { square } from "@css/content";
 
 const SelectWrapper = styled.div`
@@ -25,7 +25,7 @@ const SelectFrame = styled.select<{ $isSecondary?: boolean }>`
     text-overflow: ellipsis;
 `;
 
-const SelectChevron = styled(IconChevron)`
+const SelectChevron = styled(IconChevronDown)`
     position: absolute;
     top: 50%;
     right: 1rem;
