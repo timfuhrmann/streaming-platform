@@ -72,7 +72,7 @@ export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overv
                 <OpenerGenres>{featuredGenres}</OpenerGenres>
                 <OpenerText>{truncateString(overview, 225)}</OpenerText>
                 <OpenerControls>
-                    <Button>Play</Button>
+                    <Button action={`/watch/${id}`}>Play</Button>
                     <Button action={preload.onClick} isSecondary>
                         More info
                     </Button>
