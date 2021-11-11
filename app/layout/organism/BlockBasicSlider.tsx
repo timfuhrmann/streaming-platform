@@ -9,6 +9,7 @@ import { TOptions } from "keen-slider";
 const CardWrapper = styled.a`
     position: relative;
     ${aspectRatio(1.5)};
+    overflow: visible;
 `;
 
 const CardInner = styled.div`

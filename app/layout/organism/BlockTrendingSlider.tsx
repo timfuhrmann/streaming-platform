@@ -7,6 +7,7 @@ import { TOptions } from "keen-slider";
 
 const TrendingSlide = styled.a`
     will-change: transform;
+    overflow: visible;
 `;
 
 interface BlockBasicSliderProps {

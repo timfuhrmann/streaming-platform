@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Content } from "@css/content";
 import { useProfile } from "@lib/profile/ProfileProvider";
 import { Avatar } from "./Avatar";
-import { HeadlineM, HeadlineS } from "@css/typography";
+import { HeadlineM } from "@css/typography";
 
 const NavigationWrapper = styled.div`
     position: fixed;
@@ -12,7 +12,7 @@ const NavigationWrapper = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    background: ${p => p.theme.backgroundGradient180};
+    background: ${p => p.theme.backgroundGradient_180_50};
 `;
 
 const NavigationInner = styled.div`

@@ -18,6 +18,10 @@ export const theme = {
     gray900: "#EFEFEF",
     //endregion
 
+    //region Overlays
+    overlay_75: "rgba(0, 0, 0, 0.75)",
+    //endregion
+
     //region Gradients
     backgroundGradient_180_50: "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%)",
     backgroundGradient_90_75: "linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.75) 100%)",
