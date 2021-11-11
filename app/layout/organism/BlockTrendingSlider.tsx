@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import Link from "next/link";
 import { TrendingCard } from "../molecule/TrendingCard";
 import { SliderTemplate } from "../template/SliderTemplate";
 import { TOptions } from "keen-slider";
+import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 
-const TrendingSlide = styled.a`
+const TrendingSlide = styled.div`
     will-change: transform;
     overflow: visible;
 `;
@@ -16,6 +16,8 @@ interface BlockBasicSliderProps {
 }
 
 export const BlockTrendingSlider: React.FC<BlockBasicSliderProps> = ({ title, shows }) => {
+    const { isShowActive, addShowToWatchlist } = useWatchlist();
+
     const sliderOptions: TOptions = {
         slidesPerView: 1,
         breakpoints: {
@@ -31,11 +33,14 @@ export const BlockTrendingSlider: React.FC<BlockBasicSliderProps> = ({ title, sh
     return (
         <SliderTemplate title={title} options={sliderOptions}>
             {shows.slice(0, 9).map((show, index) => (
-                <Link key={show.id} href={{ query: { id: show.id } }} shallow passHref>
-                    <TrendingSlide className="keen-slider__slide">
-                        <TrendingCard index={index} show={show} />
-                    </TrendingSlide>
-                </Link>
+                <TrendingSlide key={show.id} className="keen-slider__slide">
+                    <TrendingCard
+                        index={index}
+                        show={show}
+                        watchlistActive={isShowActive(show.id)}
+                        onWatchlist={() => addShowToWatchlist(show)}
+                    />
+                </TrendingSlide>
             ))}
         </SliderTemplate>
     );

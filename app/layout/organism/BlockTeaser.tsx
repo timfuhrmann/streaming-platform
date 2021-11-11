@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Card } from "../molecule/Card";
 import { aspectRatio, fillParent } from "@css/content";
 import { HeadlineS } from "@css/typography";
+import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 
 const TeaserWrapper = styled.div`
     padding: 0 2rem;
@@ -24,7 +25,7 @@ const TeaserList = styled.div`
     margin: -0.5rem;
 `;
 
-const TeaserCard = styled.a`
+const TeaserCard = styled.div`
     flex: 1 1 calc(50% - 1rem);
     max-width: calc(50% - 1rem);
     margin: 0.5rem;
@@ -46,18 +47,22 @@ interface BlockTeaserProps {
 }
 
 export const BlockTeaser: React.FC<BlockTeaserProps> = ({ headline, shows }) => {
+    const { isShowActive, addShowToWatchlist } = useWatchlist();
+
     return (
         <TeaserWrapper>
             {headline && <TeaserHeadline>{headline}</TeaserHeadline>}
             <TeaserList>
                 {shows.slice(0, 8).map(show => (
-                    <Link key={show.id} href={{ query: { id: show.id } }} shallow passHref>
-                        <TeaserCard key={show.id}>
-                            <TeaserCardInner>
-                                <Card {...show} />
-                            </TeaserCardInner>
-                        </TeaserCard>
-                    </Link>
+                    <TeaserCard key={show.id}>
+                        <TeaserCardInner>
+                            <Card
+                                {...show}
+                                watchlistActive={isShowActive(show.id)}
+                                onWatchlist={() => addShowToWatchlist(show)}
+                            />
+                        </TeaserCardInner>
+                    </TeaserCard>
                 ))}
             </TeaserList>
         </TeaserWrapper>

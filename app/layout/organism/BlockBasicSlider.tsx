@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Link from "next/link";
 import { Card } from "../molecule/Card";
 import { aspectRatio } from "@css/content";
 import { SliderTemplate } from "../template/SliderTemplate";
 import { TOptions } from "keen-slider";
+import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 
-const CardWrapper = styled.a`
+const CardWrapper = styled.div`
     position: relative;
     ${aspectRatio(1.5)};
     overflow: visible;
@@ -26,6 +26,8 @@ interface BlockBasicSliderProps {
 }
 
 export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, shows }) => {
+    const { isShowActive, addShowToWatchlist } = useWatchlist();
+
     const sliderOptions: TOptions = {
         slidesPerView: 2,
         spacing: 15,
@@ -40,15 +42,17 @@ export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, shows
     };
 
     return (
-        <SliderTemplate title={title} options={sliderOptions}>
+        <SliderTemplate title={title} length={shows.length} options={sliderOptions}>
             {shows.map(show => (
-                <Link key={show.id} href={{ query: { id: show.id } }} shallow passHref>
-                    <CardWrapper className="keen-slider__slide">
-                        <CardInner>
-                            <Card {...show} />
-                        </CardInner>
-                    </CardWrapper>
-                </Link>
+                <CardWrapper key={show.id} className="keen-slider__slide">
+                    <CardInner>
+                        <Card
+                            {...show}
+                            watchlistActive={isShowActive(show.id)}
+                            onWatchlist={() => addShowToWatchlist(show)}
+                        />
+                    </CardInner>
+                </CardWrapper>
             ))}
         </SliderTemplate>
     );

@@ -42,14 +42,21 @@ const CardFrame = styled.div`
 interface TrendingCardProps {
     index: number;
     show: Api.TV;
+    watchlistActive: boolean;
+    onWatchlist: () => void;
 }
 
-export const TrendingCard: React.FC<TrendingCardProps> = ({ index, show }) => {
+export const TrendingCard: React.FC<TrendingCardProps> = ({
+    index,
+    show,
+    watchlistActive,
+    onWatchlist,
+}) => {
     return (
         <TrendingWrapper>
             <TrendingIndex dangerouslySetInnerHTML={{ __html: numbers[index + 1] }} />
             <CardFrame>
-                <Card {...show} />
+                <Card {...show} watchlistActive={watchlistActive} onWatchlist={onWatchlist} />
             </CardFrame>
         </TrendingWrapper>
     );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Content, square } from "@css/content";
 import { IconChevronRight } from "@icon/IconChevronRight";
@@ -63,10 +63,24 @@ const SliderTitle = styled.h3`
 interface SliderWrapperProps {
     title?: string;
     options?: TOptions;
+    length?: number;
 }
 
-export const SliderTemplate: React.FC<SliderWrapperProps> = ({ title, options = {}, children }) => {
-    const [ref, { mounted, isBeginning, isEnd, prev, next }] = useSlider(options);
+export const SliderTemplate: React.FC<SliderWrapperProps> = ({
+    title,
+    length,
+    options = {},
+    children,
+}) => {
+    const [ref, { mounted, isBeginning, isEnd, prev, next, resize }] = useSlider(options);
+
+    useEffect(() => {
+        if (!mounted || !length) {
+            return;
+        }
+
+        resize();
+    }, [mounted, length]);
 
     return (
         <SliderWrapper $hidden={!mounted}>

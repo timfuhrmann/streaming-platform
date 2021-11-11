@@ -1,14 +1,21 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
+import Link from "next/link";
 import { _posterUrl } from "@lib/image";
 import { usePreload } from "@lib/preload";
 import { fillParent } from "@css/content";
 import { HeadlineS } from "@css/typography";
 import { transition } from "@css/transition";
 import { CardProgress } from "../atom/CardProgress";
+import { ButtonWatchlist } from "../atom/ButtonWatchlist";
+
+const CardHead = styled.div`
+    display: flex;
+`;
 
 const CardName = styled.div`
+    flex: 1;
     ${HeadlineS};
 `;
 
@@ -48,7 +55,22 @@ const CardWrapper = styled.div`
     }
 `;
 
-export const Card: React.FC<Api.TV> = ({ id, name, poster_path }) => {
+const CardLink = styled.a`
+    ${fillParent};
+`;
+
+interface CardProps extends Api.TV {
+    watchlistActive: boolean;
+    onWatchlist: () => void;
+}
+
+export const Card: React.FC<CardProps> = ({
+    id,
+    name,
+    poster_path,
+    watchlistActive,
+    onWatchlist,
+}) => {
     const preload = usePreload(id);
 
     if (!poster_path) return null;
@@ -56,9 +78,15 @@ export const Card: React.FC<Api.TV> = ({ id, name, poster_path }) => {
     return (
         <CardWrapper onMouseEnter={preload.onMouseEnter} onMouseLeave={preload.onMouseLeave}>
             <CardContent>
-                <CardName>{name}</CardName>
+                <CardHead>
+                    <CardName>{name}</CardName>
+                    <ButtonWatchlist active={watchlistActive} onClick={onWatchlist} />
+                </CardHead>
                 <CardProgress />
                 <CardOverlay />
+                <Link href={{ query: { id } }} shallow passHref>
+                    <CardLink />
+                </Link>
             </CardContent>
             <Image
                 src={_posterUrl(poster_path)}

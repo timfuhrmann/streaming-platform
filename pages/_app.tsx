@@ -10,6 +10,7 @@ import { useRedux } from "@lib/redux";
 import { MoviePopUp } from "../app/layout/template/MoviePopUp";
 import { Navigation } from "../app/layout/atom/Navigation";
 import { ProfileProvider } from "@lib/profile/ProfileProvider";
+import { WatchlistProvider } from "@lib/watchlist/context/WatchlistProvider";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     const reduxStore = useRedux(pageProps);
@@ -18,10 +19,12 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         <ReduxProvider store={reduxStore}>
             <ThemeProvider theme={theme}>
                 <ProfileProvider>
-                    <GlobalStyle />
-                    {!pageProps.hideNavigation && <Navigation />}
-                    <Component {...pageProps} />
-                    <MoviePopUp />
+                    <WatchlistProvider>
+                        <GlobalStyle />
+                        {!pageProps.hideNavigation && <Navigation />}
+                        <Component {...pageProps} />
+                        <MoviePopUp />
+                    </WatchlistProvider>
                 </ProfileProvider>
             </ThemeProvider>
         </ReduxProvider>

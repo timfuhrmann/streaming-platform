@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
-export const Block = styled.div`
-    margin-top: 10rem;
-`;
-
-export const NegativeBlock = styled.div`
-    margin-top: -10rem;
+export const Block = styled.div<{ $isNegative?: boolean }>`
+    margin-top: ${p => 10 * (p.$isNegative ? -1 : 1)}rem;
 `;
 
 export const Content = styled.div<{ breakMobile?: boolean; breakDesktop?: boolean }>`

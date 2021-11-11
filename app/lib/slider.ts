@@ -8,6 +8,7 @@ interface SliderData {
     isEnd: boolean;
     prev: () => void;
     next: () => void;
+    resize: () => void;
 }
 
 type SlideResult = [MutableRefObject<HTMLDivElement | null>, SliderData];
@@ -29,6 +30,7 @@ export const useSlider = (options: TOptions = {}): SlideResult => {
             spacing: 15,
             rubberband: false,
             loop: false,
+            autoAdjustSlidesPerView: false,
             mounted: () => setMounted(true),
             slideChanged: ref => {
                 const options = ref.options();
@@ -63,6 +65,14 @@ export const useSlider = (options: TOptions = {}): SlideResult => {
         sliderRef.current.next();
     };
 
+    const resize = () => {
+        if (!sliderRef.current) {
+            return;
+        }
+
+        sliderRef.current.resize();
+    };
+
     return [
         ref,
         {
@@ -72,6 +82,7 @@ export const useSlider = (options: TOptions = {}): SlideResult => {
             isEnd,
             prev,
             next,
+            resize,
         },
     ];
 };
