@@ -47,8 +47,13 @@ const PlayerControlsWrapper = styled.div`
 const PlayerBack = styled.button`
     position: absolute;
     z-index: 1;
-    top: 4rem;
-    left: 4rem;
+    top: 2rem;
+    left: 2rem;
+
+    @media ${p => p.theme.bp.m} {
+        top: 4rem;
+        left: 4rem;
+    }
 `;
 
 const IconBack = styled(IconArrowLeft)`
