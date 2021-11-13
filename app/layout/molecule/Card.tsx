@@ -68,12 +68,13 @@ export const Card: React.FC<CardProps> = ({
     id,
     name,
     poster_path,
+    backdrop_path,
     watchlistActive,
     onWatchlist,
 }) => {
     const preload = usePreload(id);
 
-    if (!poster_path) return null;
+    if (!poster_path || !backdrop_path) return null;
 
     return (
         <CardWrapper onMouseEnter={preload.onMouseEnter} onMouseLeave={preload.onMouseLeave}>

@@ -10,10 +10,11 @@ const InputField = styled.input`
     border: none;
     color: ${p => p.theme.gray900};
     border-bottom: 0.2rem solid ${p => p.theme.gray600};
-    ${transition("color", "0.1s")};
+    ${transition("border-color", "0.1s")};
 
     &::placeholder {
         color: ${p => p.theme.gray600};
+        ${transition("color", "0.1s")};
     }
 
     @media (hover: hover) {

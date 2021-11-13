@@ -94,7 +94,7 @@ export const PopUpOpener: React.FC<Api.TVDetails> = ({
                         <OpenerGenres>{featuredGenres}</OpenerGenres>
                         <OpenerControls>
                             <Button action={`/watch/${id}`}>Play</Button>
-                            <Rating vote={vote_average} />
+                            {vote_average > 0 && <Rating vote={vote_average} />}
                         </OpenerControls>
                     </OpenerHead>
                     <OpenerOverlay />

@@ -140,9 +140,11 @@ export const MoviePopUp: React.FC = () => {
                 <PopUpStage>
                     <PopUpOpener {...entry} />
                     <PopUpBody>
-                        <PopUpRow>
-                            <BlockSeasons seasons={entry.seasons} show={entry} />
-                        </PopUpRow>
+                        {entry.seasons.length > 0 && (
+                            <PopUpRow>
+                                <BlockSeasons seasons={entry.seasons} show={entry} />
+                            </PopUpRow>
+                        )}
                         {recommendations && (
                             <PopUpRow>
                                 <BlockTeaser
