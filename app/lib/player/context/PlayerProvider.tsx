@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
 import styled from "styled-components";
 import { PlayerContext } from "./PlayerContext";
@@ -12,11 +12,17 @@ import {
 } from "@lib/redux/reducer/player";
 import { handleFullscreen } from "../fullscreen";
 import { convertToTimeCode, DEFAULT_TIMESTAMP } from "../index";
+import { fillParent, square } from "@css/content";
+import { PlayerControls } from "../../../layout/player/molecule/PlayerControls";
+import { IconArrowLeft } from "@icon/IconArrowLeft";
+import { controlsTransition } from "@css/transition";
+import { useRouter } from "next/router";
 
 const HLS_VIDEO_SRC = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8";
 
 const Video = styled.video`
     position: absolute;
+    z-index: -1;
     top: 0;
     bottom: 0;
     width: 100%;
@@ -26,13 +32,40 @@ const Video = styled.video`
     user-select: none;
 `;
 
+const PlayerOverlay = styled.div`
+    ${fillParent};
+`;
+
+const PlayerControlsWrapper = styled.div`
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+`;
+
+const PlayerBack = styled.button`
+    position: absolute;
+    z-index: 1;
+    top: 4rem;
+    left: 4rem;
+`;
+
+const IconBack = styled(IconArrowLeft)`
+    ${square("4rem")};
+    ${controlsTransition};
+`;
+
 interface PlayerProvider {
     fullscreenContainer: React.MutableRefObject<HTMLElement | null>;
 }
 
 export const PlayerProvider: React.FC<PlayerProvider> = ({ fullscreenContainer, children }) => {
+    const router = useRouter();
     const dispatch = useDispatch();
     const videoRef = useRef<HTMLVideoElement | null>(null);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const [controlsActive, setControlsActive] = useState<boolean>(false);
 
     useEffect(() => {
         if (!videoRef.current) {
@@ -48,8 +81,39 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({ fullscreenContainer, 
         hls.loadSource(HLS_VIDEO_SRC);
         hls.attachMedia(videoRef.current);
 
+        if (videoRef.current.paused) {
+            videoRef.current.play();
+        }
+
         return () => hls.destroy();
     }, []);
+
+    useEffect(() => {
+        document.addEventListener("mousemove", interact);
+
+        return () => {
+            document.removeEventListener("mousemove", interact);
+
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
+
+    const interact = () => {
+        setControlsActive(true);
+        document.body.classList.remove("hide-cursor");
+
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
+        }
+
+        timeoutRef.current = setTimeout(() => {
+            document.body.classList.add("hide-cursor");
+            setControlsActive(false);
+        }, 3000);
+    };
 
     /** Plays video if pause, else pause video. */
     const togglePlay = () => {
@@ -204,6 +268,17 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({ fullscreenContainer, 
                 onTimeUpdate={onTimeUpdate}
                 onWaiting={onWaiting}
             />
+            <PlayerOverlay onClick={togglePlay} />
+            {(controlsActive || (videoRef.current && videoRef.current.paused)) && (
+                <React.Fragment>
+                    <PlayerBack onClick={router.back}>
+                        <IconBack />
+                    </PlayerBack>
+                    <PlayerControlsWrapper>
+                        <PlayerControls />
+                    </PlayerControlsWrapper>
+                </React.Fragment>
+            )}
         </PlayerContext.Provider>
     );
 };

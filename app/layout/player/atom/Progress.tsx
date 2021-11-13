@@ -81,7 +81,8 @@ const ProgressTimeStamp = styled.div`
 
 export const Progress: React.FC = () => {
     const progressRef = useRef<HTMLDivElement | null>(null);
-    const [indicator, setIndicator] = useState<number | null>(null);
+    const [indicator, setIndicator] = useState<number>(0);
+    const [indicatorActive, setIndicatorActive] = useState<boolean>(false);
     const { progress, buffer } = useAppSelector(state => state.player);
     const { currentTimeStamp, missingTimeStamp, timeStampFromAbs, jumpToAbs } = usePlayer();
     const [dragging, setDragging] = useState<boolean>(false);
@@ -96,11 +97,18 @@ export const Progress: React.FC = () => {
             onProgress: jumpToAbs,
         });
 
-        return () => drag.destroy();
+        return () => {
+            drag.destroy();
+        };
     }, []);
 
-    const moveIndicator = (e: React.MouseEvent) => {
-        if (!progressRef.current) {
+    useEffect(() => {
+        document.addEventListener("mousemove", moveIndicator);
+        return () => document.removeEventListener("mousemove", moveIndicator);
+    }, [indicatorActive, dragging]);
+
+    const moveIndicator = (e: MouseEvent) => {
+        if (!progressRef.current || (!indicatorActive && !dragging)) {
             return;
         }
 
@@ -126,17 +134,17 @@ export const Progress: React.FC = () => {
                 <ProgressBarWrapper>
                     <ProgressBar
                         ref={progressRef}
-                        onMouseMove={moveIndicator}
-                        onMouseLeave={() => setIndicator(null)}>
+                        onMouseEnter={() => setIndicatorActive(true)}
+                        onMouseLeave={() => setIndicatorActive(false)}>
                         <ProgressBarBuffer style={{ transform: "scaleX(" + buffer + ")" }} />
                         <ProgressBarInner style={{ transform: "scaleX(" + progress + ")" }} />
-                        {(indicator !== null || dragging) && (
+                        {(indicatorActive || dragging) && (
                             <ProgressIndicator
                                 style={{ transform: `translate3d(${indicator}px, 0, 0)` }}
                             />
                         )}
                     </ProgressBar>
-                    {(indicator !== null || dragging) && (
+                    {(indicatorActive || dragging) && (
                         <ProgressIndicatorTime
                             style={{
                                 transform: `translate3d(calc(${indicator}px - 50%), calc(-100% - 1rem), 0)`,
