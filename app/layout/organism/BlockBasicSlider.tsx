@@ -10,6 +10,9 @@ const CardWrapper = styled.div`
     position: relative;
     ${aspectRatio(1.5)};
     overflow: visible;
+
+    // Prevent content shifting caused by delayed recalculation from keen-slider
+    max-width: 0;
 `;
 
 const CardInner = styled.div`
