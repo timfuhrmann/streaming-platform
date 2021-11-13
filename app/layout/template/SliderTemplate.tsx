@@ -83,21 +83,23 @@ export const SliderTemplate: React.FC<SliderWrapperProps> = ({
     }, [mounted, length]);
 
     return (
-        <SliderWrapper $hidden={!mounted}>
-            <Content>{title && <SliderTitle>{title}</SliderTitle>}</Content>
-            <SliderInner>
-                <SliderControlPrev type="button" onClick={prev} $isHidden={isBeginning}>
-                    <SliderChevronLeft />
-                </SliderControlPrev>
-                <SliderFrame>
-                    <SliderContainer ref={ref} className="keen-slider">
-                        {children}
-                    </SliderContainer>
-                </SliderFrame>
-                <SliderControl type="button" onClick={next} $isHidden={isEnd}>
-                    <SliderChevron />
-                </SliderControl>
-            </SliderInner>
-        </SliderWrapper>
+        <React.Fragment>
+            <SliderWrapper $hidden={!mounted}>
+                <Content>{title && <SliderTitle>{title}</SliderTitle>}</Content>
+                <SliderInner>
+                    <SliderControlPrev type="button" onClick={prev} $isHidden={isBeginning}>
+                        <SliderChevronLeft />
+                    </SliderControlPrev>
+                    <SliderFrame>
+                        <SliderContainer ref={ref} className="keen-slider">
+                            {children}
+                        </SliderContainer>
+                    </SliderFrame>
+                    <SliderControl type="button" onClick={next} $isHidden={isEnd}>
+                        <SliderChevron />
+                    </SliderControl>
+                </SliderInner>
+            </SliderWrapper>
+        </React.Fragment>
     );
 };

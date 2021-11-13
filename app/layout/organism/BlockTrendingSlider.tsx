@@ -8,9 +8,6 @@ import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 const TrendingSlide = styled.div`
     will-change: transform;
     overflow: visible;
-
-    // Prevent content shifting caused by delayed recalculation from keen-slider
-    max-width: 0;
 `;
 
 interface BlockBasicSliderProps {

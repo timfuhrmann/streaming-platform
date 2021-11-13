@@ -9,10 +9,16 @@ import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 const CardWrapper = styled.div`
     position: relative;
     ${aspectRatio(1.5)};
+    max-width: calc(50% - 1.5rem);
     overflow: visible;
 
-    // Prevent content shifting caused by delayed recalculation from keen-slider
-    max-width: 0;
+    @media ${p => p.theme.bp.l} {
+        max-width: calc(25% - 1.5rem);
+    }
+
+    @media ${p => p.theme.bp.xl} {
+        max-width: calc(16.66% - 1.5rem);
+    }
 `;
 
 const CardInner = styled.div`

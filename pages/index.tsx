@@ -26,7 +26,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ featured, trending }) => {
     const dispatch = useDispatch();
-    const { activeShowsFromWatchlist } = useWatchlist();
+    const { loading: watchlistLoading, activeShowsFromWatchlist } = useWatchlist();
     const { genreResults, loading, hasNextPage } = useAppSelector(state => state.genre);
 
     const onLoadMore = () => {

@@ -1,25 +1,30 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { WatchlistContext } from "./WatchlistContext";
+import { watchlistMock } from "@lib/watchlist/mock";
 
 const STORAGE_WATCHLIST = "watchlist";
 
 export const WatchlistProvider: React.FC = ({ children }) => {
+    const [loading, setLoading] = useState<boolean>(true);
     const [watchlist, setWatchlist] = useState<Record<number, Watchlist.Entry>>({});
 
     useEffect(() => {
-        const storage = localStorage.getItem(STORAGE_WATCHLIST);
+        try {
+            const storage = localStorage.getItem(STORAGE_WATCHLIST);
 
-        if (!storage) {
-            return;
+            if (!storage) {
+                setWatchlist(watchlistMock);
+                setLoading(false);
+                return;
+            }
+
+            const json = JSON.parse(storage);
+            setWatchlist(json);
+            setLoading(false);
+        } catch (e) {
+            setWatchlist(watchlistMock);
+            setLoading(false);
         }
-
-        const json = JSON.parse(storage);
-
-        if (!json) {
-            return;
-        }
-
-        setWatchlist(json);
     }, []);
 
     useEffect(() => {
@@ -118,6 +123,7 @@ export const WatchlistProvider: React.FC = ({ children }) => {
     return (
         <WatchlistContext.Provider
             value={{
+                loading,
                 watchlist,
                 activeShowsFromWatchlist,
                 isShowActive,

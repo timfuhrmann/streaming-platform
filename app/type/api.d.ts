@@ -12,10 +12,10 @@ declare module Api {
         id: number;
         name: string;
         original_name: string;
-        genres: Genre[];
         poster_path: string | null;
         backdrop_path: string | null;
         overview: string;
+        genre_ids: number[];
         first_air_date: string;
         origin_country: string[];
         original_language: string;
@@ -30,6 +30,7 @@ declare module Api {
         production_companies: ProductionCompany[];
         status: string;
         tagline: string | null;
+        genres: Genre[];
         seasons: Season[];
     }
 
