@@ -12,7 +12,13 @@ Check it out to explore all features: https://tmdb-streaming-platform.vercel.app
 ## API
 The following api is being utilized: https://developers.themoviedb.org/3/getting-started/introduction
 
-## Data Fetching
+## Next.js
+### Middleware & Edge Functions
+Whether or not a profile has been selected is being checked on the edge at the speed of static to handle a possible redirect.
+
+### Serverless Functions
+Serverless Functions handle the profile selection itself and the validation of possible profile codes/passwords.
+
 ### Static Site Generation
 Overview page is being statically generated and revalidated every hour.
 
@@ -21,7 +27,7 @@ Overview page is being statically generated and revalidated every hour.
 2. Open popup respective tv show within popup on click
 3. Get state if available from prefetch, if not, wait for updated state
 
-![Preview](public/readme-preview.png)
+![Preview](public/preview-popup.png)
 
 ## HTTP Live Streaming
 HTTP Live Streaming is an HTTP-based adaptive bitrate streaming communications protocol. It resembles MPEG-DASH in that it works by breaking the overall stream into a sequence of small HTTP-based file downloads, each downloading one short chunk of an overall potentially unbounded transport stream. A list of available streams, encoded at different bit rates, is sent to the client using an extended M3U playlist. [Read more.](https://en.wikipedia.org/wiki/HTTP_Live_Streaming)
@@ -29,7 +35,7 @@ HTTP Live Streaming is an HTTP-based adaptive bitrate streaming communications p
 ## Custom Media Player
 The application uses its own custom media player. Because of missing resources audio and subtitle selection are not included.
 
-![Media Player](public/readme-media-player.png)
+![Media Player](public/preview-player.png)
 
 ## Getting Started
 
