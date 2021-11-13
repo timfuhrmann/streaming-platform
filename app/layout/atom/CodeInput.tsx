@@ -7,12 +7,16 @@ import { transition } from "@css/transition";
 const InputField = styled.input<{ $active: boolean }>`
     text-align: center;
     ${square("calc(4rem + 7.5vw)")};
-    font-size: 5rem;
+    font-size: 3rem;
     background: none;
     border: 0.2rem solid ${p => p.theme.gray900};
     color: ${p => p.theme.gray900};
     transform: ${p => p.$active && "scale(1.1)"};
     ${transition("transform", "0.2s")};
+
+    @media ${p => p.theme.bp.m} {
+        font-size: 5rem;
+    }
 
     @media ${p => p.theme.bp.xl} {
         ${square("20rem")};
@@ -31,7 +35,7 @@ export const CodeInput: React.FC<CodeInputProps> = ({ value, focused, onKeyUp })
     return (
         <InputField
             ref={inputRef}
-            type="password"
+            type="tel"
             value={value}
             maxLength={1}
             autoComplete="off"

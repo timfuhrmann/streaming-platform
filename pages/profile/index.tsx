@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BlockProfile } from "../../app/layout/molecule/BlockProfile";
-import { fillParent, square } from "@css/content";
+import { square } from "@css/content";
 import { profiles } from "@lib/mock/profile";
 import { GetStaticProps } from "next";
 import Link from "next/link";
@@ -10,10 +10,21 @@ import { IconX } from "@icon/IconX";
 import { useProfile } from "@lib/profile/ProfileProvider";
 
 const ProfilesWrapper = styled.div`
-    ${fillParent};
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    padding: 10rem 0;
+    overflow-y: auto;
+
+    @media ${p => p.theme.bp.m} {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    @media ${p => p.theme.bp.l} {
+        display: flex;
+        align-items: center;
+    }
 `;
 
 export const CloseButton = styled.a`

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { BlockCode } from "../../../app/layout/molecule/BlockCode";
-import { fillParent } from "@css/content";
 import { useRouter } from "next/router";
 import { validateProfileCode } from "@lib/api/profile";
 import { GetStaticProps } from "next";
@@ -11,11 +10,23 @@ import { HeadlineS } from "@css/typography";
 import { Close, CloseButton } from "../index";
 
 const CodeWrapper = styled.div`
-    ${fillParent};
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    padding: 10rem 0;
+    overflow-y: auto;
+    text-align: center;
+
+    @media ${p => p.theme.bp.m} {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    @media ${p => p.theme.bp.l} {
+        display: flex;
+        align-items: center;
+    }
 `;
 
 const CodeHelpWrapper = styled.div`

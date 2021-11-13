@@ -81,7 +81,7 @@ export const BlockCode: React.FC<BlockCodeProps> = ({ error, onChange }) => {
                 {[...Array(4)].map((item, index) => (
                     <CodeInput
                         key={index}
-                        value={code[index] || ""}
+                        value={code[index] ? "•" : ""}
                         focused={index === focused}
                         onKeyUp={key => handleKeyUp(index, key)}
                     />
