@@ -13,7 +13,11 @@ const OpenerWrapper = styled.div`
     position: relative;
     display: flex;
     align-items: center;
-    min-height: 75rem;
+    min-height: 65rem;
+
+    @media ${p => p.theme.bp.l} {
+        min-height: 75rem;
+    }
 `;
 
 const OpenerBackground = styled.div`
