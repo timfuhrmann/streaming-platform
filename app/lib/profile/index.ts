@@ -23,7 +23,7 @@ export const hasProfile = (req: NextRequest) => {
     const { pathname } = req.nextUrl;
 
     if (STATIC_REGEX_EXCLUSION.test(pathname) || isFavicon(req) || isApi(req) || isProfile(req)) {
-        return;
+        return NextResponse.next();
     }
 
     const profile = req.cookies[COOKIE_PROFILE];
@@ -32,5 +32,5 @@ export const hasProfile = (req: NextRequest) => {
         return NextResponse.redirect("/profile");
     }
 
-    return;
+    return NextResponse.next();
 };
