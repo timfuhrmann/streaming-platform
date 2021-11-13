@@ -7,8 +7,6 @@ export const IconPause = (props: React.SVGProps<SVGSVGElement>) => (
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
         {...props}>
         <rect fill="currentColor" x="6" y="4" width="4" height="16" />
         <rect fill="currentColor" x="14" y="4" width="4" height="16" />

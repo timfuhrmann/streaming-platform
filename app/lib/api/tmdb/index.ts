@@ -38,3 +38,8 @@ export const getShowsByGenres = async (genres: Api.Genre[]): Promise<Record<stri
     const result = await Promise.all(genres.map(genre => getShowsByGenre(genre)));
     return recordArrayToRecord(result);
 };
+
+export const getShowByString = async (string: string): Promise<Api.TV[]> => {
+    const { results } = await db<Api.Page<Api.TV>>(`/search/tv`, `&query=${string}`);
+    return results;
+};

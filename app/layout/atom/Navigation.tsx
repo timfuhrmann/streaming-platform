@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { Content } from "@css/content";
+import { Content, square } from "@css/content";
 import { useProfile } from "@lib/profile/ProfileProvider";
 import { Avatar } from "./Avatar";
 import { HeadlineM } from "@css/typography";
+import { IconSearch } from "@icon/IconSearch";
+import { useRouter } from "next/router";
+import { transition } from "@css/transition";
 
 const NavigationWrapper = styled.div`
     position: fixed;
@@ -19,7 +22,13 @@ const NavigationInner = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem 0;
+    min-height: ${p => p.theme.navigationHeight};
+`;
+
+const NavigationGroup = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 3rem;
 `;
 
 const Logo = styled.a`
@@ -30,7 +39,24 @@ const LogoMark = styled.span`
     color: ${p => p.theme.primary};
 `;
 
+const NavigationSearch = styled.a<{ $active?: boolean }>`
+    display: flex;
+    color: ${p => p.$active && p.theme.primary};
+    ${transition("color", "0.1s")};
+
+    @media (hover: hover) {
+        &:hover {
+            color: ${p => p.theme.primary};
+        }
+    }
+`;
+
+const SearchIcon = styled(IconSearch)`
+    ${square("2.4rem")};
+`;
+
 export const Navigation: React.FC = () => {
+    const router = useRouter();
     const { profile } = useProfile();
 
     return (
@@ -42,13 +68,18 @@ export const Navigation: React.FC = () => {
                             Stream<LogoMark>.</LogoMark>
                         </Logo>
                     </Link>
-                    {profile && (
+                    <NavigationGroup>
+                        <Link href="/search" passHref>
+                            <NavigationSearch $active={router.pathname.includes("search")}>
+                                <SearchIcon />
+                            </NavigationSearch>
+                        </Link>
                         <Link href="/profile" passHref>
                             <a>
                                 <Avatar {...profile} />
                             </a>
                         </Link>
-                    )}
+                    </NavigationGroup>
                 </NavigationInner>
             </Content>
         </NavigationWrapper>

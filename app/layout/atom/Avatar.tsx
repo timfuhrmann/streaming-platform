@@ -12,7 +12,7 @@ const AvatarWrapper = styled.div`
     background-color: ${p => p.theme.gray200};
 `;
 
-export const Avatar: React.FC<User.Profile> = ({ name, avatar }) => {
+export const Avatar: React.FC<Partial<User.Profile>> = ({ name, avatar }) => {
     return (
         <AvatarWrapper>
             {avatar && <Image src={avatar} alt={name} layout="fill" objectFit="cover" />}

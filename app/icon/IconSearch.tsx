@@ -1,6 +1,6 @@
 import React from "react";
 
-export const IconArrowLeft = (props: React.SVGProps<SVGSVGElement>) => (
+export const IconSearch = (props: React.SVGProps<SVGSVGElement>) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -8,6 +8,7 @@ export const IconArrowLeft = (props: React.SVGProps<SVGSVGElement>) => (
         stroke="currentColor"
         strokeWidth="2"
         {...props}>
-        <path d="M19 12H5M12 19l-7-7 7-7" />
+        <circle cx="11" cy="11" r="8" />
+        <path d="M21 21l-4.35-4.35" />
     </svg>
 );

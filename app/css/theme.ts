@@ -18,6 +18,10 @@ export const theme = {
     gray900: "#EFEFEF",
     //endregion
 
+    //region Bounding
+    navigationHeight: "8.5rem",
+    //endregion
+
     //region Overlays
     overlay_75: "rgba(0, 0, 0, 0.75)",
     //endregion
