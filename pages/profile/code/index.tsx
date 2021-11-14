@@ -8,6 +8,7 @@ import { GetStaticProps } from "next";
 import { profiles } from "@lib/mock/profile";
 import { HeadlineS } from "@css/typography";
 import { Close, CloseButton } from "../index";
+import { Spinner } from "../../../app/layout/atom/Spinner";
 
 const CodeWrapper = styled.div`
     position: relative;
@@ -39,9 +40,17 @@ const CodeHelp = styled.div`
     color: ${p => p.theme.gray400};
 `;
 
+const CodeLoading = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
+
 const Code: React.FC = () => {
     const router = useRouter();
     const { uid } = router.query;
+    const [loading, setLoading] = useState<boolean>(false);
     const [code, setCode] = useState<string>("");
     const [error, setError] = useState<Common.Error | null>(null);
 
@@ -56,6 +65,8 @@ const Code: React.FC = () => {
             return;
         }
 
+        setLoading(true);
+
         const res = await validateProfileCode(uid, code);
 
         if (!res) {
@@ -64,6 +75,7 @@ const Code: React.FC = () => {
 
         switch (res.status) {
             case 400:
+                setLoading(false);
                 return setError(res);
             case 500:
                 return router.replace("/profile");
@@ -72,7 +84,11 @@ const Code: React.FC = () => {
         }
     };
 
-    return (
+    return loading ? (
+        <CodeLoading>
+            <Spinner />
+        </CodeLoading>
+    ) : (
         <CodeWrapper>
             <Link href="/" passHref>
                 <CloseButton>

@@ -22,13 +22,13 @@ export const isProfile = (req: NextRequest) => {
 export const hasProfile = (req: NextRequest) => {
     const { pathname } = req.nextUrl;
 
-    if (STATIC_REGEX_EXCLUSION.test(pathname) || isFavicon(req) || isApi(req)) {
+    if (STATIC_REGEX_EXCLUSION.test(pathname) || isFavicon(req) || isApi(req) || isProfile(req)) {
         return;
     }
 
     const profile = req.cookies[COOKIE_PROFILE];
 
-    if (!profile && !isProfile(req)) {
+    if (!profile) {
         return NextResponse.redirect("/profile");
     }
 
