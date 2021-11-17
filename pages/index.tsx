@@ -26,7 +26,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ featured, trending }) => {
     const dispatch = useDispatch();
-    const { loading: watchlistLoading, activeShowsFromWatchlist } = useWatchlist();
+    const { activeShowsFromWatchlist } = useWatchlist();
     const { genreResults, loading, hasNextPage } = useAppSelector(state => state.genre);
 
     const onLoadMore = () => {
@@ -42,14 +42,14 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
     return (
         <PageWrapper>
             {featured && <Opener {...featured} />}
-            {activeShowsFromWatchlist.length > 0 && (
+            {trending && (
                 <Block $isNegative>
-                    <BlockBasicSlider title="Your watchlist" shows={activeShowsFromWatchlist} />
+                    <BlockTrendingSlider title="Trending" shows={trending} />
                 </Block>
             )}
-            {trending && (
-                <Block $isNegative={!activeShowsFromWatchlist.length}>
-                    <BlockTrendingSlider title="Trending" shows={trending} />
+            {activeShowsFromWatchlist.length > 0 && (
+                <Block $isNegative={!trending}>
+                    <BlockBasicSlider title="Your watchlist" shows={activeShowsFromWatchlist} />
                 </Block>
             )}
             {Object.keys(genreResults).map(showKey => (

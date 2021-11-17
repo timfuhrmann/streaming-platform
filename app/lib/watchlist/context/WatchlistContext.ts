@@ -1,7 +1,6 @@
 import { createContext, useContext } from "react";
 
 interface WatchlistData {
-    loading: boolean;
     watchlist: Record<number, Watchlist.Entry>;
     activeShowsFromWatchlist: Api.TV[];
     isShowActive: (id: number) => boolean;

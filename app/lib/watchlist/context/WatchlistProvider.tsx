@@ -5,7 +5,6 @@ import { watchlistMock } from "@lib/watchlist/mock";
 const STORAGE_WATCHLIST = "watchlist";
 
 export const WatchlistProvider: React.FC = ({ children }) => {
-    const [loading, setLoading] = useState<boolean>(true);
     const [watchlist, setWatchlist] = useState<Record<number, Watchlist.Entry>>({});
 
     useEffect(() => {
@@ -14,16 +13,13 @@ export const WatchlistProvider: React.FC = ({ children }) => {
 
             if (!storage) {
                 setWatchlist(watchlistMock);
-                setLoading(false);
                 return;
             }
 
             const json = JSON.parse(storage);
             setWatchlist(json);
-            setLoading(false);
         } catch (e) {
             setWatchlist(watchlistMock);
-            setLoading(false);
         }
     }, []);
 
@@ -123,7 +119,6 @@ export const WatchlistProvider: React.FC = ({ children }) => {
     return (
         <WatchlistContext.Provider
             value={{
-                loading,
                 watchlist,
                 activeShowsFromWatchlist,
                 isShowActive,
