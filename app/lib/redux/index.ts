@@ -11,7 +11,7 @@ const middleware: Middleware[] = [thunk];
 let store: Store;
 
 if (process.env.NODE_ENV !== "production") {
-    middleware.push(createLogger());
+    // middleware.push(createLogger());
 }
 
 const makeStore = (preloadedState?: AppState) => {

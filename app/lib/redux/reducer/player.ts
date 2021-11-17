@@ -10,7 +10,7 @@ interface PlayerState {
 
 const initialState: PlayerState = {
     playing: false,
-    waiting: false,
+    waiting: true,
     fullscreen: false,
     progress: 0,
     buffer: 0,

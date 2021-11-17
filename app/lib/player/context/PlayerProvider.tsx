@@ -17,8 +17,10 @@ import { PlayerControls } from "../../../layout/player/molecule/PlayerControls";
 import { IconArrowLeft } from "@icon/IconArrowLeft";
 import { controlsTransition } from "@css/transition";
 import { useRouter } from "next/router";
+import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 
-const HLS_VIDEO_SRC = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8";
+export const HLS_VIDEO_SRC = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8";
+export const HLS_VIDEO_DURATION = 888;
 
 const Video = styled.video`
     position: absolute;
@@ -62,18 +64,24 @@ const IconBack = styled(IconArrowLeft)`
 `;
 
 interface PlayerProvider {
+    show: Api.TVDetails;
     fullscreenContainer: React.MutableRefObject<HTMLElement | null>;
 }
 
-export const PlayerProvider: React.FC<PlayerProvider> = ({ fullscreenContainer, children }) => {
+export const PlayerProvider: React.FC<PlayerProvider> = ({
+    show,
+    fullscreenContainer,
+    children,
+}) => {
     const router = useRouter();
     const dispatch = useDispatch();
+    const { loading: watchlistLoading, hasShowProgress, addProgressToWatchlist } = useWatchlist();
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [controlsActive, setControlsActive] = useState<boolean>(false);
 
     useEffect(() => {
-        if (!videoRef.current) {
+        if (!videoRef.current || watchlistLoading) {
             return;
         }
 
@@ -86,18 +94,40 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({ fullscreenContainer, 
         hls.loadSource(HLS_VIDEO_SRC);
         hls.attachMedia(videoRef.current);
 
+        const progress = hasShowProgress(show.id);
+
+        if (progress) {
+            videoRef.current.currentTime = progress;
+        }
+
         if (videoRef.current.paused) {
             videoRef.current.play();
         }
 
-        return () => hls.destroy();
-    }, []);
+        return () => {
+            if (hls.media) {
+                addProgressToWatchlist(show, hls.media.currentTime);
+            }
+
+            hls.destroy();
+        };
+    }, [watchlistLoading]);
 
     useEffect(() => {
+        const beforeUnload = () => {
+            if (!videoRef.current) {
+                return;
+            }
+
+            addProgressToWatchlist(show, videoRef.current.currentTime);
+        };
+
         document.addEventListener("mousemove", interact);
+        window.addEventListener("beforeunload", beforeUnload);
 
         return () => {
             document.removeEventListener("mousemove", interact);
+            window.removeEventListener("beforeunload", beforeUnload);
 
             if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);

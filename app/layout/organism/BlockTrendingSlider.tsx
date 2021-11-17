@@ -16,7 +16,7 @@ interface BlockBasicSliderProps {
 }
 
 export const BlockTrendingSlider: React.FC<BlockBasicSliderProps> = ({ title, shows }) => {
-    const { isShowActive, addShowToWatchlist } = useWatchlist();
+    const { hasShowProgress, isShowActive, addShowToWatchlist } = useWatchlist();
 
     const sliderOptions: TOptions = {
         slidesPerView: 1,
@@ -37,6 +37,7 @@ export const BlockTrendingSlider: React.FC<BlockBasicSliderProps> = ({ title, sh
                     <TrendingCard
                         index={index}
                         show={show}
+                        progress={hasShowProgress(show.id)}
                         watchlistActive={isShowActive(show.id)}
                         onWatchlist={() => addShowToWatchlist(show)}
                     />

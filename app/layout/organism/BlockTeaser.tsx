@@ -47,7 +47,7 @@ interface BlockTeaserProps {
 }
 
 export const BlockTeaser: React.FC<BlockTeaserProps> = ({ headline, shows }) => {
-    const { isShowActive, addShowToWatchlist } = useWatchlist();
+    const { hasShowProgress, isShowActive, addShowToWatchlist } = useWatchlist();
 
     return (
         <TeaserWrapper>
@@ -58,6 +58,7 @@ export const BlockTeaser: React.FC<BlockTeaserProps> = ({ headline, shows }) => 
                         <TeaserCardInner>
                             <Card
                                 {...show}
+                                progress={hasShowProgress(show.id)}
                                 watchlistActive={isShowActive(show.id)}
                                 onWatchlist={() => addShowToWatchlist(show)}
                             />

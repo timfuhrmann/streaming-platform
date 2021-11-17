@@ -60,6 +60,7 @@ const CardLink = styled.a`
 `;
 
 interface CardProps extends Api.TV {
+    progress: number;
     watchlistActive: boolean;
     onWatchlist: () => void;
 }
@@ -69,6 +70,7 @@ export const Card: React.FC<CardProps> = ({
     name,
     poster_path,
     backdrop_path,
+    progress,
     watchlistActive,
     onWatchlist,
 }) => {
@@ -83,7 +85,7 @@ export const Card: React.FC<CardProps> = ({
                     <CardName>{name}</CardName>
                     <ButtonWatchlist active={watchlistActive} onClick={onWatchlist} />
                 </CardHead>
-                <CardProgress />
+                <CardProgress progress={progress} />
                 <CardOverlay />
                 <Link href={{ query: { id } }} shallow passHref>
                     <CardLink />

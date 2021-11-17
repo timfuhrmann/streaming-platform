@@ -35,7 +35,7 @@ interface BlockBasicSliderProps {
 }
 
 export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, shows }) => {
-    const { isShowActive, addShowToWatchlist } = useWatchlist();
+    const { hasShowProgress, isShowActive, addShowToWatchlist } = useWatchlist();
 
     const sliderOptions: TOptions = {
         slidesPerView: 2,
@@ -57,6 +57,7 @@ export const BlockBasicSlider: React.FC<BlockBasicSliderProps> = ({ title, shows
                     <CardInner>
                         <Card
                             {...show}
+                            progress={hasShowProgress(show.id)}
                             watchlistActive={isShowActive(show.id)}
                             onWatchlist={() => addShowToWatchlist(show)}
                         />

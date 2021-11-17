@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { fillParent } from "@css/content";
+import { convertToTimeCode } from "@lib/player";
+import { HLS_VIDEO_DURATION } from "@lib/player/context/PlayerProvider";
 
 const ProgressWrapper = styled.div``;
 
@@ -24,12 +26,16 @@ const ProgressInner = styled.div<{ $abs: number }>`
     background-color: ${p => p.theme.gray900};
 `;
 
-export const CardProgress: React.FC = () => {
+interface CardProgressProps {
+    progress: number;
+}
+
+export const CardProgress: React.FC<CardProgressProps> = ({ progress }) => {
     return (
         <ProgressWrapper>
-            <ProgressTime>1h 30min</ProgressTime>
+            <ProgressTime>{convertToTimeCode(progress)}</ProgressTime>
             <ProgressFrame>
-                <ProgressInner $abs={0.5} />
+                <ProgressInner $abs={progress / HLS_VIDEO_DURATION} />
             </ProgressFrame>
         </ProgressWrapper>
     );

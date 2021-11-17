@@ -30,7 +30,7 @@ interface WatchProps {
     browserCompatible: boolean;
 }
 
-const Watch: React.FC<WatchProps> = ({ browserCompatible }) => {
+const Watch: React.FC<WatchProps> = ({ show, browserCompatible }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const { waiting } = useAppSelector(state => state.player);
 
@@ -51,7 +51,7 @@ const Watch: React.FC<WatchProps> = ({ browserCompatible }) => {
                     <Spinner />
                 </SpinnerWrapper>
             )}
-            <PlayerProvider fullscreenContainer={containerRef} />
+            <PlayerProvider show={show} fullscreenContainer={containerRef} />
         </PlayerWrapper>
     );
 };

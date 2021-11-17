@@ -49,7 +49,7 @@ const SearchCard = styled.div`
 
 const Search: React.FC = () => {
     const [suggestions, setSuggestions] = useState<Api.TV[]>([]);
-    const { isShowActive, addShowToWatchlist } = useWatchlist();
+    const { hasShowProgress, isShowActive, addShowToWatchlist } = useWatchlist();
 
     const handleQuery = async (value: string) => {
         if (!value) {
@@ -74,6 +74,7 @@ const Search: React.FC = () => {
                             <SearchCard>
                                 <Card
                                     {...suggestion}
+                                    progress={hasShowProgress(suggestion.id)}
                                     watchlistActive={isShowActive(suggestion.id)}
                                     onWatchlist={() => addShowToWatchlist(suggestion)}
                                 />
