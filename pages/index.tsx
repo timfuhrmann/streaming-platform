@@ -13,9 +13,17 @@ import { BlockBasicSlider } from "../app/layout/organism/BlockBasicSlider";
 import { useDispatch } from "react-redux";
 import { BasicSliderSkeleton } from "../app/layout/atom/BasicSliderSkeleton";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
+import { Spinner } from "../app/layout/atom/Spinner";
 
 const PageWrapper = styled.div`
     padding-bottom: 12rem;
+`;
+
+const PageLoading = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;
 
 interface HomeProps {
@@ -26,7 +34,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ featured, trending }) => {
     const dispatch = useDispatch();
-    const { activeShowsFromWatchlist } = useWatchlist();
+    const { loading: watchlistLoading, activeShowsFromWatchlist } = useWatchlist();
     const { genreResults, loading, hasNextPage } = useAppSelector(state => state.genre);
 
     const onLoadMore = () => {
@@ -39,17 +47,21 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
         onLoadMore,
     });
 
-    return (
+    return watchlistLoading ? (
+        <PageLoading>
+            <Spinner />
+        </PageLoading>
+    ) : (
         <PageWrapper>
             {featured && <Opener {...featured} />}
-            {trending && (
+            {activeShowsFromWatchlist.length > 0 && (
                 <Block $isNegative>
-                    <BlockTrendingSlider title="Trending" shows={trending} />
+                    <BlockBasicSlider title="Your watchlist" shows={activeShowsFromWatchlist} />
                 </Block>
             )}
-            {activeShowsFromWatchlist.length > 0 && (
-                <Block $isNegative={!trending}>
-                    <BlockBasicSlider title="Your watchlist" shows={activeShowsFromWatchlist} />
+            {trending && (
+                <Block $isNegative={!activeShowsFromWatchlist.length}>
+                    <BlockTrendingSlider title="Trending" shows={trending} />
                 </Block>
             )}
             {Object.keys(genreResults).map(showKey => (

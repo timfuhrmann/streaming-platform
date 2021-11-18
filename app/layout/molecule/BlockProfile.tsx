@@ -23,15 +23,27 @@ const ProfileButton = styled.a``;
 
 interface BlockProfileProps {
     profiles: Record<string, User.Profile>;
+    onSelect: (profile: User.Profile) => void;
 }
 
-export const BlockProfile: React.FC<BlockProfileProps> = ({ profiles }) => {
+export const BlockProfile: React.FC<BlockProfileProps> = ({ profiles, onSelect }) => {
+    const getProfileRoute = ({ uid, password }: User.Profile) => {
+        if (!!password) {
+            return `/profile/code?uid=${uid}`;
+        }
+
+        return `/api/profile/switch?uid=${uid}`;
+    };
+
     return (
         <ProfilesWrapper>
             <ProfilesHeadline>Who&apos;s watching?</ProfilesHeadline>
             <ProfileList>
                 {Object.keys(profiles).map(uid => (
-                    <ProfileButton key={uid} href={`/api/profile/switch?uid=${uid}`}>
+                    <ProfileButton
+                        key={uid}
+                        href={getProfileRoute(profiles[uid])}
+                        onClick={() => onSelect(profiles[uid])}>
                         <Profile {...profiles[uid]} />
                     </ProfileButton>
                 ))}

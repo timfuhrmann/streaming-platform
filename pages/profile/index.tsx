@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BlockProfile } from "../../app/layout/molecule/BlockProfile";
 import { square } from "@css/content";
@@ -8,6 +8,8 @@ import Link from "next/link";
 import { transition } from "@css/transition";
 import { IconX } from "@icon/IconX";
 import { useProfile } from "@lib/profile/ProfileProvider";
+import { Spinner } from "../../app/layout/atom/Spinner";
+import { useRouter } from "next/router";
 
 const ProfilesWrapper = styled.div`
     position: relative;
@@ -49,10 +51,33 @@ export const Close = styled(IconX)`
     ${square("6rem")};
 `;
 
-const Profile: React.FC = () => {
-    const { profile } = useProfile();
+const ProfileLoading = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
 
-    return (
+const Profile: React.FC = () => {
+    const router = useRouter();
+    const { profile } = useProfile();
+    const [loading, setLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        router.prefetch("/profile/code");
+    }, []);
+
+    const handleSelectProfile = (profile: User.Profile) => {
+        if (!profile.password) {
+            setLoading(true);
+        }
+    };
+
+    return loading ? (
+        <ProfileLoading>
+            <Spinner />
+        </ProfileLoading>
+    ) : (
         <ProfilesWrapper>
             {profile && (
                 <Link href="/" passHref>
@@ -61,7 +86,7 @@ const Profile: React.FC = () => {
                     </CloseButton>
                 </Link>
             )}
-            <BlockProfile profiles={profiles} />
+            <BlockProfile profiles={profiles} onSelect={handleSelectProfile} />
         </ProfilesWrapper>
     );
 };
