@@ -69,14 +69,11 @@ export const Card: React.FC<CardProps> = ({
     id,
     name,
     poster_path,
-    backdrop_path,
     progress,
     watchlistActive,
     onWatchlist,
 }) => {
     const preload = usePreload(id);
-
-    if (!poster_path || !backdrop_path) return null;
 
     return (
         <CardWrapper onMouseEnter={preload.onMouseEnter} onMouseLeave={preload.onMouseLeave}>
@@ -91,13 +88,15 @@ export const Card: React.FC<CardProps> = ({
                     <CardLink />
                 </Link>
             </CardContent>
-            <Image
-                src={_posterUrl(poster_path)}
-                alt={name}
-                layout="fill"
-                objectFit="cover"
-                unoptimized
-            />
+            {poster_path && (
+                <Image
+                    src={_posterUrl(poster_path)}
+                    alt={name}
+                    layout="fill"
+                    objectFit="cover"
+                    unoptimized
+                />
+            )}
         </CardWrapper>
     );
 };
