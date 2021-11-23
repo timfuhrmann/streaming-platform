@@ -8,6 +8,7 @@ import { Button } from "../atom/Button";
 import { usePreload } from "@lib/preload";
 import { genresToString } from "@lib/genre";
 import { truncateString } from "@lib/util";
+import { useNProgress } from "@lib/nprogress";
 
 const OpenerWrapper = styled.div`
     position: relative;
@@ -64,6 +65,7 @@ const OpenerTitle = styled.h1`
 
 export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overview, genres }) => {
     const preload = usePreload(id);
+    const { startProgress } = useNProgress();
 
     const featuredGenres = useMemo(() => {
         return genresToString(genres);
@@ -76,7 +78,9 @@ export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overv
                 <OpenerGenres>{featuredGenres}</OpenerGenres>
                 <OpenerText>{truncateString(overview, 225)}</OpenerText>
                 <OpenerControls>
-                    <Button action={`/watch/${id}`}>Play</Button>
+                    <Button action={`/watch/${id}`} onLink={startProgress}>
+                        Play
+                    </Button>
                     <Button action={preload.onClick} isSecondary>
                         More info
                     </Button>

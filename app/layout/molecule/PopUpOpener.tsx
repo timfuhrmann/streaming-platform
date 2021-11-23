@@ -7,6 +7,7 @@ import { HeadlineL } from "@css/typography";
 import { Button } from "../atom/Button";
 import { Rating } from "../atom/Rating";
 import { genresToString } from "@lib/genre";
+import { useNProgress } from "@lib/nprogress";
 
 const OpenerWrapper = styled.div`
     position: relative;
@@ -81,6 +82,8 @@ export const PopUpOpener: React.FC<Api.TVDetails> = ({
     backdrop_path,
     genres,
 }) => {
+    const { startProgress } = useNProgress();
+
     const featuredGenres = useMemo(() => {
         return genresToString(genres);
     }, [genres]);
@@ -93,7 +96,9 @@ export const PopUpOpener: React.FC<Api.TVDetails> = ({
                         <OpenerHeadline>{name}</OpenerHeadline>
                         <OpenerGenres>{featuredGenres}</OpenerGenres>
                         <OpenerControls>
-                            <Button action={`/watch/${id}`}>Play</Button>
+                            <Button action={`/watch/${id}`} onLink={startProgress}>
+                                Play
+                            </Button>
                             {vote_average > 0 && <Rating vote={vote_average} />}
                         </OpenerControls>
                     </OpenerHead>

@@ -3,7 +3,7 @@ import reducer from "./reducer";
 import { createLogger } from "redux-logger";
 import { createStore, applyMiddleware, Middleware, Store } from "@reduxjs/toolkit";
 import { useMemo } from "react";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 export const REDUX_INITIAL_STATE = "__REDUX_STATE__";
 const middleware: Middleware[] = [thunk];
@@ -11,7 +11,7 @@ const middleware: Middleware[] = [thunk];
 let store: Store;
 
 if (process.env.NODE_ENV !== "production") {
-    // middleware.push(createLogger());
+    middleware.push(createLogger());
 }
 
 const makeStore = (preloadedState?: AppState) => {

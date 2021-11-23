@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 import { BlockProfile } from "../../app/layout/molecule/BlockProfile";
 import { square } from "@css/content";
 import { profiles } from "@lib/mock/profile";
 import { GetStaticProps } from "next";
-import Link from "next/link";
 import { transition } from "@css/transition";
 import { IconX } from "@icon/IconX";
 import { useProfile } from "@lib/profile/ProfileProvider";

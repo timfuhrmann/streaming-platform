@@ -45,13 +45,14 @@ const ButtonWrapper = styled.button<{ $isSecondary?: boolean }>`
 
 interface ButtonProps {
     action?: string | (() => void);
+    onLink?: () => void;
     isSecondary?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({ action, isSecondary, children }) => {
+export const Button: React.FC<ButtonProps> = ({ action, onLink, isSecondary, children }) => {
     return typeof action === "string" ? (
         <Link href={action} passHref>
-            <ButtonWrapper as="a" $isSecondary={isSecondary}>
+            <ButtonWrapper as="a" onClick={onLink} $isSecondary={isSecondary}>
                 {children}
             </ButtonWrapper>
         </Link>
