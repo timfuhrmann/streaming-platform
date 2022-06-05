@@ -93,7 +93,7 @@ export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overv
                         alt={name}
                         layout="fill"
                         objectFit="cover"
-                        objectPosition="50% 15%"
+                        objectPosition="50% 85%"
                         unoptimized
                     />
                 )}
