@@ -13,6 +13,10 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     .no-scroll {
-      overflow: hidden;
+        overflow: hidden;
+    }
+    
+    .hide-cursor {
+        cursor: none;
     }
 `;

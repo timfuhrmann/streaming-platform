@@ -2,11 +2,11 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
 import { getShowById } from "@lib/api/tmdb";
-import { PlayerProvider } from "@lib/player/context/PlayerProvider";
 import { useAppSelector } from "@lib/redux";
-import { Spinner } from "../../app/layout/atom/Spinner";
+import { Spinner } from "../../app/layout/shared/Spinner";
 import { checkBrowserCompatibility } from "@lib/browser";
 import { fillParent, Content } from "@css/content";
+import { Player } from "../../app/layout/player/Player";
 
 const PlayerWrapper = styled.div``;
 
@@ -51,7 +51,7 @@ const Watch: React.FC<WatchProps> = ({ show, browserCompatible }) => {
                     <Spinner />
                 </SpinnerWrapper>
             )}
-            <PlayerProvider show={show} fullscreenContainer={containerRef} />
+            <Player show={show} fullscreenContainer={containerRef} />
         </PlayerWrapper>
     );
 };

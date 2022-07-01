@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { BlockProfile } from "../../app/layout/molecule/BlockProfile";
+import { ProfileOverview } from "../../app/layout/block/profile-overview/ProfileOverview";
 import { square } from "@css/content";
 import { profiles } from "@lib/mock/profile";
 import { GetStaticProps } from "next";
 import { transition } from "@css/transition";
 import { IconX } from "@icon/IconX";
-import { useProfile } from "@lib/profile/ProfileProvider";
-import { Spinner } from "../../app/layout/atom/Spinner";
+import { useProfile } from "@lib/context/profile";
+import { Spinner } from "../../app/layout/shared/Spinner";
 import { useRouter } from "next/router";
 
 const ProfilesWrapper = styled.div`
@@ -86,7 +86,7 @@ const Profile: React.FC = () => {
                     </CloseButton>
                 </Link>
             )}
-            <BlockProfile profiles={profiles} onSelect={handleSelectProfile} />
+            <ProfileOverview profiles={profiles} onSelect={handleSelectProfile} />
         </ProfilesWrapper>
     );
 };

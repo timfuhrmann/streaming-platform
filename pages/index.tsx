@@ -2,18 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { GetStaticProps } from "next";
-import { getGenres, getShowById, getShowsByGenres, getTrending } from "../app/lib/api/tmdb";
+import { getGenres, getShowById, getShowsByGenres, getTrending } from "@lib/api/tmdb";
 import { FEATURED_SHOW } from "@lib/api/tmdb/config";
-import { Opener } from "../app/layout/molecule/Opener";
+import { Opener } from "../app/layout/block/Opener";
 import { Block } from "@css/content";
-import { REDUX_INITIAL_STATE, useAppSelector } from "../app/lib/redux";
-import { BlockTrendingSlider } from "../app/layout/organism/BlockTrendingSlider";
+import { REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
+import { TrendingSlider } from "../app/layout/slider/trending-slider/TrendingSlider";
 import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
-import { BlockBasicSlider } from "../app/layout/organism/BlockBasicSlider";
-import { useDispatch } from "react-redux";
-import { BasicSliderSkeleton } from "../app/layout/atom/BasicSliderSkeleton";
+import { BasicSlider } from "../app/layout/slider/basic-slider/BasicSlider";
+import { BasicSliderSkeleton } from "../app/layout/slider/basic-slider/BasicSliderSkeleton";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
-import { Spinner } from "../app/layout/atom/Spinner";
+import { Spinner } from "../app/layout/shared/Spinner";
+import { useDispatch } from "react-redux";
 
 const PageWrapper = styled.div`
     padding-bottom: 12rem;
@@ -56,17 +56,17 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
             {featured && <Opener {...featured} />}
             {activeShowsFromWatchlist.length > 0 && (
                 <Block $isNegative>
-                    <BlockBasicSlider title="Your watchlist" shows={activeShowsFromWatchlist} />
+                    <BasicSlider title="Your watchlist" shows={activeShowsFromWatchlist} />
                 </Block>
             )}
             {trending && (
                 <Block $isNegative={!activeShowsFromWatchlist.length}>
-                    <BlockTrendingSlider title="Trending" shows={trending} />
+                    <TrendingSlider title="Trending" shows={trending} />
                 </Block>
             )}
             {Object.keys(genreResults).map(showKey => (
                 <Block key={showKey}>
-                    <BlockBasicSlider title={showKey} shows={genreResults[showKey]} />
+                    <BasicSlider title={showKey} shows={genreResults[showKey]} />
                 </Block>
             ))}
             {(loading || hasNextPage) && (

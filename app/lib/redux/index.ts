@@ -1,12 +1,12 @@
-import thunk from "redux-thunk";
+import thunk, { ThunkMiddleware } from "redux-thunk";
 import reducer from "./reducer";
 import { createLogger } from "redux-logger";
-import { createStore, applyMiddleware, Middleware, Store } from "@reduxjs/toolkit";
+import { Middleware, Store, configureStore } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 export const REDUX_INITIAL_STATE = "__REDUX_STATE__";
-const middleware: Middleware[] = [thunk];
+const middleware: Middleware[] = [thunk as ThunkMiddleware];
 
 let store: Store;
 
@@ -15,7 +15,12 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const makeStore = (preloadedState?: AppState) => {
-    return createStore(reducer, preloadedState, applyMiddleware(...middleware));
+    return configureStore({
+        reducer,
+        middleware: getDefaultMiddleware => getDefaultMiddleware().concat(middleware),
+        devTools: process.env.NODE_ENV !== "production",
+        preloadedState,
+    });
 };
 
 const initializeStore = (preloadedState?: AppState) => {

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppState } from "../index";
-import { getShowsByGenre } from "../../api/tmdb";
-import { recordArrayToRecord } from "../../util";
+import { getShowsByGenre } from "@lib/api/tmdb";
+import { recordArrayToRecord } from "@lib/util";
 
 export const INFINITE_SCROLL_SKIP = 4;
 
@@ -23,7 +23,7 @@ const initialState: GenreState = {
 
 export const fetchGenrePage = createAsyncThunk<Record<string, Api.TV[]>[] | null>(
     "genre/fetchGenrePage",
-    async (params, thunkAPI) => {
+    async (_, thunkAPI) => {
         const { genre } = thunkAPI.getState() as AppState;
         const { genres, page } = genre;
 

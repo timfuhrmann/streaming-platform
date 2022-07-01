@@ -6,28 +6,28 @@ export const tmdbConfig = {
     imageHost: "https://image.tmdb.org/t/p",
 };
 
-export const _tmdbHost = () => {
+export const getTmdbHost = () => {
     const host = tmdbConfig.host;
 
     if (!host) {
-        throw new Error("Couldn't find dotenv variable for TMDB host.");
+        throw new Error("NEXT_PUBLIC_THE_MOVIE_DB_V3_BASE_URL is undefined");
     }
 
     return tmdbConfig.host;
 };
 
-export const _tmdbApiKey = () => {
+export const getTmdbApiKey = () => {
     const host = tmdbConfig.host;
 
     if (!host) {
-        throw new Error("Couldn't find dotenv variable for TMDB api key.");
+        throw new Error("NEXT_PUBLIC_THE_MOVIE_DB_V3_API_KEY is undefined");
     }
 
     return tmdbConfig.apiKey;
 };
 
 export const db = <T>(endpoint: string, params = ""): Promise<T> => {
-    return fetch(`${_tmdbHost()}${endpoint}?api_key=${_tmdbApiKey()}${params}`)
+    return fetch(`${getTmdbHost()}${endpoint}?api_key=${getTmdbApiKey()}${params}`)
         .then(res => res.json())
-        .catch(console.log);
+        .catch(console.error);
 };

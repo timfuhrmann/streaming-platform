@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { WatchlistContext } from "./WatchlistContext";
 import { watchlistMock } from "@lib/watchlist/mock";
 
 const STORAGE_WATCHLIST = "watchlist";
 
-export const WatchlistProvider: React.FC = ({ children }) => {
+export const WatchlistProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const [loading, setLoading] = useState<boolean>(true);
     const [watchlist, setWatchlist] = useState<Record<number, Watchlist.Entry>>({});
 
@@ -33,13 +33,15 @@ export const WatchlistProvider: React.FC = ({ children }) => {
 
     const activeShowsFromWatchlist = useMemo(() => {
         return Object.keys(watchlist)
-            .filter(showId => watchlist[parseInt(showId)].active)
+            .filter(showId =>
+                isNaN(parseInt(showId)) ? false : watchlist[parseInt(showId)].active
+            )
             .sort((a, b) => watchlist[parseInt(a)].timestamp - watchlist[parseInt(b)].timestamp)
             .map(showId => watchlist[parseInt(showId)].show);
     }, [watchlist]);
 
     /**
-     * Checks whether or not show is active on watchlist.
+     * Checks whether the show is active on watchlist.
      * @param {number} id
      * @return {boolean}
      */

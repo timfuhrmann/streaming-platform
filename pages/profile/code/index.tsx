@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { BlockCode } from "../../../app/layout/molecule/BlockCode";
+import { ProfileCode } from "../../../app/layout/block/profile-code/ProfileCode";
 import { useRouter } from "next/router";
 import { validateProfileCode } from "@lib/api/profile";
 import { GetStaticProps } from "next";
 import { profiles } from "@lib/mock/profile";
 import { HeadlineS } from "@css/typography";
 import { Close, CloseButton } from "../index";
-import { Spinner } from "../../../app/layout/atom/Spinner";
+import { Spinner } from "../../../app/layout/shared/Spinner";
 
 const CodeWrapper = styled.div`
     position: relative;
@@ -95,7 +95,7 @@ const Code: React.FC = () => {
                     <Close />
                 </CloseButton>
             </Link>
-            <BlockCode error={error} onChange={setCode} />
+            <ProfileCode error={error} onChange={setCode} />
             <CodeHelpWrapper>
                 {uid && typeof uid === "string" && profiles[uid] && (
                     <CodeHelp>Psst, it&apos;s {profiles[uid].password}.</CodeHelp>

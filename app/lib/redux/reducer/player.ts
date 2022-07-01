@@ -35,9 +35,14 @@ const playerSlide = createSlice({
         setBuffer(state, action: PayloadAction<number>) {
             state.buffer = action.payload;
         },
+        // somehow typescript says 'state' is never use, though it obviously is
+        // @ts-ignore
+        resetPlayer(state) {
+            state = initialState;
+        },
     },
 });
 
-export const { setPlaying, setWaiting, setFullscreen, setBuffer, setProgress } =
+export const { setPlaying, setWaiting, setFullscreen, setBuffer, setProgress, resetPlayer } =
     playerSlide.actions;
 export default playerSlide.reducer;

@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import styled from "styled-components";
+import debounce from "lodash.debounce";
 import { aspectRatio, Content, fillParent } from "@css/content";
-import { SearchInput } from "../../app/layout/atom/SearchInput";
-import { debounce } from "lodash";
+import { SearchInput } from "../../app/layout/shared/SearchInput";
 import { getShowByString } from "@lib/api/tmdb";
-import { Card } from "../../app/layout/molecule/Card";
+import { Card } from "../../app/layout/shared/card/Card";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 
 const SearchWrapper = styled.div`
@@ -48,8 +48,18 @@ const SearchCard = styled.div`
 `;
 
 const Search: React.FC = () => {
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    const [, startTransition] = useTransition();
     const [suggestions, setSuggestions] = useState<Api.TV[]>([]);
     const { hasShowProgress, isShowActive, addShowToWatchlist } = useWatchlist();
+
+    useEffect(() => {
+        if (!inputRef.current) {
+            return;
+        }
+
+        inputRef.current.focus();
+    }, []);
 
     const handleQuery = async (value: string) => {
         if (!value) {
@@ -57,7 +67,8 @@ const Search: React.FC = () => {
             return;
         }
 
-        getShowByString(value).then(setSuggestions);
+        const res = await getShowByString(value);
+        startTransition(() => setSuggestions(res));
     };
 
     const debouncedFunc = useCallback(debounce(handleQuery, 150), []);
@@ -66,7 +77,11 @@ const Search: React.FC = () => {
         <SearchWrapper>
             <Content>
                 <SearchInputWrapper>
-                    <SearchInput placeholder="What are you looking for?" onInput={debouncedFunc} />
+                    <SearchInput
+                        ref={inputRef}
+                        placeholder="What are you looking for?"
+                        onInput={debouncedFunc}
+                    />
                 </SearchInputWrapper>
                 <SearchResults>
                     {suggestions.map(suggestion => (

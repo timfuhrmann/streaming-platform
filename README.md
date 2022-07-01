@@ -12,6 +12,8 @@ Check it out to explore all features: https://tmdb-streaming-platform.vercel.app
 - Redux
 - Hls.js
 
+**Image optimization is disabled due to Fair Use Policy.**
+
 ## API
 The following api is being utilized: https://developers.themoviedb.org/3/getting-started/introduction
 

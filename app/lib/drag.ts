@@ -59,7 +59,6 @@ export class Drag {
     private addListeners(): void {
         this.container.addEventListener("click", this.onClick.bind(this));
         this.container.addEventListener("mousedown", this.startDrag.bind(this));
-        // this.container.addEventListener("touchstart", this.startDrag.bind(this));
         document.addEventListener("mouseup", this.cancelDrag.bind(this));
         document.addEventListener("mouseleave", this.cancelDrag.bind(this));
         document.addEventListener("mousemove", this.handleProgress.bind(this));
@@ -68,7 +67,6 @@ export class Drag {
     private removeListeners(): void {
         this.container.removeEventListener("click", this.onClick.bind(this));
         this.container.removeEventListener("mousedown", this.startDrag.bind(this));
-        // this.container.removeEventListener("touchstart", this.startDrag.bind(this));
         document.removeEventListener("mouseup", this.cancelDrag.bind(this));
         document.removeEventListener("mouseleave", this.cancelDrag.bind(this));
         document.removeEventListener("mousemove", this.handleProgress.bind(this));
