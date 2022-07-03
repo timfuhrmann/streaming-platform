@@ -11,6 +11,7 @@ import { getRecommendations } from "@lib/api/tmdb";
 import { IconX } from "@icon/IconX";
 import { SeasonsOverview } from "../../block/seasons-overview/SeasonsOverview";
 import { useDispatch } from "react-redux";
+import { RemoveScrollBar } from "react-remove-scroll-bar";
 
 const PopOverWrapper = styled.div`
     ${fillParent};
@@ -105,13 +106,10 @@ export const PopOver: React.FC = () => {
         const entity = entities[numId];
 
         if (entity) {
-            document.documentElement.classList.add("no-scroll");
             setEntry(entity);
         } else if (!fetchRequests.includes(numId)) {
             dispatch(preloadShow({ id: numId }));
         }
-
-        return () => document.documentElement.classList.remove("no-scroll");
     }, [id, entities]);
 
     useEffect(() => {
@@ -136,6 +134,7 @@ export const PopOver: React.FC = () => {
 
     return (
         <PopOverWrapper>
+            <RemoveScrollBar noImportant />
             <PopOverFrame key={entry.id}>
                 <PopOverStage>
                     <PopOverOpener {...entry} />

@@ -10,10 +10,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "Circular Std", Helvetica, Arial, sans-serif;
         background-color: ${p => p.theme.gray50};
         color: ${p => p.theme.gray900};
-    }
-    
-    .no-scroll {
-        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
     }
     
     .hide-cursor {
