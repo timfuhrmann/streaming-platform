@@ -8,7 +8,7 @@ import { SeasonsOverviewSeasonSkeleton } from "./SeasonsOverviewSeasonSkeleton";
 
 const EpisodesWrapper = styled.div``;
 
-const EpisodeWrapper = styled.a`
+const EpisodeWrapper = styled.div`
     display: flex;
     border-bottom: 0.1rem solid ${p => p.theme.gray300};
 

@@ -71,7 +71,7 @@ const CardGroup = styled.div`
     }
 `;
 
-const CardLink = styled.a`
+const CardLink = styled.div`
     ${fillParent};
 `;
 
@@ -119,15 +119,7 @@ export const Card: React.FC<CardProps> = ({
                     <CardLink />
                 </Link>
             </CardContent>
-            {poster_path && (
-                <Image
-                    src={getPosterUrl(poster_path)}
-                    alt={name}
-                    layout="fill"
-                    objectFit="cover"
-                    unoptimized
-                />
-            )}
+            {poster_path && <Image src={getPosterUrl(poster_path)} alt={name} fill />}
         </CardWrapper>
     );
 };

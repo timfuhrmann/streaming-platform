@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/image";
 import { fillParent, square } from "@css/content";
 import { HeadlineS } from "@css/typography";
 import { transition } from "@css/transition";
 import { IconLock } from "@icon/IconLock";
+import { Image } from "@lib/image";
 
 const ProfileAvatar = styled.div`
     position: relative;
@@ -76,9 +76,7 @@ const ProfileLock = styled(IconLock)`
 export const ProfileOverviewItem: React.FC<User.Profile> = ({ name, avatar, password }) => {
     return (
         <ProfileWrapper>
-            <ProfileAvatar>
-                {avatar && <Image src={avatar} alt={name} layout="fill" objectFit="cover" />}
-            </ProfileAvatar>
+            <ProfileAvatar>{avatar && <Image src={avatar} alt={name} fill />}</ProfileAvatar>
             <ProfileName>{name}</ProfileName>
             {password && <ProfileLock />}
         </ProfileWrapper>

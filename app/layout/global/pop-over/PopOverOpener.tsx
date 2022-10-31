@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
-import Image from "next/image";
 import styled from "styled-components";
-import { getPosterUrl } from "@lib/image";
+import { getPosterUrl, Image } from "@lib/image";
 import { aspectRatio, fillParent } from "@css/content";
 import { HeadlineL } from "@css/typography";
 import { Button } from "../../shared/Button";
@@ -107,10 +106,8 @@ export const PopOverOpener: React.FC<Api.TVDetails> = ({
                         <Image
                             src={getPosterUrl(backdrop_path, "original")}
                             alt={name}
-                            layout="fill"
-                            objectFit="cover"
                             objectPosition="50% 15%"
-                            unoptimized
+                            fill
                         />
                     )}
                 </OpenerInner>

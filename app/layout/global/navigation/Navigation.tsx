@@ -31,7 +31,7 @@ const NavigationGroup = styled.div`
     gap: 3rem;
 `;
 
-const Logo = styled.a`
+const Logo = styled.div`
     ${HeadlineM};
 `;
 
@@ -39,7 +39,7 @@ const LogoMark = styled.span`
     color: ${p => p.theme.primary};
 `;
 
-const NavigationSearch = styled.a<{ $active?: boolean }>`
+const NavigationSearch = styled.div<{ $active?: boolean }>`
     display: flex;
     color: ${p => p.$active && p.theme.primary};
     ${transition("color", "0.1s")};
@@ -75,9 +75,7 @@ export const Navigation: React.FC = () => {
                             </NavigationSearch>
                         </Link>
                         <Link href="/profile" passHref>
-                            <a>
-                                <NavigationAvatar {...profile} />
-                            </a>
+                            <NavigationAvatar {...profile} />
                         </Link>
                     </NavigationGroup>
                 </NavigationInner>

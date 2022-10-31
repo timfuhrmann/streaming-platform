@@ -1,7 +1,5 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import Image from "next/image";
-import { getPosterUrl } from "@lib/image";
 import { Content } from "@css/content";
 import { HeadlineXL } from "@css/typography";
 import { Button } from "../shared/Button";
@@ -9,6 +7,7 @@ import { usePreload } from "@lib/hook/usePreload";
 import { genresToString } from "@lib/genre";
 import { truncateString } from "@lib/util";
 import { useNProgress } from "@lib/context/nprogress";
+import { getPosterUrl, Image } from "@lib/image";
 
 const OpenerWrapper = styled.div`
     position: relative;
@@ -91,10 +90,8 @@ export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overv
                     <Image
                         src={getPosterUrl(backdrop_path, "original")}
                         alt={name}
-                        layout="fill"
-                        objectFit="cover"
                         objectPosition="50% 85%"
-                        unoptimized
+                        fill
                     />
                 )}
             </OpenerBackground>

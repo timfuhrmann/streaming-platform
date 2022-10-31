@@ -16,3 +16,13 @@ export const recordArrayToRecord = (arr: Record<any, any>[]): Record<any, any> =
         return { ...map, ...results };
     }, {});
 };
+
+export const createArray = (length: number) => {
+    const arr = [];
+
+    for (let i = 0; i < length; i++) {
+        arr.push(i);
+    }
+
+    return arr;
+};

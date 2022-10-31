@@ -1,7 +1,6 @@
 import React from "react";
-import Image from "next/image";
 import styled from "styled-components";
-import { getPosterUrl } from "@lib/image";
+import { getPosterUrl, Image } from "@lib/image";
 import { HeadlineL, HeadlineS } from "@css/typography";
 import { IconPlay } from "@icon/IconPlay";
 import { square } from "@css/content";
@@ -96,15 +95,7 @@ export const SeasonsOverviewSeasonEpisode: React.FC<Api.Episode> = ({
         <EpisodeWrapper>
             <EpisodeNumber>{episode_number}</EpisodeNumber>
             <EpisodeImage>
-                {still_path && (
-                    <Image
-                        src={getPosterUrl(still_path)}
-                        alt={name}
-                        layout="fill"
-                        objectFit="cover"
-                        unoptimized
-                    />
-                )}
+                {still_path && <Image src={getPosterUrl(still_path)} alt={name} fill />}
             </EpisodeImage>
             <EpisodeContent>
                 <EpisodeName>{name}</EpisodeName>

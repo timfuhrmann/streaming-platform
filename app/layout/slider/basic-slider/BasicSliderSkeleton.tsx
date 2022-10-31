@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { aspectRatio, Content, fillParent } from "@css/content";
 import { HeadlineS } from "@css/typography";
+import { createArray } from "@lib/util";
 
 const SkeletonWrapper = styled(Content)``;
 
@@ -72,7 +73,7 @@ export const BasicSliderSkeleton: React.FC = () => {
         <SkeletonWrapper>
             <SkeletonTitle>Loading...</SkeletonTitle>
             <SkeletonList>
-                {[...Array(6)].map((_, index) => (
+                {createArray(6).map(index => (
                     <SkeletonCardFrame key={index}>
                         <SkeletonCard />
                     </SkeletonCardFrame>

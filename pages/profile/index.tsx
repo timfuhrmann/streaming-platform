@@ -29,7 +29,7 @@ const ProfilesWrapper = styled.div`
     }
 `;
 
-export const CloseButton = styled.a`
+export const CloseButton = styled.div`
     position: absolute;
     top: 2.4rem;
     right: 2.4rem;

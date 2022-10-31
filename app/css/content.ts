@@ -30,7 +30,7 @@ export const square = (value: string) => `
     width: ${value};
 `;
 
-export const fillParent = () => `
+export const fillParent = `
     position: absolute;
     top: 0;
     left: 0;
@@ -38,7 +38,7 @@ export const fillParent = () => `
     width: 100%;
 `;
 
-export const centerAbsolute = () => `
+export const centerAbsolute = `
     position: absolute;
     top: 50%;
     left: 50%;

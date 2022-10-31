@@ -1,7 +1,7 @@
 import React from "react";
-import Image from "next/image";
 import styled from "styled-components";
 import { square } from "@css/content";
+import { Image } from "@lib/image";
 
 const AvatarWrapper = styled.div`
     position: relative;
@@ -13,9 +13,5 @@ const AvatarWrapper = styled.div`
 `;
 
 export const NavigationAvatar: React.FC<Partial<User.Profile>> = ({ name, avatar }) => {
-    return (
-        <AvatarWrapper>
-            {avatar && <Image src={avatar} alt={name} layout="fill" objectFit="cover" />}
-        </AvatarWrapper>
-    );
+    return <AvatarWrapper>{avatar && <Image src={avatar} alt={name} fill />}</AvatarWrapper>;
 };
