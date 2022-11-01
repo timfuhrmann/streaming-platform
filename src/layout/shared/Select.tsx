@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { text } from "@css/typography";
 import { IconChevronDown } from "@icon/IconChevronDown";
-import { square } from "@css/content";
+import { square } from "@css/helper";
 
 const SelectWrapper = styled.div`
     position: relative;

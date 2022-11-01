@@ -1,13 +1,15 @@
 import React, { useCallback, useEffect, useRef, useState, useTransition } from "react";
 import styled from "styled-components";
 import debounce from "lodash.debounce";
-import { aspectRatio, Content, fillParent } from "@css/content";
+import { aspectRatio, fillParent } from "@css/helper";
 import { SearchInput } from "../../src/layout/shared/SearchInput";
 import { getShowByString } from "@lib/api/tmdb";
 import { Card } from "../../src/layout/shared/card/Card";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
+import { content } from "@css/helper/content";
 
 const SearchWrapper = styled.div`
+    ${content()};
     padding: calc(12.5rem - ${p => p.theme.navigationHeight}) 0 12.5rem;
 `;
 
@@ -75,29 +77,27 @@ const Search: React.FC = () => {
 
     return (
         <SearchWrapper>
-            <Content>
-                <SearchInputWrapper>
-                    <SearchInput
-                        ref={inputRef}
-                        placeholder="What are you looking for?"
-                        onInput={debouncedFunc}
-                    />
-                </SearchInputWrapper>
-                <SearchResults>
-                    {suggestions.map(suggestion => (
-                        <SearchCardWrapper key={suggestion.id}>
-                            <SearchCard>
-                                <Card
-                                    {...suggestion}
-                                    progress={hasShowProgress(suggestion.id)}
-                                    watchlistActive={isShowActive(suggestion.id)}
-                                    onWatchlist={() => addShowToWatchlist(suggestion)}
-                                />
-                            </SearchCard>
-                        </SearchCardWrapper>
-                    ))}
-                </SearchResults>
-            </Content>
+            <SearchInputWrapper>
+                <SearchInput
+                    ref={inputRef}
+                    placeholder="What are you looking for?"
+                    onInput={debouncedFunc}
+                />
+            </SearchInputWrapper>
+            <SearchResults>
+                {suggestions.map(suggestion => (
+                    <SearchCardWrapper key={suggestion.id}>
+                        <SearchCard>
+                            <Card
+                                {...suggestion}
+                                progress={hasShowProgress(suggestion.id)}
+                                watchlistActive={isShowActive(suggestion.id)}
+                                onWatchlist={() => addShowToWatchlist(suggestion)}
+                            />
+                        </SearchCard>
+                    </SearchCardWrapper>
+                ))}
+            </SearchResults>
         </SearchWrapper>
     );
 };

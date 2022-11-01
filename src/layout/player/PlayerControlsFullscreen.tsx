@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { usePlayer } from "./PlayerProvider";
 import { useAppSelector } from "@lib/redux";
 import { IconMaximize } from "@icon/IconMaximize";
-import { square } from "@css/content";
+import { square } from "@css/helper";
 import { IconMinimize } from "@icon/IconMinimize";
-import { controlsTransition } from "@css/transition";
+import { controlsTransition } from "@css/player";
 
 const FullscreenButton = styled.button`
     display: flex;

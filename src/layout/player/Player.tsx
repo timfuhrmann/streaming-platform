@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { usePlayer, withPlayer } from "./PlayerProvider";
 import { PlayerControls } from "./PlayerControls";
-import { fillParent, square } from "@css/content";
+import { fillParent, square } from "@css/helper";
 import { IconArrowLeft } from "@icon/IconArrowLeft";
-import { controlsTransition } from "@css/transition";
+import { controlsTransition } from "@css/player";
 import { useRouter } from "next/router";
 import { useAppSelector } from "@lib/redux";
 

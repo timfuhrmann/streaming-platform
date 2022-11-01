@@ -5,8 +5,9 @@ import { getShowById } from "@lib/api/tmdb";
 import { useAppSelector } from "@lib/redux";
 import { Spinner } from "../../src/layout/shared/Spinner";
 import { checkBrowserCompatibility } from "@lib/browser";
-import { fillParent, Content } from "@css/content";
+import { fillParent } from "@css/helper";
 import { Player } from "../../src/layout/player/Player";
+import { Content } from "@css/helper/content";
 
 const PlayerWrapper = styled.div``;
 

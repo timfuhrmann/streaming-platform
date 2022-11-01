@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { transition } from "@css/transition";
+import { transition } from "@css/helper";
 
 const InputField = styled.input`
     width: 100%;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { fillParent } from "@css/content";
+import { fillParent } from "@css/helper";
 import { convertToTimeCode } from "@lib/player";
 import { HLS_VIDEO_DURATION } from "../../player/PlayerProvider";
 

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { text } from "@css/typography";
 import { IconPlay } from "@icon/IconPlay";
-import { square } from "@css/content";
+import { square } from "@css/helper";
 
 const EpisodeNumber = styled.div`
     ${text("displayLg", "bold")};

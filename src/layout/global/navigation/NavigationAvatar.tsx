@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { square } from "@css/content";
+import { square } from "@css/helper";
 import { Image } from "@lib/image";
 
 const AvatarWrapper = styled.div`

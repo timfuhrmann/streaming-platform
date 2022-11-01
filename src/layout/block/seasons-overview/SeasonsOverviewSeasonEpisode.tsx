@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { getPosterUrl, Image } from "@lib/image";
 import { text } from "@css/typography";
 import { IconPlay } from "@icon/IconPlay";
-import { square } from "@css/content";
-import { transition } from "@css/transition";
+import { square } from "@css/helper";
+import { transition } from "@css/helper";
 import { truncateString } from "@lib/util";
 
 const EpisodeNumber = styled.div`

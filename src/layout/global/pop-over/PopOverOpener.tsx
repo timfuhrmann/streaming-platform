@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { getPosterUrl, Image } from "@lib/image";
-import { aspectRatio, fillParent } from "@css/content";
+import { aspectRatio, fillParent } from "@css/helper";
 import { text } from "@css/typography";
 import { Button } from "../../shared/Button";
 import { RatingCircle } from "../../shared/RatingCircle";

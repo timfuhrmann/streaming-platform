@@ -2,8 +2,8 @@ import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { text } from "@css/typography";
-import { transition } from "@css/transition";
-import { fillParent } from "@css/content";
+import { transition } from "@css/helper";
+import { fillParent } from "@css/helper";
 
 const ButtonWrapper = styled.button<{ $isSecondary?: boolean }>`
     position: relative;

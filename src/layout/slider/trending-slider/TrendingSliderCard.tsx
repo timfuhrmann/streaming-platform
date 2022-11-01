@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Card } from "../../shared/card/Card";
-import { aspectRatio } from "@css/content";
+import { aspectRatio } from "@css/helper";
 import { numbers } from "@lib/numbers";
 
 const TrendingWrapper = styled.div`

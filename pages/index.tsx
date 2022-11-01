@@ -5,7 +5,7 @@ import { GetStaticProps } from "next";
 import { getGenres, getShowById, getShowsByGenres, getTrending } from "@lib/api/tmdb";
 import { FEATURED_SHOW } from "@lib/api/tmdb/config";
 import { Opener } from "../src/layout/block/Opener";
-import { Block } from "@css/content";
+import { Block } from "@css/helper";
 import { REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
 import { TrendingSlider } from "../src/layout/slider/trending-slider/TrendingSlider";
 import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";

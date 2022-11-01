@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { aspectRatio, Content, fillParent } from "@css/content";
+import { aspectRatio, fillParent } from "@css/helper";
 import { text } from "@css/typography";
 import { createArray } from "@lib/util";
+import { Content } from "@css/helper/content";
 
 const SkeletonWrapper = styled(Content)``;
 

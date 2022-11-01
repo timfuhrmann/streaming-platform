@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { square } from "@css/content";
-import { transition } from "@css/transition";
+import { square } from "@css/helper";
+import { transition } from "@css/helper";
 import { useFocus } from "@lib/hook/useFocus";
 
 const InputField = styled.input<{ $active: boolean }>`

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { fillParent, square } from "@css/content";
+import { fillParent, square } from "@css/helper";
 import { text } from "@css/typography";
-import { transition } from "@css/transition";
+import { transition } from "@css/helper";
 import { IconLock } from "@icon/IconLock";
 import { Image } from "@lib/image";
 

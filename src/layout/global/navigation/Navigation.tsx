@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { Content, square } from "@css/content";
+import { square } from "@css/helper";
 import { useProfile } from "@lib/context/profile";
 import { NavigationAvatar } from "./NavigationAvatar";
 import { text } from "@css/typography";
 import { IconSearch } from "@icon/IconSearch";
 import { useRouter } from "next/router";
-import { transition } from "@css/transition";
+import { transition } from "@css/helper";
+import { content } from "@css/helper/content";
 
 const NavigationWrapper = styled.div`
     position: fixed;
@@ -22,6 +23,7 @@ const NavigationInner = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    ${content()};
     min-height: ${p => p.theme.navigationHeight};
 `;
 
@@ -61,24 +63,22 @@ export const Navigation: React.FC = () => {
 
     return (
         <NavigationWrapper>
-            <Content>
-                <NavigationInner>
-                    <LogoLink href="/" passHref>
-                        Stream<LogoMark>.</LogoMark>
-                    </LogoLink>
-                    <NavigationGroup>
-                        <NavigationSearch
-                            href="/search"
-                            passHref
-                            $active={router.pathname.includes("search")}>
-                            <SearchIcon />
-                        </NavigationSearch>
-                        <Link href="/profile" passHref>
-                            <NavigationAvatar {...profile} />
-                        </Link>
-                    </NavigationGroup>
-                </NavigationInner>
-            </Content>
+            <NavigationInner>
+                <LogoLink href="/" passHref>
+                    Stream<LogoMark>.</LogoMark>
+                </LogoLink>
+                <NavigationGroup>
+                    <NavigationSearch
+                        href="/search"
+                        passHref
+                        $active={router.pathname.includes("search")}>
+                        <SearchIcon />
+                    </NavigationSearch>
+                    <Link href="/profile" passHref>
+                        <NavigationAvatar {...profile} />
+                    </Link>
+                </NavigationGroup>
+            </NavigationInner>
         </NavigationWrapper>
     );
 };

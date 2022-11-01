@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { IconPlay } from "@icon/IconPlay";
 import { IconPause } from "@icon/IconPause";
-import { controlsTransition } from "@css/transition";
-import { square } from "@css/content";
+import { controlsTransition } from "@css/player";
+import { square } from "@css/helper";
 import { useAppSelector } from "@lib/redux";
 import { usePlayer } from "./PlayerProvider";
 

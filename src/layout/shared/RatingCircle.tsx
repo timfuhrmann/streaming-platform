@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { centerAbsolute, square } from "@css/content";
+import { centerAbsolute, square } from "@css/helper";
 
 const RatingWrapper = styled.div`
     position: relative;

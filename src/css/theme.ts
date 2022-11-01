@@ -38,6 +38,17 @@ export const theme = {
     bp,
     breakpoints: breakpoints(),
     //endregion
+
+    //region Content Width
+    contentWidth: {
+        intrinsic: "calc(100vw - 6rem)",
+        s: "calc(100vw - 6rem)",
+        m: "calc(100vw - 12rem)",
+        l: "calc(100vw - 20rem)",
+        xl: "calc(100vw - 20rem)",
+        xxl: "144rem",
+    },
+    //endregion
 };
 
 type Theme = typeof theme;

@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import { Content } from "@css/content";
 import { text } from "@css/typography";
 import { Button } from "../shared/Button";
 import { usePreload } from "@lib/hook/usePreload";
@@ -8,6 +7,7 @@ import { genresToString } from "@lib/genre";
 import { truncateString } from "@lib/util";
 import { useNProgress } from "@lib/context/nprogress";
 import { getPosterUrl, Image } from "@lib/image";
+import { Content } from "@css/helper/content";
 
 const OpenerWrapper = styled.div`
     position: relative;

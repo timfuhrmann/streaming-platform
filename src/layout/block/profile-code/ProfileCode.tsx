@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { text } from "@css/typography";
 import { ProfileCodeInput } from "./ProfileCodeInput";
 import { KEY_CODES, REGEX_DIGITS } from "@lib/digit";
-import { Content } from "@css/content";
+import { Content } from "@css/helper/content";
 
 const CodeWrapper = styled(Content)``;
 

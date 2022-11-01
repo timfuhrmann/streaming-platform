@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { text } from "@css/typography";
 import { ProfileOverviewItem } from "./ProfileOverviewItem";
-import { Content } from "@css/content";
+import { Content } from "@css/helper/content";
 
 const ProfilesWrapper = styled(Content)``;
 

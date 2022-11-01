@@ -1,11 +1,12 @@
 import React, { PropsWithChildren, useEffect } from "react";
 import styled from "styled-components";
-import { Content, square } from "@css/content";
+import { square } from "@css/helper";
 import { IconChevronRight } from "@icon/IconChevronRight";
-import { transition } from "@css/transition";
+import { transition } from "@css/helper";
 import { text } from "@css/typography";
 import { TOptions } from "keen-slider";
 import { useSlider } from "@lib/hook/useSlider";
+import { Content } from "@css/helper/content";
 
 const SliderWrapper = styled.div<{ $hidden: boolean }>`
     overflow: hidden;

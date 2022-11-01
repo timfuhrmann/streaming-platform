@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { IconPlus } from "@icon/IconPlus";
-import { square } from "@css/content";
+import { square } from "@css/helper";
 import { IconStar } from "@icon/IconStar";
-import { transition } from "@css/transition";
+import { transition } from "@css/helper";
 
 const ButtonWrapper = styled.button`
     display: inline-flex;

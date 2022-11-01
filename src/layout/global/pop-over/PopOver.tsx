@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useAppSelector } from "@lib/redux";
 import { preloadShow } from "@lib/redux/reducer/shows";
-import { fillParent, square } from "@css/content";
+import { fillParent, square } from "@css/helper";
 import { deleteParamFromQuery } from "@lib/util";
 import { PopOverOpener } from "./PopOverOpener";
 import { CardTeaser } from "../../block/CardTeaser";

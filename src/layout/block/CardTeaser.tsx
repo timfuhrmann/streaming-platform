@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Card } from "../shared/card/Card";
-import { aspectRatio, fillParent } from "@css/content";
+import { aspectRatio, fillParent } from "@css/helper";
 import { text } from "@css/typography";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 
