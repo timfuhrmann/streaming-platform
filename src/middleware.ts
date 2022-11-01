@@ -7,10 +7,11 @@ const shouldHandleRequest = (path: string): boolean => {
     return !PUBLIC_FILE.test(path) && !path.startsWith("/api") && !path.startsWith("/_next");
 };
 
-export const isProfile = (path: string) => {
+const isProfile = (path: string) => {
     return path.startsWith("/profile");
 };
-export default async function handler(req: NextRequest) {
+
+export default async function middleware(req: NextRequest) {
     const res = NextResponse.next();
     const url = req.nextUrl.clone();
 
