@@ -46,16 +46,18 @@ interface ButtonProps {
     action?: string | (() => void);
     onLink?: () => void;
     isSecondary?: boolean;
+    shallow?: boolean;
 }
 
 export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
     action,
     onLink,
     isSecondary,
+    shallow,
     children,
 }) => {
     return typeof action === "string" ? (
-        <Link href={action} passHref shallow legacyBehavior>
+        <Link href={action} shallow={shallow} passHref legacyBehavior>
             <ButtonWrapper as="a" onClick={onLink} $isSecondary={isSecondary}>
                 {children}
             </ButtonWrapper>

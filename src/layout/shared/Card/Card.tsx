@@ -117,7 +117,9 @@ export const Card: React.FC<CardProps> = ({
                             <RatingCircle vote={vote_average} />
                         </div>
                         <CardButton>
-                            <Button action={"?id=" + id}>More info</Button>
+                            <Button action={"?id=" + id} shallow>
+                                More info
+                            </Button>
                         </CardButton>
                     </CardGroup>
                     {progress > 0 && <CardProgress progress={progress} />}
