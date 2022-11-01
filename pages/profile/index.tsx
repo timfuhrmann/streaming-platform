@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { ProfileOverview } from "../../app/layout/block/profile-overview/ProfileOverview";
+import { ProfileOverview } from "../../src/layout/block/profile-overview/ProfileOverview";
 import { square } from "@css/content";
 import { profiles } from "@lib/mock/profile";
 import { GetStaticProps } from "next";
 import { transition } from "@css/transition";
 import { IconX } from "@icon/IconX";
 import { useProfile } from "@lib/context/profile";
-import { Spinner } from "../../app/layout/shared/Spinner";
+import { Spinner } from "../../src/layout/shared/Spinner";
 import { useRouter } from "next/router";
 
 const ProfilesWrapper = styled.div`

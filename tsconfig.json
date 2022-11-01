@@ -18,9 +18,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "@lib/*": ["app/lib/*"],
-      "@css/*": ["app/css/*"],
-      "@icon/*": ["app/icon/*"],
+      "@lib/*": ["src/lib/*"],
+      "@css/*": ["src/css/*"],
+      "@icon/*": ["src/icon/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

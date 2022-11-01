@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useRef, useState, useTransition } from "
 import styled from "styled-components";
 import debounce from "lodash.debounce";
 import { aspectRatio, Content, fillParent } from "@css/content";
-import { SearchInput } from "../../app/layout/shared/SearchInput";
+import { SearchInput } from "../../src/layout/shared/SearchInput";
 import { getShowByString } from "@lib/api/tmdb";
-import { Card } from "../../app/layout/shared/card/Card";
+import { Card } from "../../src/layout/shared/card/Card";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 
 const SearchWrapper = styled.div`
