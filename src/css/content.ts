@@ -7,7 +7,7 @@ export const Block = styled.div<{ $isNegative?: boolean }>`
 export const Content = styled.div<{ breakMobile?: boolean; breakDesktop?: boolean }>`
     margin: 0 3rem;
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         max-width: 150rem;
         width: calc(100% - 20rem);
         margin-right: auto;

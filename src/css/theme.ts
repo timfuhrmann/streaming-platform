@@ -1,3 +1,5 @@
+import { bp, breakpoints } from "@css/helper/breakpoints";
+
 export const theme = {
     //region Color
     black: "#080808",
@@ -33,13 +35,8 @@ export const theme = {
     //endregion
 
     //region Breakpoints
-    bp: {
-        m: "screen and (min-width: 768px)",
-        l: "screen and (min-width: 1024px)",
-        xl: "screen and (min-width: 1340px)",
-        xxl: "screen and (min-width: 2000px)",
-        maxL: "screen and (max-width: 1024px)",
-    },
+    bp,
+    breakpoints: breakpoints(),
     //endregion
 };
 

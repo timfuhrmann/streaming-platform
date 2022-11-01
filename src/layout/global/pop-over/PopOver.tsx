@@ -39,7 +39,7 @@ const PopOverStage = styled.div`
     padding-bottom: 5rem;
     background-color: ${p => p.theme.gray100};
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         margin: 5rem auto 0;
     }
 `;

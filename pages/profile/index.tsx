@@ -16,14 +16,14 @@ const ProfilesWrapper = styled.div`
     padding: 10rem 0;
     overflow-y: auto;
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
     }
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         display: flex;
         align-items: center;
     }

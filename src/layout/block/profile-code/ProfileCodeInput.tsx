@@ -14,11 +14,11 @@ const InputField = styled.input<{ $active: boolean }>`
     transform: ${p => p.$active && "scale(1.1)"};
     ${transition("transform", "0.2s")};
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         font-size: 5rem;
     }
 
-    @media ${p => p.theme.bp.xl} {
+    ${p => p.theme.breakpoints.min("xl")} {
         ${square("20rem")};
     }
 `;

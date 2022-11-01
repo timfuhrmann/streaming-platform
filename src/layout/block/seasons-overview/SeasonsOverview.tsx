@@ -14,7 +14,7 @@ const BlockHead = styled.div`
     padding: 0 2rem;
     margin-bottom: 2rem;
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         padding: 0 4rem;
     }
 `;
@@ -29,7 +29,7 @@ const BlockInfo = styled.div`
     color: ${p => p.theme.gray600};
     margin-left: 1.5rem;
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         display: block;
     }
 `;

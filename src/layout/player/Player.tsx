@@ -26,7 +26,7 @@ const PlayerBack = styled.button`
     top: 2rem;
     left: 2rem;
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         top: 4rem;
         left: 4rem;
     }

@@ -23,7 +23,7 @@ const ProfileAvatar = styled.div`
         ${transition("opacity", "0.1s")};
     }
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         ${square("20rem")};
     }
 `;

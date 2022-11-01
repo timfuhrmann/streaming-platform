@@ -8,7 +8,7 @@ import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 const TeaserWrapper = styled.div`
     padding: 0 2rem;
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         padding: 0 4rem;
     }
 `;
@@ -30,7 +30,7 @@ const TeaserCard = styled.div`
     margin: 0.5rem;
     ${aspectRatio(1.5)};
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         flex: 1 1 calc(33.33% - 1rem);
         max-width: calc(33.33% - 1rem);
     }

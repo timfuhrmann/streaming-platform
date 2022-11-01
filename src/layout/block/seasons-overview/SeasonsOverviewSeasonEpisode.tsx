@@ -11,7 +11,7 @@ const EpisodeNumber = styled.div`
     display: none;
     ${text("displayLg", "bold")};
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         display: block;
     }
 `;
@@ -33,7 +33,7 @@ const EpisodeOverview = styled.div`
     margin-top: 0.25rem;
     color: ${p => p.theme.gray700};
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         display: block;
     }
 `;
@@ -47,7 +47,7 @@ const EpisodePlay = styled.div`
     color: ${p => p.theme.gray600};
     ${transition("color", "0.15s")};
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         display: block;
     }
 `;
@@ -80,7 +80,7 @@ const EpisodeWrapper = styled.div`
         }
     }
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         padding: 2rem 4rem;
     }
 `;

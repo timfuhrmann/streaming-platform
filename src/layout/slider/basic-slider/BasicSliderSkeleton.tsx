@@ -21,7 +21,7 @@ const SkeletonCardFrame = styled.div`
         display: none;
     }
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         flex: 1 1 calc(33.33% - 1.5rem);
         max-width: calc(33.33% - 1.5rem);
 
@@ -34,7 +34,7 @@ const SkeletonCardFrame = styled.div`
         }
     }
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         flex: 1 1 calc(25% - 1.5rem);
         max-width: calc(25% - 1.5rem);
 
@@ -47,7 +47,7 @@ const SkeletonCardFrame = styled.div`
         }
     }
 
-    @media ${p => p.theme.bp.xl} {
+    ${p => p.theme.breakpoints.min("xl")} {
         flex: 1 1 calc(16.66% - 1.5rem);
         max-width: calc(16.66% - 1.5rem);
 
@@ -73,7 +73,7 @@ export const BasicSliderSkeleton: React.FC = () => {
         <SkeletonWrapper>
             <SkeletonTitle>Loading...</SkeletonTitle>
             <SkeletonList>
-                {createArray(6).map(index => (
+                {createArray(7).map(index => (
                     <SkeletonCardFrame key={index}>
                         <SkeletonCard />
                     </SkeletonCardFrame>

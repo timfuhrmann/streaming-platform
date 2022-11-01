@@ -15,7 +15,7 @@ const OpenerWrapper = styled.div`
     align-items: center;
     min-height: 65rem;
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         min-height: 75rem;
     }
 `;

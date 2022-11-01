@@ -34,7 +34,7 @@ const EpisodeOverview = styled.div`
     min-height: 4rem;
     background-color: ${p => p.theme.gray300};
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         display: block;
     }
 `;
@@ -54,7 +54,7 @@ const EpisodeWrapper = styled.div`
     width: 100%;
     padding: 2rem;
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         padding: 2rem 4rem;
     }
 `;

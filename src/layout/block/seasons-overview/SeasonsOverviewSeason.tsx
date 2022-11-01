@@ -8,7 +8,7 @@ import { SeasonsOverviewSeasonSkeleton } from "./SeasonsOverviewSeasonSkeleton";
 
 const EpisodesWrapper = styled.div``;
 
-const EpisodeWrapper = styled.div`
+const EpisodeWrapper = styled(Link)`
     display: flex;
     border-bottom: 0.1rem solid ${p => p.theme.gray300};
 
@@ -24,11 +24,13 @@ export const SeasonsOverviewSeason: React.FC = () => {
     return activeEpisodes ? (
         <EpisodesWrapper>
             {activeEpisodes.map(episode => (
-                <Link key={episode.id} href={`/watch/${episode.id}`} passHref>
-                    <EpisodeWrapper onClick={startProgress}>
-                        <SeasonsOverviewSeasonEpisode {...episode} />
-                    </EpisodeWrapper>
-                </Link>
+                <EpisodeWrapper
+                    key={episode.id}
+                    href={`/watch/${episode.id}`}
+                    onClick={startProgress}
+                    passHref>
+                    <SeasonsOverviewSeasonEpisode {...episode} />
+                </EpisodeWrapper>
             ))}
         </EpisodesWrapper>
     ) : (

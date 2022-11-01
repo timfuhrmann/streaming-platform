@@ -16,7 +16,7 @@ const CodeWrapper = styled.div`
     overflow-y: auto;
     text-align: center;
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -24,7 +24,7 @@ const CodeWrapper = styled.div`
         min-height: 100vh;
     }
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         display: flex;
         align-items: center;
     }

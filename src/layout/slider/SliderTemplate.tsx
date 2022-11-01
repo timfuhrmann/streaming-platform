@@ -21,7 +21,7 @@ const SliderInner = styled.div`
 `;
 
 const SliderFrame = styled(Content)`
-    @media ${p => p.theme.bp.maxL} {
+    ${p => p.theme.breakpoints.max("l")} {
         width: 100%;
     }
 `;
@@ -46,7 +46,7 @@ const SliderControl = styled.button<{ $isHidden: boolean }>`
     pointer-events: ${p => p.$isHidden && "none"};
     ${transition("opacity", "0.15s")};
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         display: flex;
     }
 `;

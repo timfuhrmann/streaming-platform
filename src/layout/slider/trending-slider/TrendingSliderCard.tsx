@@ -22,7 +22,7 @@ const TrendingIndex = styled.div`
         stroke: ${p => p.theme.gray600};
     }
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         svg {
             left: unset;
             right: 50%;
@@ -34,7 +34,7 @@ const CardFrame = styled.div`
     width: 60%;
     ${aspectRatio(1.5)};
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         width: 55%;
     }
 `;

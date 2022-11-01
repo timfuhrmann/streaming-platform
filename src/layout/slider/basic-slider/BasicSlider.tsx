@@ -12,11 +12,11 @@ const CardWrapper = styled.div`
     max-width: calc(50% - 1.5rem);
     overflow: visible;
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         max-width: calc(25% - 1.5rem);
     }
 
-    @media ${p => p.theme.bp.xl} {
+    ${p => p.theme.breakpoints.min("xl")} {
         max-width: calc(16.66% - 1.5rem);
     }
 `;

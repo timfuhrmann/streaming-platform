@@ -12,7 +12,7 @@ const ControlsWrapper = styled.div`
     padding: 7.5rem 2rem 4rem;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         gap: 4rem;
         padding: 7.5rem 4rem 4rem;
     }

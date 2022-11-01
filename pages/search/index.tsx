@@ -32,12 +32,12 @@ const SearchCardWrapper = styled.div`
     margin: 0.5rem;
     ${aspectRatio(1.5)};
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         flex: 1 1 calc(25% - 1rem);
         max-width: calc(25% - 1rem);
     }
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         flex: 1 1 calc(20% - 1rem);
         max-width: calc(20% - 1rem);
     }

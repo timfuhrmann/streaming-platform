@@ -33,7 +33,7 @@ const OpenerHead = styled.div`
     z-index: 2;
     padding: 2rem 2rem 4rem;
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         padding: 4rem;
     }
 `;
@@ -48,7 +48,7 @@ const OpenerOverlay = styled.div`
     z-index: 1;
     background: linear-gradient(0deg, ${p => p.theme.gray100} 0%, transparent 100%);
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         background: linear-gradient(0deg, ${p => p.theme.gray100} 0%, transparent 50%);
     }
 `;
@@ -56,7 +56,7 @@ const OpenerOverlay = styled.div`
 const OpenerContent = styled.div`
     padding: 0 2rem;
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         padding: 0 4rem;
     }
 `;

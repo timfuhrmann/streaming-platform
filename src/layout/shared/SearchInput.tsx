@@ -36,14 +36,14 @@ const InputField = styled.input`
         }
     }
 
-    @media ${p => p.theme.bp.m} {
+    ${p => p.theme.breakpoints.min("m")} {
         font-size: 5rem;
         letter-spacing: -0.2rem;
         border-width: 0.3rem;
         padding-bottom: 1rem;
     }
 
-    @media ${p => p.theme.bp.l} {
+    ${p => p.theme.breakpoints.min("l")} {
         font-size: 7.5rem;
         letter-spacing: -0.25rem;
     }
