@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { ButtonText } from "@css/typography";
+import { text } from "@css/typography";
 import { transition } from "@css/transition";
 import { fillParent } from "@css/content";
 
@@ -11,7 +11,7 @@ const ButtonWrapper = styled.button<{ $isSecondary?: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
-    ${ButtonText};
+    ${text("textMd", "bold")};
     padding: 1.5rem 3rem;
     color: ${p => (p.$isSecondary ? p.theme.gray900 : p.theme.gray50)};
     border-radius: 0.4rem;

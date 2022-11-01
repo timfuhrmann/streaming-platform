@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { SeasonsOverviewSeason } from "./SeasonsOverviewSeason";
 import { Select } from "../../shared/Select";
-import { HeadlineM } from "@css/typography";
+import { text } from "@css/typography";
 import { useSeasonOverview, withSeasonOverview } from "./SeasonOverviewProvider";
 
 const BlockWrapper = styled.div``;
@@ -20,7 +20,7 @@ const BlockHead = styled.div`
 `;
 
 const BlockName = styled.h3`
-    ${HeadlineM};
+    ${text("displaySm", "bold")};
     display: flex;
 `;
 

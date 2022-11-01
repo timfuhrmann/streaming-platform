@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { HeadlineL, HeadlineM } from "@css/typography";
+import { text } from "@css/typography";
 import { ProfileCodeInput } from "./ProfileCodeInput";
 import { KEY_CODES, REGEX_DIGITS } from "@lib/digit";
 import { Content } from "@css/content";
@@ -8,16 +8,16 @@ import { Content } from "@css/content";
 const CodeWrapper = styled(Content)``;
 
 const CodeOverline = styled.h1`
-    ${HeadlineM};
+    ${text("displaySm", "bold")};
     text-align: center;
     color: ${p => p.theme.gray600};
 `;
 
 const CodeHeadline = styled.div<{ $error: boolean }>`
-    ${HeadlineL};
-    text-align: center;
     margin-top: 1rem;
     color: ${p => p.$error && p.theme.alert};
+    ${text("displayLg", "bold")};
+    text-align: center;
 `;
 
 const InputFields = styled.div`

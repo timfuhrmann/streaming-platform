@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { fillParent, square } from "@css/content";
-import { HeadlineS } from "@css/typography";
+import { text } from "@css/typography";
 import { transition } from "@css/transition";
 import { IconLock } from "@icon/IconLock";
 import { Image } from "@lib/image";
@@ -29,7 +29,7 @@ const ProfileAvatar = styled.div`
 `;
 
 const ProfileName = styled.h3`
-    ${HeadlineS};
+    ${text("textXl", "bold")};
     margin-top: 1rem;
     color: ${p => p.theme.gray600};
     ${transition("color", "0.1s")};

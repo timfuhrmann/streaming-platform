@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { HeadlineL } from "@css/typography";
+import { text } from "@css/typography";
 import { IconPlay } from "@icon/IconPlay";
 import { square } from "@css/content";
 
 const EpisodeNumber = styled.div`
-    ${HeadlineL};
+    ${text("displayLg", "bold")};
     opacity: 0;
     background-color: ${p => p.theme.gray300};
 `;
@@ -63,19 +63,20 @@ interface SeasonsOverviewSeasonEpisodeSkeletonProps {
     number?: number;
 }
 
-export const SeasonsOverviewSeasonEpisodeSkeleton: React.FC<SeasonsOverviewSeasonEpisodeSkeletonProps> =
-    ({ number }) => {
-        return (
-            <EpisodeWrapper>
-                <EpisodeNumber>{number || "9"}</EpisodeNumber>
-                <EpisodeImage />
-                <EpisodeContent>
-                    <EpisodeName />
-                    <EpisodeOverview />
-                </EpisodeContent>
-                <EpisodePlay>
-                    <PlayIcon />
-                </EpisodePlay>
-            </EpisodeWrapper>
-        );
-    };
+export const SeasonsOverviewSeasonEpisodeSkeleton: React.FC<
+    SeasonsOverviewSeasonEpisodeSkeletonProps
+> = ({ number }) => {
+    return (
+        <EpisodeWrapper>
+            <EpisodeNumber>{number || "9"}</EpisodeNumber>
+            <EpisodeImage />
+            <EpisodeContent>
+                <EpisodeName />
+                <EpisodeOverview />
+            </EpisodeContent>
+            <EpisodePlay>
+                <PlayIcon />
+            </EpisodePlay>
+        </EpisodeWrapper>
+    );
+};

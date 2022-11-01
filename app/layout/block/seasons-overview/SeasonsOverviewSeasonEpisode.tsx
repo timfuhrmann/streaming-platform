@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { getPosterUrl, Image } from "@lib/image";
-import { HeadlineL, HeadlineS } from "@css/typography";
+import { text } from "@css/typography";
 import { IconPlay } from "@icon/IconPlay";
 import { square } from "@css/content";
 import { transition } from "@css/transition";
@@ -9,7 +9,7 @@ import { truncateString } from "@lib/util";
 
 const EpisodeNumber = styled.div`
     display: none;
-    ${HeadlineL};
+    ${text("displayLg", "bold")};
 
     @media ${p => p.theme.bp.m} {
         display: block;
@@ -39,7 +39,7 @@ const EpisodeOverview = styled.div`
 `;
 
 const EpisodeName = styled.h4`
-    ${HeadlineS};
+    ${text("textXl", "bold")};
 `;
 
 const EpisodePlay = styled.div`

@@ -1,5 +1,5 @@
 import React from "react";
-import "@css/font/stylesheet.css";
+import "@css/typography/font/stylesheet.css";
 import "keen-slider/keen-slider.min.css";
 import { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
@@ -14,10 +14,8 @@ import { WatchlistProvider } from "@lib/watchlist/context/WatchlistProvider";
 import { NProgressProvider } from "@lib/context/nprogress/NProgressProvider";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
-    const reduxStore = useRedux(pageProps);
-
     return (
-        <ReduxProvider store={reduxStore}>
+        <ReduxProvider store={useRedux(pageProps)}>
             <ThemeProvider theme={theme}>
                 <NProgressProvider>
                     <ProfileProvider>

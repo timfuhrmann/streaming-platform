@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getPosterUrl } from "@lib/image";
 import { usePreload } from "@lib/hook/usePreload";
 import { fillParent } from "@css/content";
-import { HeadlineS } from "@css/typography";
+import { text } from "@css/typography";
 import { transition } from "@css/transition";
 import { CardProgress } from "./CardProgress";
 import { ButtonWatchlist } from "./CardWatchlist";
@@ -14,11 +14,12 @@ import { Button } from "../Button";
 
 const CardHead = styled.div`
     display: flex;
+    align-items: center;
 `;
 
 const CardName = styled.div`
-    flex: 1;
-    ${HeadlineS};
+    flex: 1 1 0;
+    ${text("textXl", "bold")};
 `;
 
 const CardOverlay = styled.div`
@@ -32,7 +33,6 @@ const CardContent = styled.div`
     z-index: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 2rem;
     opacity: 0;
     ${transition("opacity", "0.2s")};
@@ -57,7 +57,12 @@ const CardWrapper = styled.div`
     }
 `;
 
-const CardFooter = styled.div``;
+const CardFooter = styled.div`
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+`;
 
 const CardGroup = styled.div`
     display: flex;
@@ -76,7 +81,7 @@ const CardLink = styled.div`
 `;
 
 const CardButton = styled.div`
-    flex: 1;
+    flex: 1 1 0;
 `;
 
 interface CardProps extends Api.TV {

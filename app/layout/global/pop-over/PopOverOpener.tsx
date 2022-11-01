@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import { getPosterUrl, Image } from "@lib/image";
 import { aspectRatio, fillParent } from "@css/content";
-import { HeadlineL } from "@css/typography";
+import { text } from "@css/typography";
 import { Button } from "../../shared/Button";
 import { RatingCircle } from "../../shared/RatingCircle";
 import { genresToString } from "@lib/genre";
@@ -19,8 +19,7 @@ const OpenerInner = styled.div`
 `;
 
 const OpenerHeadline = styled.h2`
-    ${HeadlineL};
-    line-height: 1;
+    ${text("displayLg", "bold")};
 `;
 
 const OpenerFrame = styled.div`

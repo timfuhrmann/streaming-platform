@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Content, square } from "@css/content";
 import { useProfile } from "@lib/context/profile";
 import { NavigationAvatar } from "./NavigationAvatar";
-import { HeadlineM } from "@css/typography";
+import { text } from "@css/typography";
 import { IconSearch } from "@icon/IconSearch";
 import { useRouter } from "next/router";
 import { transition } from "@css/transition";
@@ -32,7 +32,7 @@ const NavigationGroup = styled.div`
 `;
 
 const Logo = styled.div`
-    ${HeadlineM};
+    ${text("displaySm", "bold")};
 `;
 
 const LogoMark = styled.span`

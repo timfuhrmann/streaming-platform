@@ -6,6 +6,7 @@ import { IconStar } from "@icon/IconStar";
 import { transition } from "@css/transition";
 
 const ButtonWrapper = styled.button`
+    display: inline-flex;
     position: relative;
     z-index: 1;
     margin-left: 1rem;

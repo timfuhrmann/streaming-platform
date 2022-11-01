@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { HeadlineL } from "@css/typography";
+import { text } from "@css/typography";
 import { ProfileOverviewItem } from "./ProfileOverviewItem";
 import { Content } from "@css/content";
 
 const ProfilesWrapper = styled(Content)``;
 
 const ProfilesHeadline = styled.h1`
-    ${HeadlineL};
+    ${text("displayLg", "bold")};
     text-align: center;
 `;
 

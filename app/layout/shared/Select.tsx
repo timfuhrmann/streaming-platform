@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { HeadlineXS } from "@css/typography";
+import { text } from "@css/typography";
 import { IconChevronDown } from "@icon/IconChevronDown";
 import { square } from "@css/content";
 
@@ -11,7 +11,7 @@ const SelectWrapper = styled.div`
 const SelectFrame = styled.select<{ $isSecondary?: boolean }>`
     appearance: none;
     font: inherit;
-    ${HeadlineXS};
+    ${text("textLg", "bold")};
     background: none;
     color: ${p => p.theme.white};
     height: 5rem;

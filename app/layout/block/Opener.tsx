@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { Content } from "@css/content";
-import { HeadlineXL } from "@css/typography";
+import { text } from "@css/typography";
 import { Button } from "../shared/Button";
 import { usePreload } from "@lib/hook/usePreload";
 import { genresToString } from "@lib/genre";
@@ -31,7 +31,6 @@ const OpenerBackground = styled.div`
 
 const OpenerGenres = styled.div`
     color: ${p => p.theme.gray800};
-    margin-top: 0.75rem;
 `;
 
 const OpenerText = styled.div`
@@ -58,8 +57,7 @@ const OpenerControls = styled.div`
 const OpenerContent = styled(Content)``;
 
 const OpenerTitle = styled.h1`
-    ${HeadlineXL};
-    line-height: 1;
+    ${text("display2Xl", "black")};
 `;
 
 export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overview, genres }) => {
@@ -90,7 +88,8 @@ export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overv
                     <Image
                         src={getPosterUrl(backdrop_path, "original")}
                         alt={name}
-                        objectPosition="50% 85%"
+                        objectPosition="50% 60%"
+                        priority
                         fill
                     />
                 )}

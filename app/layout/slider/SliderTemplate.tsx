@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Content, square } from "@css/content";
 import { IconChevronRight } from "@icon/IconChevronRight";
 import { transition } from "@css/transition";
-import { HeadlineS } from "@css/typography";
+import { text } from "@css/typography";
 import { TOptions } from "keen-slider";
 import { useSlider } from "@lib/hook/useSlider";
 
@@ -56,7 +56,7 @@ const SliderControlPrev = styled(SliderControl)`
 `;
 
 const SliderTitle = styled.h3`
-    ${HeadlineS};
+    ${text("textXl", "bold")};
     margin-bottom: 0.8rem;
 `;
 

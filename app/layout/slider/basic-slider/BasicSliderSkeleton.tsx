@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { aspectRatio, Content, fillParent } from "@css/content";
-import { HeadlineS } from "@css/typography";
+import { text } from "@css/typography";
 import { createArray } from "@lib/util";
 
 const SkeletonWrapper = styled(Content)``;
@@ -63,7 +63,7 @@ const SkeletonCard = styled.div`
 `;
 
 const SkeletonTitle = styled.h3`
-    ${HeadlineS};
+    ${text("textXl", "bold")};
     margin-bottom: 0.8rem;
     opacity: 0;
 `;

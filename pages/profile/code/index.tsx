@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { validateProfileCode } from "@lib/api/profile";
 import { GetStaticProps } from "next";
 import { profiles } from "@lib/mock/profile";
-import { HeadlineS } from "@css/typography";
+import { text } from "@css/typography";
 import { Close, CloseButton } from "../index";
 import { Spinner } from "../../../app/layout/shared/Spinner";
 
@@ -36,7 +36,7 @@ const CodeHelpWrapper = styled.div`
 `;
 
 const CodeHelp = styled.div`
-    ${HeadlineS};
+    ${text("textXl", "bold")};
     color: ${p => p.theme.gray400};
 `;
 
