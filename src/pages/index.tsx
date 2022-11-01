@@ -4,15 +4,15 @@ import useInfiniteScroll from "react-infinite-scroll-hook";
 import { GetStaticProps } from "next";
 import { getGenres, getShowById, getShowsByGenres, getTrending } from "@lib/api/tmdb";
 import { FEATURED_SHOW } from "@lib/api/tmdb/config";
-import { Opener } from "../src/layout/block/Opener";
+import { Opener } from "../layout/block/Opener";
 import { Block } from "@css/helper";
 import { REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
-import { TrendingSlider } from "../src/layout/slider/trending-slider/TrendingSlider";
+import { TrendingSlider } from "../layout/slider/trending-slider/TrendingSlider";
 import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
-import { BasicSlider } from "../src/layout/slider/basic-slider/BasicSlider";
-import { BasicSliderSkeleton } from "../src/layout/slider/basic-slider/BasicSliderSkeleton";
+import { BasicSlider } from "../layout/slider/basic-slider/BasicSlider";
+import { BasicSliderSkeleton } from "../layout/slider/basic-slider/BasicSliderSkeleton";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
-import { Spinner } from "../src/layout/shared/Spinner";
+import { Spinner } from "../layout/shared/Spinner";
 import { useDispatch } from "react-redux";
 
 const PageWrapper = styled.div`

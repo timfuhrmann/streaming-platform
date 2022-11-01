@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { square } from "@css/helper";
-import { useProfile } from "@lib/context/profile";
 import { NavigationAvatar } from "./NavigationAvatar";
 import { text } from "@css/typography";
 import { IconSearch } from "@icon/IconSearch";
@@ -59,7 +58,6 @@ const SearchIcon = styled(IconSearch)`
 
 export const Navigation: React.FC = () => {
     const router = useRouter();
-    const { profile } = useProfile();
 
     return (
         <NavigationWrapper>
@@ -74,9 +72,7 @@ export const Navigation: React.FC = () => {
                         $active={router.pathname.includes("search")}>
                         <SearchIcon />
                     </NavigationSearch>
-                    <Link href="/profile" passHref>
-                        <NavigationAvatar {...profile} />
-                    </Link>
+                    <NavigationAvatar />
                 </NavigationGroup>
             </NavigationInner>
         </NavigationWrapper>

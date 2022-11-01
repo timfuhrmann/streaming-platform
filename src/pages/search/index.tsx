@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useRef, useState, useTransition } from "
 import styled from "styled-components";
 import debounce from "lodash.debounce";
 import { aspectRatio, fillParent } from "@css/helper";
-import { SearchInput } from "../../src/layout/shared/SearchInput";
+import { SearchInput } from "../../layout/shared/SearchInput";
 import { getShowByString } from "@lib/api/tmdb";
-import { Card } from "../../src/layout/shared/card/Card";
+import { Card } from "../../layout/shared/card/Card";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 import { content } from "@css/helper/content";
 

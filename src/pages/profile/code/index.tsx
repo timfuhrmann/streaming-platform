@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { ProfileCode } from "../../../src/layout/block/profile-code/ProfileCode";
+import { ProfileCode } from "../../../layout/block/profile-code/ProfileCode";
 import { useRouter } from "next/router";
 import { validateProfileCode } from "@lib/api/profile";
 import { GetStaticProps } from "next";
 import { profiles } from "@lib/mock/profile";
 import { text } from "@css/typography";
 import { Close, CloseButton } from "../index";
-import { Spinner } from "../../../src/layout/shared/Spinner";
+import { Spinner } from "../../../layout/shared/Spinner";
 
 const CodeWrapper = styled.div`
     position: relative;
