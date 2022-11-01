@@ -4,7 +4,7 @@ import debounce from "lodash.debounce";
 import { aspectRatio, fillParent } from "@css/helper";
 import { SearchInput } from "../../layout/shared/SearchInput";
 import { getShowByString } from "@lib/api/tmdb";
-import { Card } from "../../layout/shared/card/Card";
+import { Card } from "../../layout/shared/Card/Card";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 import { content } from "@css/helper/content";
 

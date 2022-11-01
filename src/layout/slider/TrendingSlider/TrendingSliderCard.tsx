@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Card } from "../../shared/card/Card";
+import { Card } from "../../shared/Card/Card";
 import { aspectRatio } from "@css/helper";
 import { numbers } from "@lib/numbers";
 

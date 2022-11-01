@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { ProfileCode } from "../../../layout/block/profile-code/ProfileCode";
+import { ProfileCode } from "../../../layout/block/ProfileCode/ProfileCode";
 import { useRouter } from "next/router";
 import { validateProfileCode } from "@lib/api/profile";
 import { GetStaticProps } from "next";

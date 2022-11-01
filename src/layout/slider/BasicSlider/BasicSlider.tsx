@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { useTheme } from "styled-components";
-import { Card } from "../../shared/card/Card";
+import { Card } from "../../shared/Card/Card";
 import { aspectRatio, fillParent } from "@css/helper";
 import { SliderTemplate } from "../SliderTemplate";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";

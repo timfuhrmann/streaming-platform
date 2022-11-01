@@ -7,7 +7,7 @@ import { FEATURED_SHOW } from "@lib/api/tmdb/config";
 import { Opener } from "../layout/block/Opener";
 import { Block } from "@css/helper";
 import { REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
-import { TrendingSlider } from "../layout/slider/trending-slider/TrendingSlider";
+import { TrendingSlider } from "../layout/slider/TrendingSlider/TrendingSlider";
 import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
 import { BasicSlider } from "../layout/slider/BasicSlider/BasicSlider";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";

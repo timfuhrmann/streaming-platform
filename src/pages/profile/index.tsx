@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { ProfileOverview } from "../../layout/block/profile-overview/ProfileOverview";
+import { ProfileOverview } from "../../layout/block/ProfileOverview/ProfileOverview";
 import { square } from "@css/helper";
 import { profiles } from "@lib/mock/profile";
 import { GetStaticProps } from "next";

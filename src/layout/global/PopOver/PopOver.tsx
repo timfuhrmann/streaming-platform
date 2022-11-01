@@ -9,7 +9,7 @@ import { PopOverOpener } from "./PopOverOpener";
 import { CardTeaser } from "../../block/CardTeaser";
 import { getRecommendations } from "@lib/api/tmdb";
 import { IconX } from "@icon/IconX";
-import { SeasonsOverview } from "../../block/seasons-overview/SeasonsOverview";
+import { SeasonsOverview } from "../../block/SeasonsOverview/SeasonsOverview";
 import { useDispatch } from "react-redux";
 import { RemoveScrollBar } from "react-remove-scroll-bar";
 
