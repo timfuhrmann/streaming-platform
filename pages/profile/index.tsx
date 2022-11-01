@@ -29,7 +29,7 @@ const ProfilesWrapper = styled.div`
     }
 `;
 
-export const CloseButton = styled.div`
+export const CloseButton = styled(Link)`
     position: absolute;
     top: 2.4rem;
     right: 2.4rem;
@@ -80,11 +80,9 @@ const Profile: React.FC = () => {
     ) : (
         <ProfilesWrapper>
             {profile && (
-                <Link href="/" passHref>
-                    <CloseButton>
-                        <Close />
-                    </CloseButton>
-                </Link>
+                <CloseButton href="/" passHref>
+                    <Close />
+                </CloseButton>
             )}
             <ProfileOverview profiles={profiles} onSelect={handleSelectProfile} />
         </ProfilesWrapper>

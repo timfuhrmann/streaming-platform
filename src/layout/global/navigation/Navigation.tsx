@@ -31,7 +31,7 @@ const NavigationGroup = styled.div`
     gap: 3rem;
 `;
 
-const Logo = styled.div`
+const LogoLink = styled(Link)`
     ${text("displaySm", "bold")};
 `;
 
@@ -39,7 +39,7 @@ const LogoMark = styled.span`
     color: ${p => p.theme.primary};
 `;
 
-const NavigationSearch = styled.div<{ $active?: boolean }>`
+const NavigationSearch = styled(Link)<{ $active?: boolean }>`
     display: flex;
     color: ${p => p.$active && p.theme.primary};
     ${transition("color", "0.1s")};
@@ -63,17 +63,16 @@ export const Navigation: React.FC = () => {
         <NavigationWrapper>
             <Content>
                 <NavigationInner>
-                    <Link href="/" passHref>
-                        <Logo>
-                            Stream<LogoMark>.</LogoMark>
-                        </Logo>
-                    </Link>
+                    <LogoLink href="/" passHref>
+                        Stream<LogoMark>.</LogoMark>
+                    </LogoLink>
                     <NavigationGroup>
-                        <Link href="/search" passHref>
-                            <NavigationSearch $active={router.pathname.includes("search")}>
-                                <SearchIcon />
-                            </NavigationSearch>
-                        </Link>
+                        <NavigationSearch
+                            href="/search"
+                            passHref
+                            $active={router.pathname.includes("search")}>
+                            <SearchIcon />
+                        </NavigationSearch>
                         <Link href="/profile" passHref>
                             <NavigationAvatar {...profile} />
                         </Link>

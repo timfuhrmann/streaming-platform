@@ -55,7 +55,7 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
     children,
 }) => {
     return typeof action === "string" ? (
-        <Link href={action} passHref shallow>
+        <Link href={action} passHref shallow legacyBehavior>
             <ButtonWrapper as="a" onClick={onLink} $isSecondary={isSecondary}>
                 {children}
             </ButtonWrapper>

@@ -76,7 +76,7 @@ const CardGroup = styled.div`
     }
 `;
 
-const CardLink = styled.div`
+const CardLink = styled(Link)`
     ${fillParent};
 `;
 
@@ -120,9 +120,7 @@ export const Card: React.FC<CardProps> = ({
                     {progress > 0 && <CardProgress progress={progress} />}
                 </CardFooter>
                 <CardOverlay />
-                <Link href={{ query: { id } }} shallow passHref>
-                    <CardLink />
-                </Link>
+                <CardLink href={{ query: { id } }} shallow passHref />
             </CardContent>
             {poster_path && <Image src={getPosterUrl(poster_path)} alt={name} fill />}
         </CardWrapper>

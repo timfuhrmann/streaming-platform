@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Link from "next/link";
 import { ProfileCode } from "../../../src/layout/block/profile-code/ProfileCode";
 import { useRouter } from "next/router";
 import { validateProfileCode } from "@lib/api/profile";
@@ -90,11 +89,9 @@ const Code: React.FC = () => {
         </CodeLoading>
     ) : (
         <CodeWrapper>
-            <Link href="/" passHref>
-                <CloseButton>
-                    <Close />
-                </CloseButton>
-            </Link>
+            <CloseButton href="/" passHref>
+                <Close />
+            </CloseButton>
             <ProfileCode error={error} onChange={setCode} />
             <CodeHelpWrapper>
                 {uid && typeof uid === "string" && profiles[uid] && (
