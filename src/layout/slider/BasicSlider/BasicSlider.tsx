@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled, { useTheme } from "styled-components";
 import { Card } from "../../shared/Card/Card";
 import { aspectRatio, fillParent } from "@css/helper";
@@ -50,13 +50,13 @@ const SliderCardSkeleton = styled(SliderCard)`
     }
 `;
 
+interface ParentComposition {
+    Skeleton: typeof BasicSliderSkeleton;
+}
+
 interface BlockBasicSliderProps {
     title?: string;
     shows: Api.TV[];
-}
-
-interface ParentComposition {
-    Skeleton: typeof BasicSliderSkeleton;
 }
 
 export const BasicSlider: React.FC<BlockBasicSliderProps> & ParentComposition = ({
@@ -111,9 +111,9 @@ export const BasicSlider: React.FC<BlockBasicSliderProps> & ParentComposition = 
     );
 };
 
-const BasicSliderSkeleton: React.FC = () => {
+const BasicSliderSkeleton = forwardRef<HTMLDivElement>((_, ref) => {
     return (
-        <SliderSkeleton>
+        <SliderSkeleton ref={ref}>
             <SliderSkeletonFrame>
                 {createArray(20).map(index => (
                     <SliderCardSkeleton key={index} className="keen-slider__slide" />
@@ -121,6 +121,7 @@ const BasicSliderSkeleton: React.FC = () => {
             </SliderSkeletonFrame>
         </SliderSkeleton>
     );
-};
+});
 
+BasicSliderSkeleton.displayName = "BasicSliderSkeleton";
 BasicSlider.Skeleton = BasicSliderSkeleton;

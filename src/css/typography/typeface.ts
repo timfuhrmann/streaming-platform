@@ -3,7 +3,7 @@ import { CSSObject } from "styled-components";
 const createTypeface = (
     fontSize: string,
     lineHeight: string | number,
-    letterSpacing: string | number
+    letterSpacing?: string | number
 ): CSSObject => ({
     fontSize,
     lineHeight,
@@ -19,10 +19,10 @@ export const typefaces = {
     displayXs: createTypeface("2.4rem", "3rem", "-0.1rem"),
     textXl: createTypeface("2rem", "2.8rem", "-0.05rem"),
     textLg: createTypeface("1.8rem", "2.6rem", "-0.05rem"),
-    textMd: createTypeface("1.6rem", "2.4rem", "-0.05rem"),
-    textSm: createTypeface("1.4rem", "2rem", "-0.05rem"),
-    textXs: createTypeface("1.2rem", "1.8rem", "-0.05rem"),
-    text2Xs: createTypeface("1rem", "1.4rem", "-0.05rem"),
+    textMd: createTypeface("1.6rem", "2.1rem"),
+    textSm: createTypeface("1.4rem", "1.9rem"),
+    textXs: createTypeface("1.2rem", "1.7rem"),
+    text2Xs: createTypeface("1rem", "1.4rem"),
 } as const;
 
 export type Typeface = keyof typeof typefaces;

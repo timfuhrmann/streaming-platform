@@ -1,8 +1,4 @@
-import styled, { css } from "styled-components";
-
-export const Block = styled.div<{ $isNegative?: boolean }>`
-    margin-top: ${p => 10 * (p.$isNegative ? -1 : 1)}rem;
-`;
+import { css } from "styled-components";
 
 export const aspectRatio = (abs: number) => css`
     position: relative;

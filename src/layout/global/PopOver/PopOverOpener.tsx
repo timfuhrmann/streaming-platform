@@ -10,27 +10,31 @@ import { useNProgress } from "@lib/context/nprogress";
 
 const OpenerWrapper = styled.div`
     position: relative;
+    isolation: isolate;
 `;
 
-const OpenerInner = styled.div`
-    ${fillParent};
-    display: flex;
-    align-items: flex-end;
+const OpenerGrid = styled.div`
+    position: relative;
+    display: grid;
+    grid-template: "stack";
 `;
 
-const OpenerHeadline = styled.h2`
-    ${text("displayLg", "bold")};
+const OpenerSize = styled.div`
+    grid-area: stack;
+    min-height: 30rem;
+    ${aspectRatio(0.55)};
 `;
 
 const OpenerFrame = styled.div`
-    min-height: 30rem;
-    ${aspectRatio(0.55)};
+    grid-area: stack;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     background-color: ${p => p.theme.gray300};
 `;
 
 const OpenerHead = styled.div`
     position: relative;
-    z-index: 2;
     padding: 2rem 2rem 4rem;
 
     ${p => p.theme.breakpoints.min("l")} {
@@ -38,14 +42,21 @@ const OpenerHead = styled.div`
     }
 `;
 
+const OpenerHeadline = styled.h1`
+    ${text("displayMd", "bold")};
+
+    ${p => p.theme.breakpoints.min("m")} {
+        ${text("displayLg", "bold")};
+    }
+`;
+
 const OpenerGenres = styled.div`
     color: ${p => p.theme.gray800};
-    margin-top: 0.75rem;
+    margin-top: 0.25rem;
 `;
 
 const OpenerOverlay = styled.div`
     ${fillParent};
-    z-index: 1;
     background: linear-gradient(0deg, ${p => p.theme.gray100} 0%, transparent 100%);
 
     ${p => p.theme.breakpoints.min("m")} {
@@ -54,6 +65,8 @@ const OpenerOverlay = styled.div`
 `;
 
 const OpenerContent = styled.div`
+    position: relative;
+    z-index: 1;
     padding: 0 2rem;
 
     ${p => p.theme.breakpoints.min("l")} {
@@ -62,7 +75,7 @@ const OpenerContent = styled.div`
 `;
 
 const OpenerText = styled.div`
-    max-width: 50rem;
+    max-width: 60rem;
 `;
 
 const OpenerControls = styled.div`
@@ -88,8 +101,18 @@ export const PopOverOpener: React.FC<Api.TVDetails> = ({
 
     return (
         <OpenerWrapper>
-            <OpenerFrame>
-                <OpenerInner>
+            <OpenerGrid>
+                <OpenerSize />
+                <OpenerFrame>
+                    {backdrop_path && (
+                        <Image
+                            src={getPosterUrl(backdrop_path, "original")}
+                            alt={name}
+                            objectPosition="50% 15%"
+                            fill
+                        />
+                    )}
+                    <OpenerOverlay />
                     <OpenerHead>
                         <OpenerHeadline>{name}</OpenerHeadline>
                         <OpenerGenres>{featuredGenres}</OpenerGenres>
@@ -100,17 +123,8 @@ export const PopOverOpener: React.FC<Api.TVDetails> = ({
                             {vote_average > 0 && <RatingCircle vote={vote_average} />}
                         </OpenerControls>
                     </OpenerHead>
-                    <OpenerOverlay />
-                    {backdrop_path && (
-                        <Image
-                            src={getPosterUrl(backdrop_path, "original")}
-                            alt={name}
-                            objectPosition="50% 15%"
-                            fill
-                        />
-                    )}
-                </OpenerInner>
-            </OpenerFrame>
+                </OpenerFrame>
+            </OpenerGrid>
             <OpenerContent>
                 <OpenerText>{overview}</OpenerText>
             </OpenerContent>

@@ -4,11 +4,20 @@ import Link from "next/link";
 import { SeasonsOverviewSeasonEpisode } from "./SeasonsOverviewSeasonEpisode";
 import { useNProgress } from "@lib/context/nprogress";
 import { useSeasonOverview } from "./SeasonOverviewProvider";
-import { SeasonsOverviewSeasonSkeleton } from "./SeasonsOverviewSeasonSkeleton";
+import { createArray } from "@lib/util";
 
 const EpisodesWrapper = styled.div``;
 
 const EpisodeWrapper = styled(Link)`
+    display: flex;
+    border-bottom: 0.1rem solid ${p => p.theme.gray300};
+
+    &:last-child {
+        border: none;
+    }
+`;
+
+const EpisodeSkeleton = styled.div`
     display: flex;
     border-bottom: 0.1rem solid ${p => p.theme.gray300};
 
@@ -34,6 +43,12 @@ export const SeasonsOverviewSeason: React.FC = () => {
             ))}
         </EpisodesWrapper>
     ) : (
-        <SeasonsOverviewSeasonSkeleton />
+        <React.Fragment>
+            {createArray(9).map(index => (
+                <EpisodeSkeleton key={index}>
+                    <SeasonsOverviewSeasonEpisode.Skeleton />
+                </EpisodeSkeleton>
+            ))}
+        </React.Fragment>
     );
 };

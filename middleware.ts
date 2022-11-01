@@ -1,6 +1,27 @@
-import { NextRequest } from "next/server";
-import { hasProfile } from "@lib/api/profile/middleware";
+import { NextRequest, NextResponse } from "next/server";
+import { COOKIE_PROFILE } from "@lib/cookie";
 
+const PUBLIC_FILE = /\.(.*)$/;
+
+const shouldHandleRequest = (path: string): boolean => {
+    return !PUBLIC_FILE.test(path) && !path.startsWith("/api") && !path.startsWith("/_next");
+};
+
+export const isProfile = (path: string) => {
+    return path.startsWith("/profile");
+};
 export default async function handler(req: NextRequest) {
-    return hasProfile(req);
+    const res = NextResponse.next();
+    const url = req.nextUrl.clone();
+
+    if (shouldHandleRequest(url.pathname) && !isProfile(url.pathname)) {
+        const profile = req.cookies.get(COOKIE_PROFILE);
+
+        if (!profile) {
+            url.pathname = "/profile";
+            return NextResponse.redirect(url);
+        }
+    }
+
+    return res;
 }

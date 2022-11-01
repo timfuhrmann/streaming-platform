@@ -6,9 +6,11 @@ import { IconPlay } from "@icon/IconPlay";
 import { square } from "@css/helper";
 import { transition } from "@css/helper";
 import { truncateString } from "@lib/util";
+import { Skeleton } from "@lib/skeleton";
 
 const EpisodeNumber = styled.div`
     display: none;
+    font-variant-numeric: tabular-nums;
     ${text("displayLg", "bold")};
 
     ${p => p.theme.breakpoints.min("m")} {
@@ -22,6 +24,9 @@ const EpisodeImage = styled.div`
     width: 10rem;
     min-width: 10rem;
     background-color: ${p => p.theme.gray300};
+    border-radius: 0.6rem;
+    overflow: hidden;
+    transform: translateZ(0);
 `;
 
 const EpisodeContent = styled.div`
@@ -85,7 +90,11 @@ const EpisodeWrapper = styled.div`
     }
 `;
 
-export const SeasonsOverviewSeasonEpisode: React.FC<Api.Episode> = ({
+interface ParentComposition {
+    Skeleton: typeof SeasonsOverviewSeasonEpisodeSkeleton;
+}
+
+export const SeasonsOverviewSeasonEpisode: React.FC<Api.Episode> & ParentComposition = ({
     name,
     overview,
     episode_number,
@@ -107,3 +116,27 @@ export const SeasonsOverviewSeasonEpisode: React.FC<Api.Episode> = ({
         </EpisodeWrapper>
     );
 };
+
+export const SeasonsOverviewSeasonEpisodeSkeleton: React.FC = () => {
+    return (
+        <EpisodeWrapper>
+            <EpisodeNumber>
+                <Skeleton>9</Skeleton>
+            </EpisodeNumber>
+            <EpisodeImage />
+            <EpisodeContent>
+                <EpisodeName>
+                    <Skeleton />
+                </EpisodeName>
+                <EpisodeOverview>
+                    <Skeleton />
+                </EpisodeOverview>
+            </EpisodeContent>
+            <EpisodePlay>
+                <PlayIcon />
+            </EpisodePlay>
+        </EpisodeWrapper>
+    );
+};
+
+SeasonsOverviewSeasonEpisode.Skeleton = SeasonsOverviewSeasonEpisodeSkeleton;

@@ -9,6 +9,7 @@ import { content, Content } from "@css/helper/content";
 import { KeenSliderOptions } from "keen-slider";
 
 const SliderWrapper = styled.div<{ $hidden: boolean }>`
+    isolation: isolate;
     overflow: hidden;
     visibility: ${p => p.$hidden && "hidden"};
 `;
@@ -78,23 +79,21 @@ export const SliderTemplate: React.FC<PropsWithChildren<SliderTemplateProps>> = 
     const [sliderRef, { mounted, isBeginning, isEnd, prev, next }] = useSlider(options);
 
     return (
-        <React.Fragment>
-            <SliderWrapper $hidden={!mounted}>
-                <Content>{title && <SliderTitle>{title}</SliderTitle>}</Content>
-                <SliderInner>
-                    <SliderControlPrev type="button" onClick={prev} $isHidden={isBeginning}>
-                        <SliderChevronLeft />
-                    </SliderControlPrev>
-                    <SliderFrame>
-                        <SliderContainer ref={sliderRef} className="keen-slider">
-                            {children}
-                        </SliderContainer>
-                    </SliderFrame>
-                    <SliderControl type="button" onClick={next} $isHidden={isEnd}>
-                        <SliderChevron />
-                    </SliderControl>
-                </SliderInner>
-            </SliderWrapper>
-        </React.Fragment>
+        <SliderWrapper $hidden={!mounted}>
+            <Content>{title && <SliderTitle>{title}</SliderTitle>}</Content>
+            <SliderInner>
+                <SliderControlPrev type="button" onClick={prev} $isHidden={isBeginning}>
+                    <SliderChevronLeft />
+                </SliderControlPrev>
+                <SliderFrame>
+                    <SliderContainer ref={sliderRef} className="keen-slider">
+                        {children}
+                    </SliderContainer>
+                </SliderFrame>
+                <SliderControl type="button" onClick={next} $isHidden={isEnd}>
+                    <SliderChevron />
+                </SliderControl>
+            </SliderInner>
+        </SliderWrapper>
     );
 };

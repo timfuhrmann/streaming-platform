@@ -11,9 +11,11 @@ import { Content } from "@css/helper/content";
 
 const OpenerWrapper = styled.div`
     position: relative;
+    isolation: isolate;
     display: flex;
     align-items: center;
     min-height: 65rem;
+    padding: 10rem 0;
 
     ${p => p.theme.breakpoints.min("l")} {
         min-height: 75rem;
@@ -57,7 +59,11 @@ const OpenerControls = styled.div`
 const OpenerContent = styled(Content)``;
 
 const OpenerTitle = styled.h1`
-    ${text("display2Xl", "black")};
+    ${text("displayLg", "black")};
+
+    ${p => p.theme.breakpoints.min("m")} {
+        ${text("display2Xl", "black")};
+    }
 `;
 
 export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overview, genres }) => {
@@ -85,13 +91,7 @@ export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overv
             </OpenerContent>
             <OpenerBackground>
                 {backdrop_path && (
-                    <Image
-                        src={getPosterUrl(backdrop_path, "original")}
-                        alt={name}
-                        objectPosition="50% 60%"
-                        priority
-                        fill
-                    />
+                    <Image src={getPosterUrl(backdrop_path, "original")} alt={name} priority fill />
                 )}
             </OpenerBackground>
             <AccentOverlay />

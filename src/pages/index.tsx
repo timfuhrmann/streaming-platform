@@ -5,7 +5,6 @@ import { GetStaticProps } from "next";
 import { getGenres, getShowById, getShowsByGenres, getTrending } from "@lib/api/tmdb";
 import { FEATURED_SHOW } from "@lib/api/tmdb/config";
 import { Opener } from "../layout/block/Opener";
-import { Block } from "@css/helper";
 import { REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
 import { TrendingSlider } from "../layout/slider/TrendingSlider/TrendingSlider";
 import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
@@ -25,6 +24,17 @@ const PageLoading = styled.div`
     transform: translate(-50%, -50%);
 `;
 
+const PageBlocks = styled.div<{ $isNegative?: boolean }>`
+    display: flex;
+    flex-direction: column;
+    gap: 7.5rem;
+    margin-top: -10rem;
+
+    ${p => p.theme.breakpoints.min("l")} {
+        gap: 10rem;
+    }
+`;
+
 interface HomeProps {
     featured: Api.TVDetails;
     trending: Api.TV[];
@@ -39,6 +49,7 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
     const [sentryRef] = useInfiniteScroll({
         loading,
         hasNextPage,
+        rootMargin: "500px",
         onLoadMore: () => dispatch(fetchGenrePage()),
     });
 
@@ -49,26 +60,16 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
     ) : (
         <PageWrapper>
             {featured && <Opener {...featured} />}
-            {activeShowsFromWatchlist.length > 0 && (
-                <Block $isNegative>
+            <PageBlocks>
+                {activeShowsFromWatchlist.length > 0 && (
                     <BasicSlider title="Your watchlist" shows={activeShowsFromWatchlist} />
-                </Block>
-            )}
-            {trending && (
-                <Block $isNegative={!activeShowsFromWatchlist.length}>
-                    <TrendingSlider title="Trending" shows={trending} />
-                </Block>
-            )}
-            {Object.keys(genreResults).map(showKey => (
-                <Block key={showKey}>
-                    <BasicSlider title={showKey} shows={genreResults[showKey]} />
-                </Block>
-            ))}
-            {(loading || hasNextPage) && (
-                <Block ref={sentryRef}>
-                    <BasicSlider.Skeleton />
-                </Block>
-            )}
+                )}
+                {trending && <TrendingSlider title="Trending" shows={trending} />}
+                {Object.keys(genreResults).map(showKey => (
+                    <BasicSlider key={showKey} title={showKey} shows={genreResults[showKey]} />
+                ))}
+                {(loading || hasNextPage) && <BasicSlider.Skeleton ref={sentryRef} />}
+            </PageBlocks>
         </PageWrapper>
     );
 };
