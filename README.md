@@ -1,6 +1,6 @@
 A video streaming demo platform built with Next.js, inspired by Netflix, using a custom video player and providing a streaming example following the HLS protocol.
 
-https://tmdb-streaming-platform.vercel.app/
+https://streaming-platform-tmdb.vercel.app/
 
 ![Preview](public/preview-popup.png)
 
