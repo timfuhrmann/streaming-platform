@@ -44,6 +44,9 @@ const CardWrapper = styled.div`
     width: 100%;
     height: 100%;
     background-color: ${p => p.theme.gray200};
+    border-radius: 0.8rem;
+    overflow: hidden;
+    transform: translateZ(0);
     ${transition("transform", "0.2s")};
 
     @media (hover: hover) {

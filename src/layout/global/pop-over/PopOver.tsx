@@ -32,7 +32,7 @@ const PopOverFrame = styled.div`
 const PopOverStage = styled.div`
     position: relative;
     z-index: 1;
-    flex: 1;
+    flex: 1 1 0;
     width: 100%;
     max-width: 90rem;
     margin: 0 auto;
@@ -42,6 +42,12 @@ const PopOverStage = styled.div`
     ${p => p.theme.breakpoints.min("l")} {
         margin: 5rem auto 0;
     }
+`;
+
+const PopOverContent = styled.div`
+    border-radius: 0.8rem;
+    overflow: hidden;
+    transform: translateZ(0);
 `;
 
 const PopOverBody = styled.div`
@@ -137,22 +143,24 @@ export const PopOver: React.FC = () => {
             <RemoveScrollBar noImportant />
             <PopOverFrame key={entry.id}>
                 <PopOverStage>
-                    <PopOverOpener {...entry} />
-                    <PopOverBody>
-                        {entry.seasons.length > 0 && (
-                            <PopOverRow>
-                                <SeasonsOverview seasons={entry.seasons} show={entry} />
-                            </PopOverRow>
-                        )}
-                        {recommendations && (
-                            <PopOverRow>
-                                <CardTeaser
-                                    headline="You could also like"
-                                    shows={recommendations}
-                                />
-                            </PopOverRow>
-                        )}
-                    </PopOverBody>
+                    <PopOverContent>
+                        <PopOverOpener {...entry} />
+                        <PopOverBody>
+                            {entry.seasons.length > 0 && (
+                                <PopOverRow>
+                                    <SeasonsOverview seasons={entry.seasons} show={entry} />
+                                </PopOverRow>
+                            )}
+                            {recommendations && (
+                                <PopOverRow>
+                                    <CardTeaser
+                                        headline="You could also like"
+                                        shows={recommendations}
+                                    />
+                                </PopOverRow>
+                            )}
+                        </PopOverBody>
+                    </PopOverContent>
                     <PopOverClose type="button" onClick={handleClose}>
                         <CloseIcon />
                     </PopOverClose>

@@ -1,13 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { TrendingSliderCard } from "./TrendingSliderCard";
 import { SliderTemplate } from "../SliderTemplate";
-import { TOptions } from "keen-slider";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
+import { KeenSliderOptions } from "keen-slider";
 
 const TrendingSlide = styled.div`
     will-change: transform;
-    overflow: visible;
 `;
 
 interface BasicSliderProps {
@@ -16,16 +15,23 @@ interface BasicSliderProps {
 }
 
 export const TrendingSlider: React.FC<BasicSliderProps> = ({ title, shows }) => {
+    const { bp } = useTheme();
     const { hasShowProgress, isShowActive, addShowToWatchlist } = useWatchlist();
 
-    const sliderOptions: TOptions = {
-        slidesPerView: 1,
+    const sliderOptions: KeenSliderOptions = {
+        slides: {
+            perView: 1,
+        },
         breakpoints: {
-            "(min-width: 768px)": {
-                slidesPerView: 2,
+            [`(min-width: ${bp.m}px)`]: {
+                slides: {
+                    perView: 2,
+                },
             },
-            "(min-width: 1340px)": {
-                slidesPerView: 3,
+            [`(min-width: ${bp.xl}px)`]: {
+                slides: {
+                    perView: 3,
+                },
             },
         },
     };

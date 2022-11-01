@@ -1,12 +1,12 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { square } from "@css/helper";
 import { IconChevronRight } from "@icon/IconChevronRight";
 import { transition } from "@css/helper";
 import { text } from "@css/typography";
-import { TOptions } from "keen-slider";
 import { useSlider } from "@lib/hook/useSlider";
-import { Content } from "@css/helper/content";
+import { content, Content } from "@css/helper/content";
+import { KeenSliderOptions } from "keen-slider";
 
 const SliderWrapper = styled.div<{ $hidden: boolean }>`
     overflow: hidden;
@@ -14,17 +14,21 @@ const SliderWrapper = styled.div<{ $hidden: boolean }>`
 `;
 
 const SliderContainer = styled.div`
-    overflow: visible;
+    &.keen-slider:not([data-keen-slider-disabled]) {
+        overflow: visible;
+
+        .keen-slider__slide {
+            overflow: visible;
+        }
+    }
 `;
 
 const SliderInner = styled.div`
     display: flex;
 `;
 
-const SliderFrame = styled(Content)`
-    ${p => p.theme.breakpoints.max("l")} {
-        width: 100%;
-    }
+const SliderFrame = styled.div`
+    ${content()};
 `;
 
 const SliderChevron = styled(IconChevronRight)`
@@ -63,25 +67,15 @@ const SliderTitle = styled.h3`
 
 interface SliderTemplateProps {
     title?: string;
-    options?: TOptions;
-    length?: number;
+    options?: KeenSliderOptions;
 }
 
 export const SliderTemplate: React.FC<PropsWithChildren<SliderTemplateProps>> = ({
     title,
-    length,
     options = {},
     children,
 }) => {
-    const [ref, { mounted, isBeginning, isEnd, prev, next, resize }] = useSlider(options);
-
-    useEffect(() => {
-        if (!mounted || !length) {
-            return;
-        }
-
-        resize();
-    }, [mounted, length]);
+    const [sliderRef, { mounted, isBeginning, isEnd, prev, next }] = useSlider(options);
 
     return (
         <React.Fragment>
@@ -92,7 +86,7 @@ export const SliderTemplate: React.FC<PropsWithChildren<SliderTemplateProps>> = 
                         <SliderChevronLeft />
                     </SliderControlPrev>
                     <SliderFrame>
-                        <SliderContainer ref={ref} className="keen-slider">
+                        <SliderContainer ref={sliderRef} className="keen-slider">
                             {children}
                         </SliderContainer>
                     </SliderFrame>

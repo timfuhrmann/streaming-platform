@@ -9,8 +9,7 @@ import { Block } from "@css/helper";
 import { REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
 import { TrendingSlider } from "../layout/slider/trending-slider/TrendingSlider";
 import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
-import { BasicSlider } from "../layout/slider/basic-slider/BasicSlider";
-import { BasicSliderSkeleton } from "../layout/slider/basic-slider/BasicSliderSkeleton";
+import { BasicSlider } from "../layout/slider/BasicSlider/BasicSlider";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 import { Spinner } from "../layout/shared/Spinner";
 import { useDispatch } from "react-redux";
@@ -37,14 +36,10 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
     const { loading: watchlistLoading, activeShowsFromWatchlist } = useWatchlist();
     const { genreResults, loading, hasNextPage } = useAppSelector(state => state.genre);
 
-    const onLoadMore = () => {
-        dispatch(fetchGenrePage());
-    };
-
     const [sentryRef] = useInfiniteScroll({
         loading,
         hasNextPage,
-        onLoadMore,
+        onLoadMore: () => dispatch(fetchGenrePage()),
     });
 
     return watchlistLoading ? (
@@ -71,7 +66,7 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
             ))}
             {(loading || hasNextPage) && (
                 <Block ref={sentryRef}>
-                    <BasicSliderSkeleton />
+                    <BasicSlider.Skeleton />
                 </Block>
             )}
         </PageWrapper>

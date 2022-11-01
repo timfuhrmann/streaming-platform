@@ -6,6 +6,10 @@ export const GlobalStyle = createGlobalStyle`
     ${reset};
     ${nprogress};
     
+    :root {
+        color-scheme: dark;
+    }
+    
     body {
         font-family: "Circular Std", Helvetica, Arial, sans-serif;
         background-color: ${p => p.theme.gray50};
