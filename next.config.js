@@ -4,6 +4,7 @@ module.exports = {
         styledComponents: true,
     },
     images: {
+        unoptimized: true,
         domains: ["image.tmdb.org"],
     },
 };
