@@ -8,7 +8,7 @@ export const getTrending = async (): Promise<Api.TV[]> => {
 };
 
 export const getShowById = async (id: number): Promise<Api.TVDetails> => {
-    return await db<Api.TVDetails>(`/tv/${id}`);
+    return db<Api.TVDetails>(`/tv/${id}`);
 };
 
 export const getEpisodesBySeason = async (

@@ -27,7 +27,7 @@ export const getTmdbApiKey = () => {
 };
 
 export const db = <T>(endpoint: string, params = ""): Promise<T> => {
-    return fetch(`${getTmdbHost()}${endpoint}?api_key=${getTmdbApiKey()}${params}`)
-        .then(res => res.json())
-        .catch(console.error);
+    return fetch(`${getTmdbHost()}${endpoint}?api_key=${getTmdbApiKey()}${params}`).then(res =>
+        res.json()
+    );
 };
