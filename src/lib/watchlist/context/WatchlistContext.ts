@@ -3,7 +3,8 @@ import { createContext, useContext } from "react";
 interface WatchlistData {
     loading: boolean;
     watchlist: Record<number, Watchlist.Entry>;
-    activeShowsFromWatchlist: Api.TV[];
+    activeShows: Api.TV[];
+    keepWatching: Api.TV[];
     isShowActive: (id: number) => boolean;
     hasShowProgress: (id: number) => number;
     addShowToWatchlist: (show: Api.TV) => void;

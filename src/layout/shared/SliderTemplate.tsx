@@ -76,7 +76,10 @@ export const SliderTemplate: React.FC<PropsWithChildren<SliderTemplateProps>> = 
     options = {},
     children,
 }) => {
-    const [sliderRef, { mounted, isBeginning, isEnd, prev, next }] = useSlider(options);
+    const [sliderRef, { mounted, isBeginning, isEnd, prev, next }] = useSlider({
+        ...options,
+        observeMutations: true,
+    });
 
     return (
         <SliderWrapper $hidden={!mounted}>

@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { WatchlistContext } from "./WatchlistContext";
-import { watchlistMock } from "@lib/watchlist/mock";
+import { MOCK_WATCHLIST } from "@lib/mock/mock";
 
 const STORAGE_WATCHLIST = "watchlist";
 
@@ -13,16 +13,15 @@ export const WatchlistProvider: React.FC<PropsWithChildren> = ({ children }) => 
             const storage = localStorage.getItem(STORAGE_WATCHLIST);
 
             if (!storage) {
-                setWatchlist(watchlistMock);
+                setWatchlist(MOCK_WATCHLIST);
                 setLoading(false);
                 return;
             }
 
-            const json = JSON.parse(storage);
-            setWatchlist(json);
+            setWatchlist(JSON.parse(storage));
             setLoading(false);
         } catch (e) {
-            setWatchlist(watchlistMock);
+            setWatchlist(MOCK_WATCHLIST);
             setLoading(false);
         }
     }, []);
@@ -31,11 +30,28 @@ export const WatchlistProvider: React.FC<PropsWithChildren> = ({ children }) => 
         localStorage.setItem(STORAGE_WATCHLIST, JSON.stringify(watchlist));
     }, [watchlist]);
 
-    const activeShowsFromWatchlist = useMemo(() => {
+    const activeShows = useMemo(() => {
         return Object.keys(watchlist)
-            .filter(showId =>
-                isNaN(parseInt(showId)) ? false : watchlist[parseInt(showId)].active
-            )
+            .filter(showId => {
+                if (isNaN(parseInt(showId))) {
+                    return false;
+                }
+
+                return watchlist[parseInt(showId)].active && !watchlist[parseInt(showId)].progress;
+            })
+            .sort((a, b) => watchlist[parseInt(a)].timestamp - watchlist[parseInt(b)].timestamp)
+            .map(showId => watchlist[parseInt(showId)].show);
+    }, [watchlist]);
+
+    const keepWatching = useMemo(() => {
+        return Object.keys(watchlist)
+            .filter(showId => {
+                if (isNaN(parseInt(showId))) {
+                    return false;
+                }
+
+                return !!watchlist[parseInt(showId)].progress;
+            })
             .sort((a, b) => watchlist[parseInt(a)].timestamp - watchlist[parseInt(b)].timestamp)
             .map(showId => watchlist[parseInt(showId)].show);
     }, [watchlist]);
@@ -142,7 +158,8 @@ export const WatchlistProvider: React.FC<PropsWithChildren> = ({ children }) => 
             value={{
                 loading,
                 watchlist,
-                activeShowsFromWatchlist,
+                activeShows,
+                keepWatching,
                 isShowActive,
                 hasShowProgress,
                 addShowToWatchlist,

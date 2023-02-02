@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { text } from "@css/typography";
 import { ProfileCodeInput } from "./ProfileCodeInput";
-import { KEY_CODES, REGEX_DIGITS } from "@lib/digit";
 import { Content } from "@css/helper/content";
 
 const CodeWrapper = styled(Content)``;
@@ -27,6 +26,10 @@ const InputFields = styled.div`
     gap: 2rem;
     margin-top: 6rem;
 `;
+
+const KEY_CODES = {
+    BACKSPACE: "Backspace",
+};
 
 interface ProfileCode {
     error?: Common.Error | null;
@@ -60,7 +63,7 @@ export const ProfileCode: React.FC<ProfileCode> = ({ error, onChange }) => {
                 delete prevState[index];
                 return prevState;
             });
-        } else if (!REGEX_DIGITS.test(key) || index === 4) {
+        } else if (!/[0-9]/.test(key) || index === 4) {
             return;
         } else {
             setCode(prevState => {

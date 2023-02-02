@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import cookie from "cookie";
 import { COOKIE_PROFILE } from "@lib/cookie";
-import { profiles } from "@lib/mock/profile";
+import { MOCK_PROFILES } from "@lib/mock/profile";
 import { useRouter } from "next/router";
 import { ProfileContext } from "@lib/context/profile/index";
 
@@ -17,7 +17,7 @@ export const ProfileProvider: React.FC<PropsWithChildren> = ({ children }) => {
             return;
         }
 
-        const profile = profiles[uid];
+        const profile = MOCK_PROFILES[uid];
 
         if (cookies && profile) {
             setProfile(profile);

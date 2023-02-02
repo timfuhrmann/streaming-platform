@@ -1,7 +1,7 @@
-export const profiles: Record<string, User.Profile> = {
+export const MOCK_PROFILES: Record<string, User.Profile> = {
     "1": {
         uid: "1",
-        name: "Lisa",
+        name: "Gordon",
         avatar: "/img/profile/1.png",
         password: "1234",
     },

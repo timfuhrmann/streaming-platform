@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { ProfileOverview } from "../../layout/block/ProfileOverview/ProfileOverview";
+import { ProfileOverview } from "../../layout/profile/ProfileOverview/ProfileOverview";
 import { square } from "@css/helper";
-import { profiles } from "@lib/mock/profile";
+import { MOCK_PROFILES } from "@lib/mock/profile";
 import { GetStaticProps } from "next";
 import { transition } from "@css/helper";
 import { IconX } from "@icon/IconX";
@@ -84,7 +84,7 @@ const Profile: React.FC = () => {
                     <Close />
                 </CloseButton>
             )}
-            <ProfileOverview profiles={profiles} onSelect={handleSelectProfile} />
+            <ProfileOverview profiles={MOCK_PROFILES} onSelect={handleSelectProfile} />
         </ProfilesWrapper>
     );
 };

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { profiles } from "@lib/mock/profile";
+import { MOCK_PROFILES } from "@lib/mock/profile";
 import { COOKIE_PROFILE, createCookie } from "@lib/cookie";
 
 export default async function handler(
@@ -8,7 +8,7 @@ export default async function handler(
 ) {
     const { uid, code } = req.body;
 
-    const profile = profiles[uid];
+    const profile = MOCK_PROFILES[uid];
 
     if (!uid || !code || !profile) {
         return res.status(500).json({

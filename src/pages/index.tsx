@@ -4,11 +4,11 @@ import useInfiniteScroll from "react-infinite-scroll-hook";
 import { GetStaticProps } from "next";
 import { getGenres, getShowById, getShowsByGenres, getTrending } from "@lib/api/tmdb";
 import { FEATURED_SHOW } from "@lib/api/tmdb/config";
-import { Opener } from "../layout/block/Opener";
+import { Opener } from "../layout/shared/Opener";
 import { REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
-import { TrendingSlider } from "../layout/slider/TrendingSlider/TrendingSlider";
+import { TrendingSlider } from "../layout/shared/TrendingSlider/TrendingSlider";
 import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
-import { BasicSlider } from "../layout/slider/BasicSlider/BasicSlider";
+import { BasicSlider } from "../layout/shared/BasicSlider/BasicSlider";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 import { Spinner } from "../layout/shared/Spinner";
 import { useDispatch } from "react-redux";
@@ -43,7 +43,7 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ featured, trending }) => {
     const dispatch = useDispatch();
-    const { loading: watchlistLoading, activeShowsFromWatchlist } = useWatchlist();
+    const { loading: watchlistLoading, activeShows, keepWatching } = useWatchlist();
     const { genreResults, loading, hasNextPage } = useAppSelector(state => state.genre);
 
     const [sentryRef] = useInfiniteScroll({
@@ -61,8 +61,11 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
         <PageWrapper>
             {featured && <Opener {...featured} />}
             <PageBlocks>
-                {activeShowsFromWatchlist.length > 0 && (
-                    <BasicSlider title="Your watchlist" shows={activeShowsFromWatchlist} />
+                {activeShows.length > 0 && (
+                    <BasicSlider title="Your watchlist" shows={activeShows} />
+                )}
+                {keepWatching.length > 0 && (
+                    <BasicSlider title="Keep watching" shows={keepWatching} />
                 )}
                 {trending && <TrendingSlider title="Trending" shows={trending} />}
                 {Object.keys(genreResults).map(showKey => (

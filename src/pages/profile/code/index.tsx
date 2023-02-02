@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { ProfileCode } from "../../../layout/block/ProfileCode/ProfileCode";
+import { ProfileCode } from "../../../layout/profile/ProfileCode/ProfileCode";
 import { useRouter } from "next/router";
 import { validateProfileCode } from "@lib/api/profile";
 import { GetStaticProps } from "next";
-import { profiles } from "@lib/mock/profile";
+import { MOCK_PROFILES } from "@lib/mock/profile";
 import { text } from "@css/typography";
 import { Close, CloseButton } from "../index";
 import { Spinner } from "../../../layout/shared/Spinner";
@@ -94,8 +94,8 @@ const Code: React.FC = () => {
             </CloseButton>
             <ProfileCode error={error} onChange={setCode} />
             <CodeHelpWrapper>
-                {uid && typeof uid === "string" && profiles[uid] && (
-                    <CodeHelp>Psst, it&apos;s {profiles[uid].password}.</CodeHelp>
+                {uid && typeof uid === "string" && MOCK_PROFILES[uid] && (
+                    <CodeHelp>Psst, it&apos;s {MOCK_PROFILES[uid].password}.</CodeHelp>
                 )}
             </CodeHelpWrapper>
         </CodeWrapper>

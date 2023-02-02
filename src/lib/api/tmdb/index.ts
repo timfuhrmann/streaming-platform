@@ -1,5 +1,5 @@
 import { db } from "./config";
-import { _hasAired } from "@lib/episode";
+import { hasEpisodeAired } from "@lib/episode";
 import { recordArrayToRecord } from "@lib/util";
 
 export const getTrending = async (): Promise<Api.TV[]> => {
@@ -16,7 +16,7 @@ export const getEpisodesBySeason = async (
     seasonNumber: number
 ): Promise<Api.Episode[]> => {
     const { episodes } = await db<Api.SeasonDetails>(`/tv/${showId}/season/${seasonNumber}`);
-    return episodes.filter(episode => _hasAired(episode.air_date));
+    return episodes.filter(episode => hasEpisodeAired(episode.air_date));
 };
 
 export const getGenres = async (): Promise<Api.Genre[]> => {

@@ -6,10 +6,10 @@ import { preloadShow } from "@lib/redux/reducer/shows";
 import { fillParent, square } from "@css/helper";
 import { deleteParamFromQuery } from "@lib/util";
 import { PopOverOpener } from "./PopOverOpener";
-import { CardTeaser } from "../../block/CardTeaser";
+import { CardTeaser } from "../../shared/CardTeaser";
 import { getRecommendations } from "@lib/api/tmdb";
 import { IconX } from "@icon/IconX";
-import { SeasonsOverview } from "../../block/SeasonsOverview/SeasonsOverview";
+import { SeasonsOverview } from "../../season/SeasonsOverview/SeasonsOverview";
 import { useDispatch } from "react-redux";
 import { RemoveScrollBar } from "react-remove-scroll-bar";
 

@@ -1,3 +1,3 @@
-export const _hasAired = (airDate: string): boolean => {
+export const hasEpisodeAired = (airDate: string): boolean => {
     return Date.now() > Date.parse(airDate);
 };

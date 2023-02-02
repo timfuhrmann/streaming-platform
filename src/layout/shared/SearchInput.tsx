@@ -54,7 +54,6 @@ interface SearchInputProps {
     placeholder?: string;
 }
 
-// eslint-disable-next-line react/display-name
 export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     ({ onInput, placeholder }, ref) => {
         return (
@@ -67,3 +66,5 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
         );
     }
 );
+
+SearchInput.displayName = "SearchInput";

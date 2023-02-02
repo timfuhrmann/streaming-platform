@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Card } from "../../shared/Card/Card";
+import { Card } from "../Card/Card";
 import { aspectRatio } from "@css/helper";
-import { numbers } from "@lib/numbers";
+import { TRENDING_SLIDER_NUMBERS } from "@lib/numbers";
 
 const TrendingWrapper = styled.div`
     position: relative;
@@ -56,7 +56,9 @@ export const TrendingSliderCard: React.FC<TrendingSliderCardProps> = ({
 }) => {
     return (
         <TrendingWrapper>
-            <TrendingIndex dangerouslySetInnerHTML={{ __html: numbers[index + 1] }} />
+            <TrendingIndex
+                dangerouslySetInnerHTML={{ __html: TRENDING_SLIDER_NUMBERS[index + 1] }}
+            />
             <CardFrame>
                 <Card
                     {...show}

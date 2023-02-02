@@ -1,6 +1,5 @@
 import thunk, { ThunkMiddleware } from "redux-thunk";
 import reducer from "./reducer";
-import { createLogger } from "redux-logger";
 import { Middleware, Store, configureStore } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
@@ -11,7 +10,7 @@ const middleware: Middleware[] = [thunk as ThunkMiddleware];
 let store: Store;
 
 if (process.env.NODE_ENV !== "production") {
-    middleware.push(createLogger());
+    // middleware.push(createLogger());
 }
 
 const makeStore = (preloadedState?: AppState) => {

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { square } from "@css/helper";
 
 const SpinnerWrapper = styled.div`
-    width: 6rem;
-    height: 6rem;
+    ${square("6rem")};
     position: relative;
     animation: spinner 2.5s infinite linear both;
 

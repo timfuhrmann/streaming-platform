@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { text } from "@css/typography";
-import { Button } from "../shared/Button";
+import { Button } from "./Button";
 import { usePreload } from "@lib/hook/usePreload";
 import { genresToString } from "@lib/genre";
 import { truncateString } from "@lib/util";

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { COOKIE_PROFILE, createCookie } from "@lib/cookie";
-import { profiles } from "@lib/mock/profile";
+import { MOCK_PROFILES } from "@lib/mock/profile";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { uid } = req.query;
@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.redirect("/profile");
     }
 
-    const profile = profiles[uid];
+    const profile = MOCK_PROFILES[uid];
 
     if (!profile) {
         return res.redirect("/profile");

@@ -1,7 +1,7 @@
-export const watchlistMock = {
+export const MOCK_WATCHLIST = {
     60625: {
         timestamp: 1636665554062,
-        progress: 600,
+        progress: 0,
         active: true,
         show: {
             backdrop_path: "/7DE67DzAlZmCOm1OYnAL7gV1B8w.jpg",
