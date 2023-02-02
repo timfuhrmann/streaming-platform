@@ -8,6 +8,7 @@ import { checkBrowserCompatibility } from "@lib/browser";
 import { fillParent } from "@css/helper";
 import { Player } from "../../layout/player/Player";
 import { Content } from "@css/helper/content";
+import { Meta } from "@lib/meta";
 
 const PlayerWrapper = styled.div``;
 
@@ -47,6 +48,7 @@ const Watch: React.FC<WatchProps> = ({ show, browserCompatible }) => {
 
     return (
         <PlayerWrapper ref={containerRef}>
+            <Meta title={`${show.name} | Stream`} />
             {waiting && (
                 <SpinnerWrapper>
                     <Spinner />

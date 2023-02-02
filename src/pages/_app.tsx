@@ -7,7 +7,7 @@ import { theme } from "@css/theme";
 import { GlobalStyle } from "@css/GlobalStyle";
 import { Provider as ReduxProvider } from "react-redux";
 import { useRedux } from "@lib/redux";
-import { PopOver } from "../layout/global/PopOver/PopOver";
+import { Popover } from "../layout/global/Popover/Popover";
 import { Navigation } from "../layout/global/Navigation/Navigation";
 import { ProfileProvider } from "@lib/context/profile/ProfileProvider";
 import { WatchlistProvider } from "@lib/watchlist/context/WatchlistProvider";
@@ -23,7 +23,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
                             <GlobalStyle />
                             {!pageProps.hideNavigation && <Navigation />}
                             <Component {...pageProps} />
-                            <PopOver />
+                            <Popover />
                         </WatchlistProvider>
                     </ProfileProvider>
                 </NProgressProvider>

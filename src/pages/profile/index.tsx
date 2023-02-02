@@ -10,6 +10,7 @@ import { IconX } from "@icon/IconX";
 import { useProfile } from "@lib/context/profile";
 import { Spinner } from "../../layout/shared/Spinner";
 import { useRouter } from "next/router";
+import { Meta } from "@lib/meta";
 
 const ProfilesWrapper = styled.div`
     position: relative;
@@ -73,19 +74,24 @@ const Profile: React.FC = () => {
         }
     };
 
-    return loading ? (
-        <ProfileLoading>
-            <Spinner />
-        </ProfileLoading>
-    ) : (
-        <ProfilesWrapper>
-            {profile && (
-                <CloseButton href="/" passHref>
-                    <Close />
-                </CloseButton>
+    return (
+        <React.Fragment>
+            <Meta title="Profile | Stream" />
+            {loading ? (
+                <ProfileLoading>
+                    <Spinner />
+                </ProfileLoading>
+            ) : (
+                <ProfilesWrapper>
+                    {profile && (
+                        <CloseButton href="/" passHref>
+                            <Close />
+                        </CloseButton>
+                    )}
+                    <ProfileOverview profiles={MOCK_PROFILES} onSelect={handleSelectProfile} />
+                </ProfilesWrapper>
             )}
-            <ProfileOverview profiles={MOCK_PROFILES} onSelect={handleSelectProfile} />
-        </ProfilesWrapper>
+        </React.Fragment>
     );
 };
 

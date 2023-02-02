@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState, useTransition } from "react";
+import React from "react";
 import styled from "styled-components";
-import debounce from "lodash.debounce";
 import { aspectRatio, fillParent } from "@css/helper";
 import { SearchInput } from "../../layout/shared/SearchInput";
-import { getShowByString } from "@lib/api/tmdb";
 import { Card } from "../../layout/shared/Card/Card";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 import { content } from "@css/helper/content";
+import { useSearch } from "@lib/hook/useSearch";
+import { Meta } from "@lib/meta";
 
 const SearchWrapper = styled.div`
     ${content()};
@@ -50,38 +50,17 @@ const SearchCard = styled.div`
 `;
 
 const Search: React.FC = () => {
-    const inputRef = useRef<HTMLInputElement | null>(null);
-    const [, startTransition] = useTransition();
-    const [suggestions, setSuggestions] = useState<Api.TV[]>([]);
+    const { inputFocusRef, suggestions, handleInput } = useSearch();
     const { hasShowProgress, isShowActive, addShowToWatchlist } = useWatchlist();
-
-    useEffect(() => {
-        if (!inputRef.current) {
-            return;
-        }
-
-        inputRef.current.focus();
-    }, []);
-
-    const handleQuery = async (value: string) => {
-        if (!value) {
-            setSuggestions([]);
-            return;
-        }
-
-        const res = await getShowByString(value);
-        startTransition(() => setSuggestions(res));
-    };
-
-    const debouncedFunc = useCallback(debounce(handleQuery, 150), []);
 
     return (
         <SearchWrapper>
+            <Meta title="Suche | Stream" />
             <SearchInputWrapper>
                 <SearchInput
-                    ref={inputRef}
+                    ref={inputFocusRef}
                     placeholder="What are you looking for?"
-                    onInput={debouncedFunc}
+                    onInput={handleInput}
                 />
             </SearchInputWrapper>
             <SearchResults>

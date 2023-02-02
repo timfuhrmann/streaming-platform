@@ -12,6 +12,7 @@ import { BasicSlider } from "../layout/shared/BasicSlider/BasicSlider";
 import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
 import { Spinner } from "../layout/shared/Spinner";
 import { useDispatch } from "react-redux";
+import { Meta } from "@lib/meta";
 
 const PageWrapper = styled.div`
     padding-bottom: 12rem;
@@ -53,27 +54,36 @@ const Home: React.FC<HomeProps> = ({ featured, trending }) => {
         onLoadMore: () => dispatch(fetchGenrePage()),
     });
 
-    return watchlistLoading ? (
-        <PageLoading>
-            <Spinner />
-        </PageLoading>
-    ) : (
-        <PageWrapper>
-            {featured && <Opener {...featured} />}
-            <PageBlocks>
-                {activeShows.length > 0 && (
-                    <BasicSlider title="Your watchlist" shows={activeShows} />
-                )}
-                {keepWatching.length > 0 && (
-                    <BasicSlider title="Keep watching" shows={keepWatching} />
-                )}
-                {trending && <TrendingSlider title="Trending" shows={trending} />}
-                {Object.keys(genreResults).map(showKey => (
-                    <BasicSlider key={showKey} title={showKey} shows={genreResults[showKey]} />
-                ))}
-                {(loading || hasNextPage) && <BasicSlider.Skeleton ref={sentryRef} />}
-            </PageBlocks>
-        </PageWrapper>
+    return (
+        <React.Fragment>
+            <Meta title="Home | Stream" />
+            {watchlistLoading ? (
+                <PageLoading>
+                    <Spinner />
+                </PageLoading>
+            ) : (
+                <PageWrapper>
+                    {featured && <Opener {...featured} />}
+                    <PageBlocks>
+                        {activeShows.length > 0 && (
+                            <BasicSlider title="Your watchlist" shows={activeShows} />
+                        )}
+                        {keepWatching.length > 0 && (
+                            <BasicSlider title="Keep watching" shows={keepWatching} />
+                        )}
+                        {trending && <TrendingSlider title="Trending" shows={trending} />}
+                        {Object.keys(genreResults).map(showKey => (
+                            <BasicSlider
+                                key={showKey}
+                                title={showKey}
+                                shows={genreResults[showKey]}
+                            />
+                        ))}
+                        {(loading || hasNextPage) && <BasicSlider.Skeleton ref={sentryRef} />}
+                    </PageBlocks>
+                </PageWrapper>
+            )}
+        </React.Fragment>
     );
 };
 

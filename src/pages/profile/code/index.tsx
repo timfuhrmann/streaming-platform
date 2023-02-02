@@ -8,6 +8,7 @@ import { MOCK_PROFILES } from "@lib/mock/profile";
 import { text } from "@css/typography";
 import { Close, CloseButton } from "../index";
 import { Spinner } from "../../../layout/shared/Spinner";
+import { Meta } from "@lib/meta";
 
 const CodeWrapper = styled.div`
     position: relative;
@@ -83,22 +84,27 @@ const Code: React.FC = () => {
         }
     };
 
-    return loading ? (
-        <CodeLoading>
-            <Spinner />
-        </CodeLoading>
-    ) : (
-        <CodeWrapper>
-            <CloseButton href="/" passHref>
-                <Close />
-            </CloseButton>
-            <ProfileCode error={error} onChange={setCode} />
-            <CodeHelpWrapper>
-                {uid && typeof uid === "string" && MOCK_PROFILES[uid] && (
-                    <CodeHelp>Psst, it&apos;s {MOCK_PROFILES[uid].password}.</CodeHelp>
-                )}
-            </CodeHelpWrapper>
-        </CodeWrapper>
+    return (
+        <React.Fragment>
+            <Meta title="Profile | Stream" />
+            {loading ? (
+                <CodeLoading>
+                    <Spinner />
+                </CodeLoading>
+            ) : (
+                <CodeWrapper>
+                    <CloseButton href="/" passHref>
+                        <Close />
+                    </CloseButton>
+                    <ProfileCode error={error} onChange={setCode} />
+                    <CodeHelpWrapper>
+                        {uid && typeof uid === "string" && MOCK_PROFILES[uid] && (
+                            <CodeHelp>Psst, it&apos;s {MOCK_PROFILES[uid].password}.</CodeHelp>
+                        )}
+                    </CodeHelpWrapper>
+                </CodeWrapper>
+            )}
+        </React.Fragment>
     );
 };
 

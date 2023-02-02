@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import styled from "styled-components";
 import { getPosterUrl, Image } from "@lib/image";
 import { aspectRatio, fillParent } from "@css/helper";
@@ -7,6 +7,7 @@ import { Button } from "../../shared/Button";
 import { RatingCircle } from "../../shared/RatingCircle";
 import { genresToString } from "@lib/genre";
 import { useNProgress } from "@lib/context/nprogress";
+import { usePopover } from "./PopoverProvider";
 
 const OpenerWrapper = styled.div`
     position: relative;
@@ -85,19 +86,11 @@ const OpenerControls = styled.div`
     margin-top: 1.5rem;
 `;
 
-export const PopOverOpener: React.FC<Api.TVDetails> = ({
-    id,
-    name,
-    overview,
-    vote_average,
-    backdrop_path,
-    genres,
-}) => {
+export const PopoverOpener: React.FC = () => {
+    const { entry } = usePopover();
     const { startProgress } = useNProgress();
 
-    const featuredGenres = useMemo(() => {
-        return genresToString(genres);
-    }, [genres]);
+    const { id, name, overview, vote_average, backdrop_path, genres } = entry;
 
     return (
         <OpenerWrapper>
@@ -115,7 +108,7 @@ export const PopOverOpener: React.FC<Api.TVDetails> = ({
                     <OpenerOverlay />
                     <OpenerHead>
                         <OpenerHeadline>{name}</OpenerHeadline>
-                        <OpenerGenres>{featuredGenres}</OpenerGenres>
+                        <OpenerGenres>{genresToString(genres)}</OpenerGenres>
                         <OpenerControls>
                             <Button action={`/watch/${id}`} onLink={startProgress}>
                                 Play
