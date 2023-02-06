@@ -106,7 +106,7 @@ export const Popover = withPopover(() => {
                                     <SeasonsOverview seasons={entry.seasons} show={entry} />
                                 </PopoverRow>
                             )}
-                            {recommendations && (
+                            {recommendations && recommendations.length > 0 && (
                                 <PopoverRow>
                                     <CardTeaser
                                         headline="You could also like"
