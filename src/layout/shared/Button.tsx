@@ -11,8 +11,9 @@ const ButtonWrapper = styled.button<{ $isSecondary?: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     ${text("textMd", "bold")};
-    padding: 1.25rem 3rem;
+    padding: 1.25rem 2rem;
     color: ${p => (p.$isSecondary ? p.theme.gray900 : p.theme.gray50)};
     border-radius: 0.4rem;
     overflow: hidden;
