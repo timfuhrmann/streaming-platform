@@ -15,14 +15,15 @@ const PopoverWrapper = styled.div`
     position: fixed;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 `;
 
 const PopoverFrame = styled.div`
-    flex: 1;
+    position: relative;
+    flex: 1 1 0;
     display: flex;
     flex-direction: column;
     width: 100%;
-    overflow-y: auto;
 `;
 
 const PopoverStage = styled.div`
@@ -93,10 +94,10 @@ export const Popover = withPopover(() => {
     const { entry, recommendations, handleClose } = usePopover();
 
     return (
-        <PopoverWrapper>
+        <PopoverWrapper key={entry.id}>
             <Meta title={`${entry.name} | Stream`} />
             <RemoveScrollBar noImportant />
-            <PopoverFrame key={entry.id}>
+            <PopoverFrame>
                 <PopoverStage>
                     <PopoverContent>
                         <PopoverOpener />
