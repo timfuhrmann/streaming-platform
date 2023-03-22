@@ -84,7 +84,7 @@ const CardLink = styled(Link)`
 `;
 
 const CardButton = styled.div`
-    flex: 1 1 0;
+    flex: 1 1 auto;
 `;
 
 interface CardProps extends Api.TV {
