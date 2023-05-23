@@ -68,8 +68,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         };
     }
 
-    ctx.res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate");
-
     const show = await getShowById(parseInt(id));
 
     if (!show) {
