@@ -1,7 +1,10 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import ObjectFit = Property.ObjectFit;
+import ObjectPosition = Property.ObjectPosition;
 import { default as NextImage, ImageProps as NextImageProps } from "next/image";
 import { tmdbConfig } from "./api/tmdb/config";
+import { Property } from "csstype";
 
 const fillImage = css`
     object-fit: cover;
@@ -11,16 +14,27 @@ const StyledImage = styled(NextImage)<{ $hasFill: boolean }>`
     ${p => p.$hasFill && fillImage};
 `;
 
-interface ImageProps extends Omit<NextImageProps, "alt" | "loader" | "unoptimized"> {
+interface ImageProps
+    extends Omit<
+        NextImageProps,
+        "alt" | "loader" | "unoptimized" | "objectPosition" | "objectFit"
+    > {
     alt: string | undefined;
-    objectPosition?: string;
+    objectFit?: ObjectFit;
+    objectPosition?: ObjectPosition;
 }
 
-export const Image: React.FC<ImageProps> = ({ alt, style, objectPosition, ...props }) => {
+export const Image: React.FC<ImageProps> = ({
+    alt,
+    style,
+    objectFit,
+    objectPosition,
+    ...props
+}) => {
     return (
         <StyledImage
             alt={alt ?? ""}
-            style={{ ...style, objectPosition }}
+            style={{ ...style, objectFit, objectPosition }}
             $hasFill={!!props.fill}
             unoptimized
             {...props}

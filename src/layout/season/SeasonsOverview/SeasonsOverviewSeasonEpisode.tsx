@@ -7,6 +7,7 @@ import { square } from "@css/helper";
 import { transition } from "@css/helper";
 import { truncateString } from "@lib/util";
 import { Skeleton } from "@lib/skeleton";
+import { IconImagePlaceholder } from "@icon/IconImagePlaceholder";
 
 const EpisodeNumber = styled.div`
     display: none;
@@ -20,6 +21,8 @@ const EpisodeNumber = styled.div`
 
 const EpisodeImage = styled.div`
     position: relative;
+    display: flex;
+    align-items: flex-end;
     height: 7.5rem;
     width: 10rem;
     min-width: 10rem;
@@ -90,6 +93,11 @@ const EpisodeWrapper = styled.div`
     }
 `;
 
+const EpisodeImagePlaceholder = styled(IconImagePlaceholder)`
+    width: 100%;
+    color: ${p => p.theme.gray600};
+`;
+
 interface ParentComposition {
     Skeleton: typeof SeasonsOverviewSeasonEpisodeSkeleton;
 }
@@ -104,7 +112,11 @@ export const SeasonsOverviewSeasonEpisode: React.FC<Api.Episode> & ParentComposi
         <EpisodeWrapper>
             <EpisodeNumber>{episode_number}</EpisodeNumber>
             <EpisodeImage>
-                {still_path && <Image src={getPosterUrl(still_path)} alt={name} fill />}
+                {still_path ? (
+                    <Image src={getPosterUrl(still_path)} alt={name} objectFit="cover" fill />
+                ) : (
+                    <EpisodeImagePlaceholder />
+                )}
             </EpisodeImage>
             <EpisodeContent>
                 <EpisodeName>{name}</EpisodeName>
