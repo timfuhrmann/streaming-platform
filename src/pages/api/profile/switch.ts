@@ -15,10 +15,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.redirect("/profile");
     }
 
-    if (!!profile.password) {
-        return res.redirect(`/profile/code?uid=${uid}`);
-    }
-
     res.setHeader("Set-Cookie", createCookie(COOKIE_PROFILE, uid));
     res.redirect("/");
 }

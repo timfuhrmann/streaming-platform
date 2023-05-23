@@ -3,6 +3,5 @@ declare module User {
         uid: string;
         name: string;
         avatar?: string;
-        password?: string;
     }
 }

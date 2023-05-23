@@ -18,14 +18,6 @@ export default async function handler(
         });
     }
 
-    if (!!profile.password && code !== profile.password) {
-        return res.status(400).json({
-            date: Date.now(),
-            message: "Oops, wrong code. Please try again.",
-            status: 400,
-        });
-    }
-
     res.setHeader("Set-Cookie", createCookie(COOKIE_PROFILE, uid, { maxAge: 60 * 60 * 24 })); // 24 hours
     res.status(200).json({ date: Date.now(), message: "Success.", status: 200 });
 }

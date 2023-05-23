@@ -3,13 +3,11 @@ export const MOCK_PROFILES: Record<string, User.Profile> = {
         uid: "1",
         name: "Gordon",
         avatar: "/img/profile/1.png",
-        password: "1234",
     },
     "2": {
         uid: "2",
         name: "Lucas",
         avatar: "/img/profile/2.png",
-        password: "0000",
     },
     "3": {
         uid: "3",

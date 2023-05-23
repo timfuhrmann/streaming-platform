@@ -60,19 +60,13 @@ const ProfileLoading = styled.div`
 `;
 
 const Profile: React.FC = () => {
-    const router = useRouter();
+    const { prefetch } = useRouter();
     const { profile } = useProfile();
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        router.prefetch("/profile/code");
-    }, []);
-
-    const handleSelectProfile = (profile: User.Profile) => {
-        if (!profile.password) {
-            setLoading(true);
-        }
-    };
+        prefetch("/profile/code");
+    }, [prefetch]);
 
     return (
         <React.Fragment>
@@ -88,7 +82,7 @@ const Profile: React.FC = () => {
                             <Close />
                         </CloseButton>
                     )}
-                    <ProfileOverview profiles={MOCK_PROFILES} onSelect={handleSelectProfile} />
+                    <ProfileOverview profiles={MOCK_PROFILES} onSelect={() => setLoading(true)} />
                 </ProfilesWrapper>
             )}
         </React.Fragment>

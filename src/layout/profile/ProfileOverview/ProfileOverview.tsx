@@ -27,14 +27,6 @@ interface ProfileOverview {
 }
 
 export const ProfileOverview: React.FC<ProfileOverview> = ({ profiles, onSelect }) => {
-    const getProfileRoute = ({ uid, password }: User.Profile) => {
-        if (!!password) {
-            return `/profile/code?uid=${uid}`;
-        }
-
-        return `/api/profile/switch?uid=${uid}`;
-    };
-
     return (
         <ProfilesWrapper>
             <ProfilesHeadline>Who&apos;s watching?</ProfilesHeadline>
@@ -42,7 +34,7 @@ export const ProfileOverview: React.FC<ProfileOverview> = ({ profiles, onSelect 
                 {Object.keys(profiles).map(uid => (
                     <ProfileButton
                         key={uid}
-                        href={getProfileRoute(profiles[uid])}
+                        href={`/api/profile/switch?uid=${uid}`}
                         onClick={() => onSelect(profiles[uid])}>
                         <ProfileOverviewItem {...profiles[uid]} />
                     </ProfileButton>

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { fillParent, square } from "@css/helper";
 import { text } from "@css/typography";
 import { transition } from "@css/helper";
-import { IconLock } from "@icon/IconLock";
 import { Image } from "@lib/image";
 
 const ProfileAvatar = styled.div`
@@ -67,18 +66,11 @@ const ProfileWrapper = styled.div`
     }
 `;
 
-const ProfileLock = styled(IconLock)`
-    ${square("2.4rem")};
-    margin-top: 2rem;
-    color: ${p => p.theme.gray600};
-`;
-
-export const ProfileOverviewItem: React.FC<User.Profile> = ({ name, avatar, password }) => {
+export const ProfileOverviewItem: React.FC<User.Profile> = ({ name, avatar }) => {
     return (
         <ProfileWrapper>
             <ProfileAvatar>{avatar && <Image src={avatar} alt={name} fill />}</ProfileAvatar>
             <ProfileName>{name}</ProfileName>
-            {password && <ProfileLock />}
         </ProfileWrapper>
     );
 };
