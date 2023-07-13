@@ -48,7 +48,7 @@ const Watch: React.FC<WatchProps> = ({ show, browserCompatible }) => {
 
     return (
         <PlayerWrapper ref={containerRef}>
-            <Meta title={`${show.name} | Stream`} />
+            <Meta title={`${show.name ?? "Watch"} | Stream`} />
             {waiting && (
                 <SpinnerWrapper>
                     <Spinner />
