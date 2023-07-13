@@ -42,28 +42,6 @@ export const MOCK_WATCHLIST = {
             media_type: "tv",
         },
     },
-    94605: {
-        timestamp: 1636825829091,
-        progress: 0,
-        active: true,
-        show: {
-            vote_average: 9.1,
-            vote_count: 292,
-            id: 94605,
-            original_name: "Arcane",
-            origin_country: ["US"],
-            backdrop_path: "/rkB4LyZHo1NHXFEDHl9vSD9r1lI.jpg",
-            genre_ids: [16, 10765, 10759],
-            overview:
-                "Amid the stark discord of twin cities Piltover and Zaun, two sisters fight on rival sides of a war between magic technologies and clashing convictions.",
-            original_language: "en",
-            poster_path: "/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg",
-            name: "Arcane",
-            first_air_date: "2021-11-06",
-            popularity: 932.116,
-            media_type: "tv",
-        },
-    },
     131927: {
         timestamp: 1636825831625,
         progress: 0,

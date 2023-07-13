@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Card } from "./Card/Card";
 import { aspectRatio, fillParent } from "@css/helper";
 import { text } from "@css/typography";
-import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
+import { useWatchlist } from "@lib/watchlist/context";
 
 const TeaserWrapper = styled.div`
     padding: 0 2rem;

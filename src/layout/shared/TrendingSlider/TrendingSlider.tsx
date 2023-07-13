@@ -2,7 +2,7 @@ import React from "react";
 import styled, { useTheme } from "styled-components";
 import { TrendingSliderCard } from "./TrendingSliderCard";
 import { SliderTemplate } from "../SliderTemplate";
-import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
+import { useWatchlist } from "@lib/watchlist/context";
 import { KeenSliderOptions } from "keen-slider";
 
 const TrendingSlide = styled.div`

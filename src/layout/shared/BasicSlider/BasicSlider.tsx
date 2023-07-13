@@ -3,7 +3,7 @@ import styled, { useTheme } from "styled-components";
 import { Card } from "../Card/Card";
 import { aspectRatio, fillParent } from "@css/helper";
 import { SliderTemplate } from "../SliderTemplate";
-import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
+import { useWatchlist } from "@lib/watchlist/context";
 import { createArray } from "@lib/util";
 import { content } from "@css/helper/content";
 import { KeenSliderOptions } from "keen-slider";

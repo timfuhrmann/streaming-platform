@@ -11,7 +11,7 @@ import {
 } from "@lib/redux/reducer/player";
 import { handleFullscreen } from "@lib/player/fullscreen";
 import { convertToTimeCode, DEFAULT_TIMESTAMP } from "@lib/player";
-import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
+import { useWatchlist } from "@lib/watchlist/context";
 import { createContext, useContext } from "react";
 import { PlayerProps } from "./Player";
 import { useDispatch } from "react-redux";

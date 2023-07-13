@@ -9,7 +9,7 @@ import { REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
 import { TrendingSlider } from "../layout/shared/TrendingSlider/TrendingSlider";
 import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
 import { BasicSlider } from "../layout/shared/BasicSlider/BasicSlider";
-import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
+import { useWatchlist } from "@lib/watchlist/context";
 import { Spinner } from "../layout/shared/Spinner";
 import { useDispatch } from "react-redux";
 import { Meta } from "@lib/meta";

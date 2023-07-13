@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { aspectRatio, fillParent } from "@css/helper";
 import { SearchInput } from "../../layout/shared/SearchInput";
 import { Card } from "../../layout/shared/Card/Card";
-import { useWatchlist } from "@lib/watchlist/context/WatchlistContext";
+import { useWatchlist } from "@lib/watchlist/context";
 import { content } from "@css/helper/content";
 import { useSearch } from "@lib/hook/useSearch";
 import { Meta } from "@lib/meta";

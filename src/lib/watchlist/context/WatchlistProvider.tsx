@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useEffect, useMemo, useState } from "react";
-import { WatchlistContext } from "./WatchlistContext";
+import { WatchlistContext } from "./index";
 import { MOCK_WATCHLIST } from "@lib/mock/mock";
 
 const STORAGE_WATCHLIST = "watchlist";
@@ -52,7 +52,7 @@ export const WatchlistProvider: React.FC<PropsWithChildren> = ({ children }) => 
 
                 return !!watchlist[parseInt(showId)].progress;
             })
-            .sort((a, b) => watchlist[parseInt(a)].timestamp - watchlist[parseInt(b)].timestamp)
+            .sort((a, b) => watchlist[parseInt(b)].timestamp - watchlist[parseInt(a)].timestamp)
             .map(showId => watchlist[parseInt(showId)].show);
     }, [watchlist]);
 
