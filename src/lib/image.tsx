@@ -1,10 +1,7 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import styled, { css } from "styled-components";
-import ObjectFit = Property.ObjectFit;
-import ObjectPosition = Property.ObjectPosition;
 import { default as NextImage, ImageProps as NextImageProps } from "next/image";
 import { tmdbConfig } from "./api/tmdb/config";
-import { Property } from "csstype";
 
 const fillImage = css`
     object-fit: cover;
@@ -20,8 +17,8 @@ interface ImageProps
         "alt" | "loader" | "unoptimized" | "objectPosition" | "objectFit"
     > {
     alt: string | undefined;
-    objectFit?: ObjectFit;
-    objectPosition?: ObjectPosition;
+    objectFit?: CSSProperties["objectFit"];
+    objectPosition?: CSSProperties["objectPosition"];
 }
 
 export const Image: React.FC<ImageProps> = ({

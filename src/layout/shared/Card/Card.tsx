@@ -117,7 +117,7 @@ export const Card: React.FC<CardProps> = ({
                             <RatingCircle vote={vote_average} />
                         </div>
                         <CardButton>
-                            <Button action={"?id=" + id} shallow>
+                            <Button action={"?id=" + id} scroll={false} shallow>
                                 More info
                             </Button>
                         </CardButton>
@@ -125,7 +125,7 @@ export const Card: React.FC<CardProps> = ({
                     {progress > 0 && <CardProgress progress={progress} />}
                 </CardFooter>
                 <CardOverlay />
-                <CardLink href={{ query: { id } }} shallow passHref />
+                <CardLink href={{ query: { id } }} scroll={false} shallow passHref />
             </CardContent>
             {poster_path && <Image src={getPosterUrl(poster_path)} alt={name} fill />}
         </CardWrapper>
