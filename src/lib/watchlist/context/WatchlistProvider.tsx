@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useMemo, useState } from "react";
+import React, { PropsWithChildren, useCallback, useEffect, useMemo, useState } from "react";
 import { WatchlistContext } from "./index";
 import { MOCK_WATCHLIST } from "@lib/mock/mock";
 
@@ -61,36 +61,42 @@ export const WatchlistProvider: React.FC<PropsWithChildren> = ({ children }) => 
      * @param {number} id
      * @return {boolean}
      */
-    const isShowActive = (id: number): boolean => {
-        const show = watchlist[id];
+    const isShowActive = useCallback(
+        (id: number): boolean => {
+            const show = watchlist[id];
 
-        if (!show) {
-            return false;
-        }
+            if (!show) {
+                return false;
+            }
 
-        return show.active;
-    };
+            return show.active;
+        },
+        [watchlist]
+    );
 
     /**
      * Returns show's progress.
      * @param {number} id
      * @return {number}
      */
-    const hasShowProgress = (id: number): number => {
-        const show = watchlist[id];
+    const hasShowProgress = useCallback(
+        (id: number): number => {
+            const show = watchlist[id];
 
-        if (!show) {
-            return 0;
-        }
+            if (!show) {
+                return 0;
+            }
 
-        return show.progress;
-    };
+            return show.progress;
+        },
+        [watchlist]
+    );
 
     /**
      * Adds show to playlist / removes show from playlist if has already been added.
      * @param {Api.TV} show
      */
-    const addShowToWatchlist = (show: Api.TV) => {
+    const addShowToWatchlist = useCallback((show: Api.TV) => {
         setWatchlist(prevState => {
             const prevShow = prevState[show.id];
 
@@ -120,14 +126,14 @@ export const WatchlistProvider: React.FC<PropsWithChildren> = ({ children }) => 
                 },
             };
         });
-    };
+    }, []);
 
     /**
      * Adds show to watchlist and/or updates its progress.
      * @param {Api.TV} show
      * @param {number} progress
      */
-    const addProgressToWatchlist = (show: Api.TV, progress: number) => {
+    const addProgressToWatchlist = useCallback((show: Api.TV, progress: number) => {
         setWatchlist(prevState => {
             const prevShow = prevState[show.id];
 
@@ -151,7 +157,7 @@ export const WatchlistProvider: React.FC<PropsWithChildren> = ({ children }) => 
                 },
             };
         });
-    };
+    }, []);
 
     return (
         <WatchlistContext.Provider

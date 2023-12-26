@@ -1,4 +1,11 @@
-import React, { MutableRefObject, PropsWithChildren, useEffect, useRef, useState } from "react";
+import React, {
+    MutableRefObject,
+    PropsWithChildren,
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import styled from "styled-components";
 import Hls from "hls.js";
 import {
@@ -15,6 +22,7 @@ import { useWatchlist } from "@lib/watchlist/context";
 import { createContext, useContext } from "react";
 import { PlayerProps } from "./Player";
 import { useDispatch } from "react-redux";
+import { useAppSelector } from "@lib/redux";
 
 const HLS_VIDEO_SRC = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8";
 export const HLS_VIDEO_DURATION = 888;
@@ -50,6 +58,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
     children,
 }) => {
     const dispatch = useDispatch();
+    const { playing } = useAppSelector(state => state.player);
     const { loading: watchlistLoading, hasShowProgress, addProgressToWatchlist } = useWatchlist();
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -87,7 +96,30 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             hls.destroy();
             dispatch(resetPlayer());
         };
-    }, [watchlistLoading]);
+    }, [watchlistLoading, addProgressToWatchlist, dispatch, hasShowProgress, show]);
+
+    const interact = useCallback(() => {
+        setControlsActive(true);
+        document.body.classList.remove("hide-cursor");
+
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
+        }
+
+        timeoutRef.current = setTimeout(() => {
+            if (!playing) {
+                return;
+            }
+
+            document.body.classList.add("hide-cursor");
+            setControlsActive(false);
+        }, 3000);
+    }, [playing]);
+
+    useEffect(() => {
+        interact();
+    }, [interact]);
 
     useEffect(() => {
         const beforeUnload = () => {
@@ -109,25 +141,10 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
                 clearTimeout(timeoutRef.current);
             }
         };
-    }, []);
-
-    const interact = () => {
-        setControlsActive(true);
-        document.body.classList.remove("hide-cursor");
-
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-            timeoutRef.current = null;
-        }
-
-        timeoutRef.current = setTimeout(() => {
-            document.body.classList.add("hide-cursor");
-            setControlsActive(false);
-        }, 3000);
-    };
+    }, [addProgressToWatchlist, show, interact]);
 
     /** Plays video if pause, else pause video. */
-    const togglePlay = () => {
+    const togglePlay = useCallback(() => {
         if (!videoRef.current) {
             return;
         }
@@ -137,10 +154,10 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         } else {
             videoRef.current.pause();
         }
-    };
+    }, []);
 
     /** Opens container fullscreen if closed, else closes fullscreen. */
-    const toggleFullscreen = () => {
+    const toggleFullscreen = useCallback(() => {
         if (!fullscreenContainer.current) {
             return;
         }
@@ -148,34 +165,34 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         handleFullscreen(fullscreenContainer.current).then(isFullscreen =>
             dispatch(setFullscreen(isFullscreen))
         );
-    };
+    }, [dispatch, fullscreenContainer]);
 
     /** Sets play state according to video paused state. */
-    const handlePlayState = () => {
+    const handlePlayState = useCallback(() => {
         if (!videoRef.current) {
             return;
         }
 
         dispatch(setPlaying(!videoRef.current.paused));
-    };
+    }, [dispatch]);
 
     /**
      * Calculates progress from video's current time and duration.
      * @returns {number}
      */
-    const calcProgress = (): number => {
+    const calcProgress = useCallback((): number => {
         if (!videoRef.current) {
             return 0;
         }
 
         return videoRef.current.currentTime / videoRef.current.duration;
-    };
+    }, []);
 
     /**
      * Calculates buffer from video's buffered length and duration.
      * @returns {number}
      */
-    const calcBuffer = (): number => {
+    const calcBuffer = useCallback((): number => {
         if (!videoRef.current) {
             return 0;
         }
@@ -183,14 +200,14 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         const buffer = videoRef.current.buffered.end(videoRef.current.buffered.length - 1) || 0;
 
         return buffer / videoRef.current.duration;
-    };
+    }, []);
 
     /**
      * Generates timestamp from absolute number and duration.
      * @param {number} abs
      * @returns {string}
      */
-    const timeStampFromAbs = (abs: number): string => {
+    const timeStampFromAbs = useCallback((abs: number): string => {
         if (!videoRef.current) {
             return DEFAULT_TIMESTAMP;
         }
@@ -198,67 +215,67 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         const time = videoRef.current.duration * abs;
 
         return convertToTimeCode(time);
-    };
+    }, []);
 
     /**
      * Generates timestamp from current time.
      * @returns {string} Current time in time code.
      */
-    const currentTimeStamp = (): string => {
+    const currentTimeStamp = useCallback((): string => {
         if (!videoRef.current) {
             return DEFAULT_TIMESTAMP;
         }
 
         return convertToTimeCode(videoRef.current.currentTime);
-    };
+    }, []);
 
     /**
      * Generates timestamp from current time and duration.
      * @returns {string} Missing time in time code.
      */
-    const missingTimeStamp = (): string => {
+    const missingTimeStamp = useCallback((): string => {
         if (!videoRef.current) {
             return DEFAULT_TIMESTAMP;
         }
 
         return convertToTimeCode(videoRef.current.duration - videoRef.current.currentTime);
-    };
+    }, []);
 
     /**
      * Jump to specific time from absolute number and duration.
      * @param {number} abs
      */
-    const jumpToAbs = (abs: number): void => {
+    const jumpToAbs = useCallback((abs: number): void => {
         if (!videoRef.current) {
             return;
         }
 
         videoRef.current.currentTime = videoRef.current.duration * abs;
-    };
+    }, []);
 
     /**
      * Event Listeners
      */
-    const onPlay = () => {
+    const onPlay = useCallback(() => {
         handlePlayState();
-    };
+    }, [handlePlayState]);
 
-    const onPause = () => {
+    const onPause = useCallback(() => {
         handlePlayState();
-    };
+    }, [handlePlayState]);
 
-    const onProgress = () => {
+    const onProgress = useCallback(() => {
         dispatch(setBuffer(calcBuffer()));
-    };
+    }, [dispatch, calcBuffer]);
 
-    const onTimeUpdate = () => {
+    const onTimeUpdate = useCallback(() => {
         dispatch(setProgress(calcProgress()));
         dispatch(setWaiting(false));
-    };
+    }, [dispatch, calcProgress]);
 
-    const onWaiting = () => {
+    const onWaiting = useCallback(() => {
         dispatch(setWaiting(true));
-    };
+    }, [dispatch]);
 
     const eventListeners = {
         onPlay,

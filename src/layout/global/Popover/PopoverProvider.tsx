@@ -37,7 +37,7 @@ export const PopoverProvider: React.FC<PropsWithChildren> = ({ children }) => {
         } else if (!fetchRequests.includes(numId)) {
             dispatch(preloadShow({ id: numId }));
         }
-    }, [id, entities]);
+    }, [id, entities, dispatch, fetchRequests]);
 
     useEffect(() => {
         if (!id || typeof id !== "string") {

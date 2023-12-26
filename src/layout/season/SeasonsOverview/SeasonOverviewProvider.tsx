@@ -31,7 +31,7 @@ export const SeasonOverviewProvider: React.FC<PropsWithChildren<SeasonsOverviewP
                 seasonNumber: seasons[activeSeasonIndex].season_number,
             })
         );
-    }, [activeSeasonIndex]);
+    }, [dispatch, show, seasons, activeSeasonIndex]);
 
     const activeShow = seasonResults[show.id];
     const activeSeason = seasons[activeSeasonIndex];

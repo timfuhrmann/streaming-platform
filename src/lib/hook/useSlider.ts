@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { MutableRefObject, useCallback, useEffect, useRef, useState } from "react";
 import KeenSlider, { KeenSliderInstance, KeenSliderOptions, KeenSliderPlugin } from "keen-slider";
 
 interface SliderData {
@@ -16,17 +16,28 @@ export interface SliderOptions extends KeenSliderOptions {
 
 export type SlideResult = [MutableRefObject<HTMLDivElement | null>, SliderData];
 
-export const useSlider = ({ observeMutations, ...options }: SliderOptions = {}): SlideResult => {
+export const useSlider = (options: SliderOptions = {}): SlideResult => {
     const ref = useRef<HTMLDivElement | null>(null);
     const sliderRef = useRef<KeenSliderInstance | null>(null);
+    const optionsRef = useRef<SliderOptions>(options);
     const [mounted, setMounted] = useState<boolean>(false);
     const [isBeginning, setIsBeginning] = useState<boolean>(options ? !options.loop : true);
     const [isEnd, setIsEnd] = useState<boolean>(false);
+
+    const handleDetails = useCallback((ref: KeenSliderInstance) => {
+        const opt = ref.options;
+        const details = ref.track.details;
+
+        setIsBeginning(!opt.loop && details.rel === details.minIdx);
+        setIsEnd(!opt.loop && details.rel === details.maxIdx);
+    }, []);
 
     useEffect(() => {
         if (!ref.current) {
             return;
         }
+
+        const { observeMutations, ...options } = optionsRef.current;
 
         const slider = new KeenSlider(
             ref.current,
@@ -39,55 +50,29 @@ export const useSlider = ({ observeMutations, ...options }: SliderOptions = {}):
                 slideChanged: handleDetails,
                 ...options,
             },
-            [MutationPlugin]
+            observeMutations ? [MutationPlugin] : undefined
         );
 
         sliderRef.current = slider;
 
         return () => slider.destroy();
-    }, []);
+    }, [handleDetails]);
 
-    const MutationPlugin: KeenSliderPlugin = slider => {
-        if (!observeMutations) {
-            return;
-        }
-
-        const observer = new MutationObserver(() => {
-            slider.update(slider.options);
-        });
-
-        slider.on("created", () => {
-            observer.observe(slider.container, { childList: true });
-        });
-
-        slider.on("destroyed", () => {
-            observer.disconnect();
-        });
-    };
-
-    const handleDetails = (ref: KeenSliderInstance) => {
-        const opt = ref.options;
-        const details = ref.track.details;
-
-        setIsBeginning(!opt.loop && details.rel === details.minIdx);
-        setIsEnd(!opt.loop && details.rel === details.maxIdx);
-    };
-
-    const next = () => {
+    const next = useCallback(() => {
         if (!sliderRef.current) {
             return;
         }
 
         sliderRef.current.next();
-    };
+    }, []);
 
-    const prev = () => {
+    const prev = useCallback(() => {
         if (!sliderRef.current) {
             return;
         }
 
         sliderRef.current.prev();
-    };
+    }, []);
 
     return [
         ref,
@@ -100,4 +85,18 @@ export const useSlider = ({ observeMutations, ...options }: SliderOptions = {}):
             prev,
         },
     ];
+};
+
+const MutationPlugin: KeenSliderPlugin = slider => {
+    const observer = new MutationObserver(() => {
+        slider.update(slider.options);
+    });
+
+    slider.on("created", () => {
+        observer.observe(slider.container, { childList: true });
+    });
+
+    slider.on("destroyed", () => {
+        observer.disconnect();
+    });
 };

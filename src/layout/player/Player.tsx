@@ -6,7 +6,6 @@ import { fillParent, square } from "@css/helper";
 import { IconArrowLeft } from "@icon/IconArrowLeft";
 import { controlsTransition } from "@css/player";
 import { useRouter } from "next/router";
-import { useAppSelector } from "@lib/redux";
 
 const PlayerOverlay = styled.div`
     ${fillParent};
@@ -45,12 +44,11 @@ export interface PlayerProps {
 export const Player = withPlayer(() => {
     const { back } = useRouter();
     const { controlsActive, togglePlay } = usePlayer();
-    const { playing } = useAppSelector(state => state.player);
 
     return (
         <React.Fragment>
             <PlayerOverlay onClick={togglePlay} />
-            {(controlsActive || !playing) && (
+            {controlsActive && (
                 <React.Fragment>
                     <PlayerBack onClick={back}>
                         <IconBack />

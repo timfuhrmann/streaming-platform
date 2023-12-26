@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Drag } from "@lib/drag";
 import { useAppSelector } from "@lib/redux";
@@ -100,22 +100,25 @@ export const PlayerControlsProgress: React.FC = () => {
         return () => {
             drag.destroy();
         };
-    }, []);
+    }, [jumpToAbs]);
+
+    const moveIndicator = useCallback(
+        (e: MouseEvent) => {
+            if (!progressRef.current || (!indicatorActive && !dragging)) {
+                return;
+            }
+
+            const { left } = progressRef.current.getBoundingClientRect();
+
+            setIndicator(e.clientX - left);
+        },
+        [dragging, indicatorActive]
+    );
 
     useEffect(() => {
         document.addEventListener("mousemove", moveIndicator);
         return () => document.removeEventListener("mousemove", moveIndicator);
-    }, [indicatorActive, dragging]);
-
-    const moveIndicator = (e: MouseEvent) => {
-        if (!progressRef.current || (!indicatorActive && !dragging)) {
-            return;
-        }
-
-        const { left } = progressRef.current.getBoundingClientRect();
-
-        setIndicator(e.clientX - left);
-    };
+    }, [moveIndicator]);
 
     const calcIndicatorAbs = (): number => {
         if (!progressRef.current || indicator === null) {
