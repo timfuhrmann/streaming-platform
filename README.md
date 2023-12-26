@@ -14,8 +14,8 @@ https://streaming-platform-tmdb.vercel.app/
 
 **Image optimization is disabled due to Fair Use Policy.**
 
-## Todo
-1. Mount player store on watch only
+## Known issues
+1. Player isn't properly reset - Solution: Move player store to watch route
 
 ## API
 The following api is being utilized: https://developers.themoviedb.org/3/getting-started/introduction
