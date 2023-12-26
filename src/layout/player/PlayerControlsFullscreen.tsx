@@ -21,7 +21,7 @@ const Minimize = styled(IconMinimize)`
 `;
 
 export const PlayerControlsFullscreen: React.FC = () => {
-    const { fullscreen } = useAppSelector(state => state.player);
+    const fullscreen = useAppSelector(state => state.player.fullscreen);
     const { toggleFullscreen } = usePlayer();
 
     return (

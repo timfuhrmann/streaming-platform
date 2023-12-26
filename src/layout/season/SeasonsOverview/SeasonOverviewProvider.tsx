@@ -5,6 +5,7 @@ import { fetchEpisodes } from "@lib/redux/reducer/seasons";
 import { SeasonsOverviewProps } from "./SeasonsOverview";
 
 interface SeasonOverviewContextData {
+    show: Api.TVDetails;
     activeSeasonIndex: number;
     setActiveSeasonIndex: (value: number) => void;
     activeSeason: Api.Season;
@@ -40,6 +41,7 @@ export const SeasonOverviewProvider: React.FC<PropsWithChildren<SeasonsOverviewP
     return (
         <SeasonOverviewContext.Provider
             value={{
+                show,
                 activeSeasonIndex,
                 setActiveSeasonIndex,
                 activeSeason,

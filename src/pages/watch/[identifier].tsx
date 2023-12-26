@@ -34,7 +34,7 @@ interface WatchProps {
 
 const Watch: React.FC<WatchProps> = ({ show, browserCompatible }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
-    const { waiting } = useAppSelector(state => state.player);
+    const waiting = useAppSelector(state => state.player.waiting);
 
     if (!browserCompatible)
         return (

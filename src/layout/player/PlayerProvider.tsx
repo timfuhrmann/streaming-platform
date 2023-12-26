@@ -58,7 +58,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
     children,
 }) => {
     const dispatch = useDispatch();
-    const { playing } = useAppSelector(state => state.player);
+    const playing = useAppSelector(state => state.player.playing);
     const { loading: watchlistLoading, hasShowProgress, addProgressToWatchlist } = useWatchlist();
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);

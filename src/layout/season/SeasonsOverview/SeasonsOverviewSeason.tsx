@@ -28,14 +28,14 @@ const EpisodeSkeleton = styled.div`
 
 export const SeasonsOverviewSeason: React.FC = () => {
     const { startProgress } = useNProgress();
-    const { activeEpisodes } = useSeasonOverview();
+    const { show, activeEpisodes } = useSeasonOverview();
 
     return activeEpisodes ? (
         <EpisodesWrapper>
             {activeEpisodes.map(episode => (
                 <EpisodeWrapper
                     key={episode.id}
-                    href={`/watch/${episode.id}`}
+                    href={`/watch/${show.id}`}
                     onClick={startProgress}
                     passHref>
                     <SeasonsOverviewSeasonEpisode {...episode} />

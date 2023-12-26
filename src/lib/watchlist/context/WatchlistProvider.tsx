@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useCallback, useEffect, useMemo, useState } f
 import { WatchlistContext } from "./index";
 import { MOCK_WATCHLIST } from "@lib/mock/mock";
 
-const STORAGE_WATCHLIST = "watchlist";
+const STORAGE_WATCHLIST = "stream.watchlist";
 
 export const WatchlistProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const [loading, setLoading] = useState<boolean>(true);

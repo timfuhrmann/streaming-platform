@@ -21,7 +21,7 @@ const PauseIcon = styled(IconPause)`
 `;
 
 export const PlayerControlsPlay: React.FC = () => {
-    const { playing } = useAppSelector(state => state.player);
+    const playing = useAppSelector(state => state.player.playing);
     const { togglePlay } = usePlayer();
 
     return (
