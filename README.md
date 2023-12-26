@@ -14,6 +14,9 @@ https://streaming-platform-tmdb.vercel.app/
 
 **Image optimization is disabled due to Fair Use Policy.**
 
+## Todo
+1. Mount player store on watch only
+
 ## API
 The following api is being utilized: https://developers.themoviedb.org/3/getting-started/introduction
 
