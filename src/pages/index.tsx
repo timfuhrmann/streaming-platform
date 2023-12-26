@@ -5,7 +5,7 @@ import { GetStaticProps } from "next";
 import { getGenres, getShowById, getShowsByGenres, getTrending } from "@lib/api/tmdb";
 import { FEATURED_SHOW } from "@lib/api/tmdb/config";
 import { Opener } from "../layout/shared/Opener";
-import { REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
+import { AppState, REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
 import { TrendingSlider } from "../layout/shared/TrendingSlider/TrendingSlider";
 import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
 import { BasicSlider } from "../layout/shared/BasicSlider/BasicSlider";
@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps = async () => {
             genres,
             [REDUX_INITIAL_STATE]: {
                 genre: { genres, genreResults, page: 0, loading: false, hasNextPage: true },
-            },
+            } satisfies Partial<AppState>,
         },
         revalidate: 60 * 60 * 24, // 24 hours
     };

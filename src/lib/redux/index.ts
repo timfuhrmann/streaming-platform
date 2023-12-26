@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== "production") {
     // middleware.push(createLogger());
 }
 
-const makeStore = (preloadedState?: AppState) => {
+const makeStore = (preloadedState?: Partial<AppState>) => {
     return configureStore({
         reducer,
         middleware: getDefaultMiddleware => getDefaultMiddleware().concat(middleware),
@@ -22,7 +22,7 @@ const makeStore = (preloadedState?: AppState) => {
     });
 };
 
-const initializeStore = (preloadedState?: AppState) => {
+const initializeStore = (preloadedState?: Partial<AppState>) => {
     let _store = store ?? makeStore(preloadedState);
 
     if (preloadedState && store) {
@@ -40,10 +40,11 @@ const initializeStore = (preloadedState?: AppState) => {
     return _store;
 };
 
-export const useRedux = (pageProps: any) => {
+export const useRedux = (pageProps: { [REDUX_INITIAL_STATE]: Partial<AppState> }) => {
     const state = pageProps[REDUX_INITIAL_STATE];
     return useMemo(() => initializeStore(state), [state]);
 };
 
 export type AppState = ReturnType<typeof reducer>;
+
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
