@@ -48,6 +48,7 @@ interface ButtonProps {
     onLink?: () => void;
     isSecondary?: boolean;
     shallow?: boolean;
+    scroll?: boolean;
 }
 
 export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
@@ -55,10 +56,11 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
     onLink,
     isSecondary,
     shallow,
+    scroll,
     children,
 }) => {
     return typeof action === "string" ? (
-        <Link href={action} shallow={shallow} passHref legacyBehavior>
+        <Link href={action} shallow={shallow} scroll={scroll} passHref legacyBehavior>
             <ButtonWrapper as="a" onClick={onLink} $isSecondary={isSecondary}>
                 {children}
             </ButtonWrapper>

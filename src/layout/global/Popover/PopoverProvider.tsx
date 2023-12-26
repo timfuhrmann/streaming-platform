@@ -54,6 +54,7 @@ export const PopoverProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
         return router.push({ query }, undefined, {
             shallow: true,
+            scroll: false,
         });
     };
 
@@ -71,7 +72,7 @@ export const PopoverProvider: React.FC<PropsWithChildren> = ({ children }) => {
 export const withPopover = <T,>(WrappedComponent: React.ComponentType<T>) => {
     const displayName = WrappedComponent.displayName || WrappedComponent.name || "Component";
 
-    const ComponentWithProvider = (props: T) => {
+    const ComponentWithProvider = (props: T & {}) => {
         return (
             <PopoverProvider {...props}>
                 <WrappedComponent {...props} />
