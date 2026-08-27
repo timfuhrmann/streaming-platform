@@ -1,4 +1,5 @@
-**Last Update: 01.11.2022**
+> [!WARNING] 
+> Vintage alert! This repo hasn't been maintained in years, so some things might have stopped working by now - API calls failing or similar. Also, just like everyone else, if I started today, I'd probably do everything differently.
 
 A video streaming demo platform built with Next.js, inspired by Netflix, using a custom video player and providing a streaming example following the HLS protocol.
 
