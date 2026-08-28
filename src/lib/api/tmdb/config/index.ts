@@ -17,9 +17,9 @@ export const getTmdbHost = () => {
 };
 
 export const getTmdbApiKey = () => {
-    const host = tmdbConfig.host;
+    const apiKey = tmdbConfig.apiKey;
 
-    if (!host) {
+    if (!apiKey) {
         throw new Error("NEXT_PUBLIC_THE_MOVIE_DB_V3_API_KEY is undefined");
     }
 
